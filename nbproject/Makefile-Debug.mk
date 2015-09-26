@@ -35,6 +35,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/cApplication.o \
+	${OBJECTDIR}/cGame.o \
+	${OBJECTDIR}/cHelper.o \
+	${OBJECTDIR}/cPair.o \
+	${OBJECTDIR}/cRotationStrategy.o \
 	${OBJECTDIR}/main.o
 
 
@@ -61,6 +66,31 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ltm: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ltm ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/cApplication.o: cApplication.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cApplication.o cApplication.cpp
+
+${OBJECTDIR}/cGame.o: cGame.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cGame.o cGame.cpp
+
+${OBJECTDIR}/cHelper.o: cHelper.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cHelper.o cHelper.cpp
+
+${OBJECTDIR}/cPair.o: cPair.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPair.o cPair.cpp
+
+${OBJECTDIR}/cRotationStrategy.o: cRotationStrategy.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cRotationStrategy.o cRotationStrategy.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}

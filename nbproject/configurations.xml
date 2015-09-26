@@ -12,6 +12,16 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>cApplication.cpp</itemPath>
+      <itemPath>cApplication.h</itemPath>
+      <itemPath>cGame.cpp</itemPath>
+      <itemPath>cGame.h</itemPath>
+      <itemPath>cHelper.cpp</itemPath>
+      <itemPath>cHelper.h</itemPath>
+      <itemPath>cPair.cpp</itemPath>
+      <itemPath>cPair.h</itemPath>
+      <itemPath>cRotationStrategy.cpp</itemPath>
+      <itemPath>cRotationStrategy.h</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -36,6 +46,26 @@
       </toolsSet>
       <compileType>
       </compileType>
+      <item path="cApplication.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cApplication.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cGame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cGame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cHelper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cHelper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cPair.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cPair.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cRotationStrategy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cRotationStrategy.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
@@ -59,6 +89,26 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="cApplication.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cApplication.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cGame.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cGame.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cHelper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cHelper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cPair.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cPair.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cRotationStrategy.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cRotationStrategy.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
