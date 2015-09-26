@@ -47,8 +47,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=-std=c++0x
+CXXFLAGS=-std=c++0x
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -70,32 +70,32 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ltm: ${OBJECTFILES}
 ${OBJECTDIR}/cApplication.o: cApplication.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cApplication.o cApplication.cpp
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cApplication.o cApplication.cpp
 
 ${OBJECTDIR}/cGame.o: cGame.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cGame.o cGame.cpp
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cGame.o cGame.cpp
 
 ${OBJECTDIR}/cHelper.o: cHelper.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cHelper.o cHelper.cpp
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cHelper.o cHelper.cpp
 
 ${OBJECTDIR}/cPair.o: cPair.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPair.o cPair.cpp
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPair.o cPair.cpp
 
 ${OBJECTDIR}/cRotationStrategy.o: cRotationStrategy.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cRotationStrategy.o cRotationStrategy.cpp
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cRotationStrategy.o cRotationStrategy.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
