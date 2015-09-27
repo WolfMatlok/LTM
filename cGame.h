@@ -22,9 +22,12 @@ public:
   {
     return m_iGameId;
   }
-
-  cPairPtr GetPairB() const;
-  cPairPtr GetPairA() const;
+  
+  friend std::ostream& operator<<(std::ostream& os, const cGame& p_oPair)
+  {
+    os << "GAMEID:" << std::setw(5) << p_oPair.m_iGameId << " " << *(p_oPair.m_poPairA) << ":" << *(p_oPair.m_poPairB);
+    return os;
+  }
 
 private:
   int m_iGameId;

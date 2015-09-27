@@ -24,13 +24,3 @@ cGame::cGame(const cGame& orig)
 cGame::~cGame()
 {
 }
-
-cPairPtr cGame::GetPairB() const
-{
-  return m_poPairB;
-}
-
-cPairPtr cGame::GetPairA() const
-{
-  return m_poPairA;
-}

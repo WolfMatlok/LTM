@@ -8,8 +8,10 @@
 #include <cstdlib>                                                                                                                                                         
                                                                                                                                                                            
 #include "cApplication.h"                                                                                                                                                  
-#include "cRotationStrategy.h"                                                                                                                                             
-                                                                                                                                                                           
+#include "cRotationStrategy.h"
+
+
+
 int main(int argc, char** argv)                                                                                                                                            
 {                                                                                                                                                                          
   cApplication oApp(argc, argv);                                                                                                                                           

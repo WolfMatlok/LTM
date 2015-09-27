@@ -8,6 +8,7 @@
 #ifndef CPAIR_H
 #define	CPAIR_H
 
+#include <iomanip>
 #include <iostream>
 #include <map>
 #include "cHelper.h"

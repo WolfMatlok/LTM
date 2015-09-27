@@ -58,9 +58,8 @@ cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
         continue;
 
       //COUTSTRSTR(" " << oMapPairs[iPairIdA] << " vs " << oMapPairs[iPairIdBCurr]);
-      m_mapGamesAll.insert(std::make_pair(iNumOfGames, STREAMSTRING(m_mapPairs[iPairIdA] << " vs " << m_mapPairs[iPairIdB])));
       cGame oNewGame(iNumOfGames, new cPair(m_mapPairs[iPairIdA]), new cPair(m_mapPairs[iPairIdB]));
-      m_mapGamesAll2.insert(std::make_pair(oNewGame.GetGameId(), oNewGame));
+      m_mapGamesAll.insert(std::make_pair(oNewGame.GetGameId(), oNewGame));
       iNumOfGames++;
     }
 
@@ -83,10 +82,10 @@ cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
     //was choosen gameid already choosen
     if (m_mapGamesChoosen.end() == m_mapGamesChoosen.find(iCurrgameID))
     {
-      m_mapGamesChoosen.insert(std::make_pair(iNumOfGameCurr, m_mapGamesAll[iNumOfGameCurr]));
+      cGame oGameCurr = m_mapGamesAll[iNumOfGameCurr];
+      m_mapGamesChoosen.insert(std::make_pair(iNumOfGameCurr, oGameCurr));
       COUTSTRSTR("#" << std::setw(2) << iNumOfGameCurr
-        << " GAMEID:" << std::setw(5) << iCurrgameID
-        << " " << m_mapGamesAll[iCurrgameID]
+        << " " << oGameCurr
         << " Round:" << ((iCourtId % m_poApplication->GetCountOfCourts()) == 0 ? ++iNumOfRound : iNumOfRound)
         << " CourtId:" << std::setw(0) << (iCourtId++ % m_poApplication->GetCountOfCourts()) << endl);
       iNumOfGameCurr++;
