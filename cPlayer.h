@@ -28,10 +28,10 @@ public:
   
   static cPlayerPtr CreatePlayer(int p_iId, int p_iIdGroup);
   static PlayerId MakePlayerId(int p_iId, int p_iIdGroup){return p_iId+p_iIdGroup;};
-  static void SetGamesToPlay(int p_iGamesToPlay){cPlayer::s_iGamesToPlayMax = p_iGamesToPlay;}
+  static void SetGamesPerPlayer(int p_iGamesPerPlayer){cPlayer::s_iGamesPerPlayer = p_iGamesPerPlayer;}
   
   PlayerId GetId() const {return cPlayer::MakePlayerId(m_iId, m_iIdGroup);};
-  bool CanPlayMoreGames(){return m_iGamesToPlay < s_iGamesToPlayMax;}  
+  bool CanPlayMoreGames(){return m_iGamesToPlay < s_iGamesPerPlayer;}  
   int GameRegister(){m_iGamesToPlay+=1; return m_iGamesToPlay;}
   int GameUnregister(){m_iGamesToPlay-=1; if(m_iGamesToPlay<0){m_iGamesToPlay=0;} return m_iGamesToPlay;}
   
@@ -63,7 +63,7 @@ private:
   int m_iIdGroup;
   int m_iId;
   int m_iGamesToPlay;
-  static int s_iGamesToPlayMax;
+  static int s_iGamesPerPlayer;
   static CPLAYERMAP s_mapPlayerPool; //every player is unique
 };
 

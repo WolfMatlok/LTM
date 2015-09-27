@@ -23,6 +23,9 @@ public:
   cPair(cPlayer::cPlayerPtr p_poPlayerA, cPlayer::cPlayerPtr p_poPlayerB);
   cPair(const cPair& orig);
   virtual ~cPair();
+  
+  bool RegisterOnGamePossible();
+  void RegisterOnGame();
 
   std::string toString()
   {

@@ -24,3 +24,20 @@ cGame::cGame(const cGame& orig)
 cGame::~cGame()
 {
 }
+
+bool cGame::RegisterPlayerPossible()
+{
+  if(!m_poPairA->RegisterOnGamePossible())
+    return false;
+  
+  if(!m_poPairB->RegisterOnGamePossible())
+    return false;
+  
+  return true;  
+}
+
+void cGame::RegisterPlayer()
+{
+  m_poPairA->RegisterOnGame();
+  m_poPairB->RegisterOnGame();  
+}

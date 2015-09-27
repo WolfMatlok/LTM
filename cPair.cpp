@@ -26,3 +26,24 @@ cPair::cPair(const cPair& orig)
 cPair::~cPair()
 {
 }
+
+bool cPair::RegisterOnGamePossible()
+{
+  if(!m_poPlayerA->CanPlayMoreGames())
+  {
+    return false;
+  }
+  
+  if(!m_poPlayerB->CanPlayMoreGames())
+  {
+    return false;
+  }
+  
+  return true;
+}
+
+void cPair::RegisterOnGame()
+{
+  m_poPlayerA->GameRegister();
+  m_poPlayerB->GameRegister();  
+}

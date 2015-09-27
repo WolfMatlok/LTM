@@ -7,7 +7,7 @@
 
 #include "cPlayer.h"
 
-int cPlayer::s_iGamesToPlayMax = 0;
+int cPlayer::s_iGamesPerPlayer = 0;
 cPlayer::CPLAYERMAP cPlayer::s_mapPlayerPool;
 
 cPlayer::cPlayer(int p_iId, int p_iIdGroup, int p_iGamesToPlay)

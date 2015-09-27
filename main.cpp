@@ -12,12 +12,8 @@
 
 int main(int argc, char** argv)
 {
-  for (int iN = 0; iN < 100000000; iN++)
-  {
-    cApplication oApp(argc, argv);
-    cRotationStrategy oRotStat(&oApp);
-  }
-  
+  cApplication oApp(argc, argv);
+  cRotationStrategy oRotStat(&oApp);
   return 0;
 }
 

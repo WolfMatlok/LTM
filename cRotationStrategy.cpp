@@ -72,14 +72,19 @@ cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
   int iNumOfGameCurr = 0;
   int iCourtId = 0;
   int iNumOfRound = 0;
+  cPlayer::SetGamesPerPlayer(m_poApplication->GetGamesPerPlayer());
   while (m_mapGamesChoosen.size() < iNumOfGamesToPlay)
   {
     int iCurrgameID = oDistribution(oGenerator); // generates number in the range 0 .. iNumOfGames
+    
+    cGame oGameCurr = m_mapGamesAll[iCurrgameID];
+    if(!oGameCurr.RegisterPlayerPossible()) //try to register all involved player if possible
+      continue;//on of the involved player exceeds the maximum possible amount of games he can play
 
     //was choosen gameid already choosen
     if (m_mapGamesChoosen.end() == m_mapGamesChoosen.find(iCurrgameID))
     {
-      cGame oGameCurr = m_mapGamesAll[iNumOfGameCurr];
+      oGameCurr.RegisterPlayer();
       m_mapGamesChoosen.insert(std::make_pair(iNumOfGameCurr, oGameCurr));
       COUTSTRSTR("#" << std::setw(2) << iNumOfGameCurr
         << " " << oGameCurr

@@ -60,6 +60,11 @@ public:
     return m_iCountOfCourts;
   }
 
+  int GetGamesPerPlayer() const
+  {
+    return m_iGamesPerPlayer;
+  }
+
 private:
   po::variables_map m_oVarMap;
 
@@ -82,6 +87,10 @@ private:
   /** Zahl bespielbaren Plätze
    */
   int m_iCountOfCourts;
+  
+  /** Zahld er Spiele die pro Spieler gemacht werden können
+   */
+  int m_iGamesPerPlayer;
 
 };
 
