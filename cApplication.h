@@ -35,7 +35,7 @@ public:
   int GetPlayerTeam2(){return m_iPlayerTeam2;}
   int GetTimeToPlay(){return m_dTimeToPlayH;}
   int GetTimeForOneGame(){return m_dTimeForOneGameMin;}
-  int GetCountOfGames(){return m_iCountOfGames;}
+  int GetCountOfGamesToPlay(){return m_iCountOfGamesToPlay;}
   int GetCountOfCourts() {return m_iCountOfCourts;}
 
 private:
@@ -55,7 +55,7 @@ private:
   
   /** Zahl der möglichen Spiele
    */
-  int m_iCountOfGames;
+  int m_iCountOfGamesToPlay;
   
   /** Zahl bespielbaren Plätze
    */

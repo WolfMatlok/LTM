@@ -9,8 +9,7 @@
 #define	CROTATIONSTRATEGY_H
 
 #include "cApplication.h"
-#include "cPair.h"
-#include <map>
+#include "cGame.h"
 
 
 /** Rotionstrategy based on matrices 
@@ -27,9 +26,13 @@ private:
   cApplication* m_poApplication;
   
   std::map<int, std::string> m_mapGamesAll;
+  MAPGAME m_mapGamesAll2;
   std::map<int, std::string> m_mapGamesChoosen;
+  MAPGAME m_mapGamesChoosen2;
+  
+  /** pool of all possible pairs
+   */
   CPAIRMAP m_mapPairs;
-
 };
 
 #endif	/* CROTATIONSTRATEGY_H */

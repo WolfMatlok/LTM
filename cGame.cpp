@@ -7,13 +7,30 @@
 
 #include "cGame.h"
 
-cGame::cGame(int p_iGameId) {
-    m_iGameId = p_iGameId;
+cGame::cGame(int p_iGameId, cPairPtr p_poPairA, cPairPtr p_poPairB)
+{
+  m_iGameId = p_iGameId;
+  m_poPairA = p_poPairA;
+  m_poPairB = p_poPairB;
 }
 
-cGame::cGame(const cGame& orig) {
+cGame::cGame(const cGame& orig)
+{
+  m_iGameId = orig.m_iGameId;
+  m_poPairA = orig.m_poPairA;
+  m_poPairB = orig.m_poPairB;
 }
 
-cGame::~cGame() {
+cGame::~cGame()
+{
 }
 
+cPairPtr cGame::GetPairB() const
+{
+  return m_poPairB;
+}
+
+cPairPtr cGame::GetPairA() const
+{
+  return m_poPairA;
+}

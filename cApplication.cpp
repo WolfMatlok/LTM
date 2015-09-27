@@ -28,16 +28,16 @@ cApplication::cApplication(int argc, char** argv)
   }
 
   //*** calc amount of possible games ***
-  m_iCountOfGames = int(m_dTimeToPlayH*60.*m_iCountOfCourts/m_dTimeForOneGameMin+0.5);
-  
+  m_iCountOfGamesToPlay = int(m_dTimeToPlayH * 60. * m_iCountOfCourts / m_dTimeForOneGameMin + 0.5);
+
   COUTSTRSTR("Group1 has " << this->GetPlayerTeam1() << " player." << endl);
   COUTSTRSTR("Group2 has " << this->GetPlayerTeam2() << " player." << endl);
   COUTSTRSTR("Time to play:" << this->GetTimeToPlay() << " hours." << endl);
   COUTSTRSTR("Time for one single game:" << this->GetTimeForOneGame() << " min." << endl);
-  COUTSTRSTR("Count of possible games:" << this->GetCountOfGames() << endl);
+  COUTSTRSTR("Sum of possible games to play:" << this->GetCountOfGamesToPlay() << endl);
   COUTSTRSTR("Amount of courts to play on:" << this->GetCountOfCourts() << endl);
-  
-  
+
+
 }
 
 cApplication::cApplication(const cApplication& orig)
