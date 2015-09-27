@@ -7,7 +7,6 @@
 
 #include "cHelper.h"
 
-
 cHelper::cHelper()
 {
 }

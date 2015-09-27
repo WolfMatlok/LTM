@@ -23,40 +23,62 @@ namespace po = boost::program_options;
 #define TEAM1 "team1" //amount of gamers in team 1
 #define TEAM2 "team2" //amout of gamers in team 2
 
-
 class cApplication
 {
 public:
   cApplication(int argc, char** argv);
   cApplication(const cApplication& orig);
   virtual ~cApplication();
-  
-  int GetPlayerTeam1(){return m_iPlayerTeam1;}
-  int GetPlayerTeam2(){return m_iPlayerTeam2;}
-  int GetTimeToPlay(){return m_dTimeToPlayH;}
-  int GetTimeForOneGame(){return m_dTimeForOneGameMin;}
-  int GetCountOfGamesToPlay(){return m_iCountOfGamesToPlay;}
-  int GetCountOfCourts() {return m_iCountOfCourts;}
+
+  int GetPlayerTeam1()
+  {
+    return m_iPlayerTeam1;
+  }
+
+  int GetPlayerTeam2()
+  {
+    return m_iPlayerTeam2;
+  }
+
+  int GetTimeToPlay()
+  {
+    return m_dTimeToPlayH;
+  }
+
+  int GetTimeForOneGame()
+  {
+    return m_dTimeForOneGameMin;
+  }
+
+  int GetCountOfGamesToPlay()
+  {
+    return m_iCountOfGamesToPlay;
+  }
+
+  int GetCountOfCourts()
+  {
+    return m_iCountOfCourts;
+  }
 
 private:
   po::variables_map m_oVarMap;
-  
+
   /** Zahl der Spieler*/
   int m_iPlayerTeam1;
   int m_iPlayerTeam2;
-  
+
   /** Zeit fur das Turnier in Stunden
    */
   double m_dTimeToPlayH;
-  
+
   /** Zeit fuer ein einziges Spiel
    */
   double m_dTimeForOneGameMin;
-  
+
   /** Zahl der möglichen Spiele
    */
   int m_iCountOfGamesToPlay;
-  
+
   /** Zahl bespielbaren Plätze
    */
   int m_iCountOfCourts;
