@@ -49,7 +49,7 @@
           <incDir>
             <pElem>/usr/include/boost</pElem>
           </incDir>
-          <commandLine>-std=c++0x</commandLine>
+          <commandLine>-std=c++0x -lboost_program_options</commandLine>
         </ccTool>
       </compileType>
       <item path="cApplication.cpp" ex="false" tool="1" flavor2="0">

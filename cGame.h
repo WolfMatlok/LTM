@@ -8,6 +8,8 @@
 #ifndef CGAME_H
 #define	CGAME_H
 
+#include <map>
+
 class cPair;
 
 class cGame {
