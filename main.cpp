@@ -3,21 +3,21 @@
  * Author: juia                                                                                                                                                            
  *                                                                                                                                                                         
  * Created on 18. September 2015, 20:51                                                                                                                                    
- */                                                                                                                                                                        
-                                                                                                                                                                           
+ */
+
 #include <cstdlib>                                                                                                                                                         
-                                                                                                                                                                           
+
 #include "cApplication.h"                                                                                                                                                  
 #include "cRotationStrategy.h"
 
-
-
-int main(int argc, char** argv)                                                                                                                                            
-{                                                                                                                                                                          
-  cApplication oApp(argc, argv);                                                                                                                                           
-                                                                                                                                                                           
-  cRotationStrategy oRotStat(&oApp);                                                                                                                                       
-                                                                                                                                                                           
+int main(int argc, char** argv)
+{
+  for (int iN = 0; iN < 100000000; iN++)
+  {
+    cApplication oApp(argc, argv);
+    cRotationStrategy oRotStat(&oApp);
+  }
+  
   return 0;
 }
 

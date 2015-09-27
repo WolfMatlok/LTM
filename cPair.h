@@ -11,6 +11,8 @@
 #include <iomanip>
 #include <iostream>
 #include <map>
+#include <functional>
+#include <boost/shared_ptr.hpp>
 #include "cHelper.h"
 
 class cPair
@@ -51,7 +53,8 @@ private:
 
 };
 
-typedef cPair* cPairPtr;
+typedef boost::shared_ptr<cPair> cPairPtr;
+#define NEWPAIRPTR(CPAIRREFERENCE) [&](const cPair& p_oPair)->cPairPtr{return cPairPtr(new cPair(p_oPair));}(CPAIRREFERENCE)
 typedef std::map<int, cPair> CPAIRMAP;
 
 #endif	/* CPAIR_H */

@@ -8,6 +8,7 @@
       <itemPath>cGame.h</itemPath>
       <itemPath>cHelper.h</itemPath>
       <itemPath>cPair.h</itemPath>
+      <itemPath>cPlayer.h</itemPath>
       <itemPath>cRotationStrategy.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -21,6 +22,7 @@
       <itemPath>cGame.cpp</itemPath>
       <itemPath>cHelper.cpp</itemPath>
       <itemPath>cPair.cpp</itemPath>
+      <itemPath>cPlayer.cpp</itemPath>
       <itemPath>cRotationStrategy.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
     </logicalFolder>
@@ -68,6 +70,10 @@
       </item>
       <item path="cPair.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="cPlayer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cPlayer.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cRotationStrategy.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cRotationStrategy.h" ex="false" tool="3" flavor2="0">
@@ -110,6 +116,10 @@
       <item path="cPair.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cPair.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cPlayer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cPlayer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cRotationStrategy.cpp" ex="false" tool="1" flavor2="0">
       </item>

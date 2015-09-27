@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/cGame.o \
 	${OBJECTDIR}/cHelper.o \
 	${OBJECTDIR}/cPair.o \
+	${OBJECTDIR}/cPlayer.o \
 	${OBJECTDIR}/cRotationStrategy.o \
 	${OBJECTDIR}/main.o
 
@@ -86,6 +87,11 @@ ${OBJECTDIR}/cPair.o: cPair.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPair.o cPair.cpp
+
+${OBJECTDIR}/cPlayer.o: cPlayer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPlayer.o cPlayer.cpp
 
 ${OBJECTDIR}/cRotationStrategy.o: cRotationStrategy.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -58,7 +58,7 @@ cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
         continue;
 
       //COUTSTRSTR(" " << oMapPairs[iPairIdA] << " vs " << oMapPairs[iPairIdBCurr]);
-      cGame oNewGame(iNumOfGames, new cPair(m_mapPairs[iPairIdA]), new cPair(m_mapPairs[iPairIdB]));
+      cGame oNewGame(iNumOfGames, NEWPAIRPTR(m_mapPairs[iPairIdA]), NEWPAIRPTR(m_mapPairs[iPairIdB]));
       m_mapGamesAll.insert(std::make_pair(oNewGame.GetGameId(), oNewGame));
       iNumOfGames++;
     }

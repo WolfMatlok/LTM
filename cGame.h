@@ -14,7 +14,7 @@
 class cGame
 {
 public:
-  cGame(int p_iGameId = -1, cPairPtr p_poPairA = 0, cPairPtr p_poPairB = 0);
+  cGame(int p_iGameId = -1, cPairPtr p_poPairA = cPairPtr(), cPairPtr p_poPairB = cPairPtr());
   cGame(const cGame& orig);
   virtual ~cGame();
 
