@@ -48,9 +48,6 @@ private:
 
   int m_iPlayerA;
   int m_iPlayerB;
-
-  int m_iInGamesInvolved;
-
 };
 
 typedef boost::shared_ptr<cPair> cPairPtr;

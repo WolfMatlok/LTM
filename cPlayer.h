@@ -25,7 +25,7 @@ public:
   friend std::ostream& operator<<(std::ostream& os, const cPlayer& p_oPlayer)
   {
     //os << "ID:" << std::setw(5) << p_oPlayer.m_iId << " GamesToPlay:" << std::setw(2) << p_oPlayer.m_iGamesToPlay; 
-    os << std::setw(5) << p_oPlayer.m_iId;
+    os << std::setw(3) << p_oPlayer.m_iId;
     return os;
   }
   
