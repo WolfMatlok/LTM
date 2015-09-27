@@ -7,16 +7,16 @@
 
 #include "cPlayer.h"
 
-cPlayer::cPlayer(int p_iId)
+int cPlayer::s_iGamesToPlayMax = 0;
+
+cPlayer::cPlayer(int p_iId, int p_iGamesToPlay)
 : m_iId(p_iId)
-, m_iGamesToPlayMax(p_iGamesToPlayMax)
-, m_iGamesToPlay(0)
+, m_iGamesToPlay(p_iGamesToPlay)
 {
 }
 
 cPlayer::cPlayer(const cPlayer& orig)
 {
-  m_iGamesToPlayMax = orig.m_iGamesToPlayMax;
   m_iId = orig.m_iId;
   m_iGamesToPlay = orig.m_iGamesToPlay;
 }
