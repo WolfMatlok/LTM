@@ -7,6 +7,7 @@
 
 #include "cRotationStrategy.h"
 #include "cGame.h"
+#include "cPlayer.h"
 #include <iomanip>
 #include <map>
 #include <random>
@@ -19,18 +20,14 @@ cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
   int iNumOfPairs = 0;
   int iNumOfGames = 0;
   int iNumOfGamesToPlay = m_poApplication->GetCountOfGamesToPlay();
-
+  int iGroupIdA = 100, iGroupIdB = 200;
+  
   //*** search for all possible pais ***
   for (int iT1 = 0; iT1 < p_poApplication->GetPlayerTeam1(); iT1++)
-  {
-    int iGroupIdA = 100, iGroupIdB = 200;
-    int iPlayerIdA = iGroupIdA + iT1;
-
-    for (int iT2 = 0; iT2 < p_poApplication->GetPlayerTeam1(); iT2++)
+  {    
+    for (int iT2 = 0; iT2 < p_poApplication->GetPlayerTeam2(); iT2++)
     {
-      int iPlayerIdB = iGroupIdB + iT2;
-
-      cPair oPair(iPlayerIdA, iPlayerIdB);
+      cPair oPair(cPlayer::CreatePlayer(iT1, iGroupIdA), cPlayer::CreatePlayer(iT2, iGroupIdB));
       m_mapPairs.insert(std::make_pair(iNumOfPairs, oPair));
       COUTSTRSTR(" " << m_mapPairs[iNumOfPairs] << std::flush);
       iNumOfPairs++;

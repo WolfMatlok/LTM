@@ -14,25 +14,27 @@
 #include <functional>
 #include <boost/shared_ptr.hpp>
 #include "cHelper.h"
+#include "cPlayer.h"
 
 class cPair
 {
 public:
-  cPair(int p_iPlayerA = 0, int p_iPlayerB = 0);
+  cPair();
+  cPair(cPlayer::cPlayerPtr p_poPlayerA, cPlayer::cPlayerPtr p_poPlayerB);
   cPair(const cPair& orig);
   virtual ~cPair();
 
   std::string toString()
   {
-    COUTSTRSTR(m_iPlayerA << ":" << m_iPlayerB);
+    COUTSTRSTR(m_poPlayerA << ":" << m_poPlayerB);
   };
 
   bool operator==(const cPair& p_oLefthand)
   {
-    if (m_iPlayerA == p_oLefthand.m_iPlayerA || m_iPlayerA == p_oLefthand.m_iPlayerB)
+    if (m_poPlayerA == p_oLefthand.m_poPlayerA || m_poPlayerA == p_oLefthand.m_poPlayerB)
       return true;
 
-    if (m_iPlayerB == p_oLefthand.m_iPlayerA || m_iPlayerB == p_oLefthand.m_iPlayerB)
+    if (m_poPlayerB == p_oLefthand.m_poPlayerA || m_poPlayerB == p_oLefthand.m_poPlayerB)
       return true;
 
     return false;
@@ -40,14 +42,14 @@ public:
 
   friend std::ostream& operator<<(std::ostream& os, const cPair& p_oPair)
   {
-    os << p_oPair.m_iPlayerA << ":" << p_oPair.m_iPlayerB;
+    os << p_oPair.m_poPlayerA << ":" << p_oPair.m_poPlayerB;
     return os;
   }
 
 private:
 
-  int m_iPlayerA;
-  int m_iPlayerB;
+  cPlayer::cPlayerPtr m_poPlayerA;
+  cPlayer::cPlayerPtr m_poPlayerB;
 };
 
 typedef boost::shared_ptr<cPair> cPairPtr;

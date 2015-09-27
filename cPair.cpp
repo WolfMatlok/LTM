@@ -7,16 +7,20 @@
 
 #include "cPair.h"
 
-cPair::cPair(int p_iPlayerA, int p_iPlayerB) 
+cPair::cPair()
 {
-  m_iPlayerA = p_iPlayerA;
-  m_iPlayerB = p_iPlayerB;
+}
+
+cPair::cPair(cPlayer::cPlayerPtr p_poPlayerA, cPlayer::cPlayerPtr p_poPlayerB) 
+{
+  m_poPlayerA = p_poPlayerA;
+  m_poPlayerB = p_poPlayerB;
 }
 
 cPair::cPair(const cPair& orig)
 {
-  m_iPlayerA = orig.m_iPlayerA;
-  m_iPlayerB = orig.m_iPlayerB;
+  m_poPlayerA = orig.m_poPlayerA;
+  m_poPlayerB = orig.m_poPlayerB;
 }
 
 cPair::~cPair()
