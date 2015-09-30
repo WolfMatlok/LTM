@@ -24,8 +24,8 @@ public:
   cPair(const cPair& orig);
   virtual ~cPair();
   
-  bool RegisterOnGamePossible();
-  void RegisterOnGame();
+  bool RegisterOnGamePossible(int p_iRoundId);
+  void RegisterOnGame(int p_iRoundId);
 
   std::string toString()
   {

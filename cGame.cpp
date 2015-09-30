@@ -25,19 +25,19 @@ cGame::~cGame()
 {
 }
 
-bool cGame::RegisterPlayerPossible()
+bool cGame::RegisterPlayerPossible(int p_iRoundId)
 {
-  if(!m_poPairA->RegisterOnGamePossible())
+  if(!m_poPairA->RegisterOnGamePossible(p_iRoundId))
     return false;
   
-  if(!m_poPairB->RegisterOnGamePossible())
+  if(!m_poPairB->RegisterOnGamePossible(p_iRoundId))
     return false;
   
   return true;  
 }
 
-void cGame::RegisterPlayer()
+void cGame::RegisterPlayer(int p_iRoundId)
 {
-  m_poPairA->RegisterOnGame();
-  m_poPairB->RegisterOnGame();  
+  m_poPairA->RegisterOnGame(p_iRoundId);
+  m_poPairB->RegisterOnGame(p_iRoundId); 
 }

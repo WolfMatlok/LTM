@@ -32,7 +32,7 @@ cApplication::cApplication(int argc, char** argv)
   m_iCountOfGamesToPlay = int(m_dTimeToPlayH * 60. * m_iCountOfCourts / m_dTimeForOneGameMin);
 
   //*** calc how often every player wants to play.. ***
-  m_iGamesPerPlayer = m_iCountOfGamesToPlay; //double(double(m_iCountOfGamesToPlay)/double(m_iPlayerTeam1+m_iPlayerTeam2));
+  m_iGamesPerPlayer = double(double(m_iCountOfGamesToPlay)/double(m_iCountOfCourts));
   
   COUTSTRSTR("Group1 has " << this->GetPlayerTeam1() << " player." << endl);
   COUTSTRSTR("Group2 has " << this->GetPlayerTeam2() << " player." << endl);

@@ -27,14 +27,14 @@ cPair::~cPair()
 {
 }
 
-bool cPair::RegisterOnGamePossible()
+bool cPair::RegisterOnGamePossible(int p_iRoundId)
 {
-  if(!m_poPlayerA->CanPlayMoreGames())
+  if(!m_poPlayerA->CanPlayRound(p_iRoundId))
   {
     return false;
   }
   
-  if(!m_poPlayerB->CanPlayMoreGames())
+  if(!m_poPlayerB->CanPlayRound(p_iRoundId))
   {
     return false;
   }
@@ -42,8 +42,8 @@ bool cPair::RegisterOnGamePossible()
   return true;
 }
 
-void cPair::RegisterOnGame()
+void cPair::RegisterOnGame(int p_iRoundId)
 {
-  m_poPlayerA->GameRegister();
-  m_poPlayerB->GameRegister();  
+  m_poPlayerA->GameRegister(p_iRoundId);
+  m_poPlayerB->GameRegister(p_iRoundId);
 }

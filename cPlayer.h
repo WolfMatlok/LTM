@@ -9,11 +9,13 @@
 #define	CPLAYER_H
 
 #include <map>
+#include <algorithm>
 #include <iostream>
 #include <iomanip>
 #include <boost/shared_ptr.hpp>
 
 #include "cHelper.h"
+#include "cApplication.h"
 
 typedef int PlayerId;
   
@@ -34,9 +36,9 @@ public:
   static void SetGamesPerPlayer(int p_iGamesPerPlayer){cPlayer::s_iGamesPerPlayer = p_iGamesPerPlayer;}
   
   PlayerId GetId() const {return cPlayer::MakePlayerId(m_iId, m_iIdGroup);};
-  bool CanPlayMoreGames(){return m_iGamesToPlay < s_iGamesPerPlayer;}  
-  int GameRegister(){m_iGamesToPlay+=1; return m_iGamesToPlay;}
-  int GameUnregister(){m_iGamesToPlay-=1; if(m_iGamesToPlay<0){m_iGamesToPlay=0;} return m_iGamesToPlay;}
+  bool CanPlayRound(int p_iRoundId){return std::find(m_oRegisteredRoundId.begin(), m_oRegisteredRoundId.end(), p_iRoundId)==m_oRegisteredRoundId.end() && (m_oRegisteredRoundId.size()<s_iGamesPerPlayer);}  
+  int GameRegister(int p_iRoundId){m_oRegisteredRoundId.push_back(p_iRoundId); m_iGamesToPlay=m_oRegisteredRoundId.size(); return m_iGamesToPlay;}
+  //int GameUnregister(){m_iGamesToPlay-=1; if(m_iGamesToPlay<0){m_iGamesToPlay=0;} return m_iGamesToPlay;}
   
   bool operator==(const cPlayer& p_oLeftHand)
   {
@@ -71,6 +73,7 @@ private:
   int m_iIdGroup;
   int m_iId;
   int m_iGamesToPlay;
+  std::vector<int> m_oRegisteredRoundId;
   static int s_iGamesPerPlayer;
   static CPLAYERMAP s_mapPlayerPool; //every player is unique
 };

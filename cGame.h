@@ -18,8 +18,8 @@ public:
   cGame(const cGame& orig);
   virtual ~cGame();
   
-  bool RegisterPlayerPossible();
-  void RegisterPlayer();
+  bool RegisterPlayerPossible(int p_iRoundId);
+  void RegisterPlayer(int p_iRoundId);
 
   int GetGameId()
   {
