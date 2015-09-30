@@ -18,7 +18,7 @@ cApplication::cApplication(int argc, char** argv)
     (COURTS, po::value<int>(&m_iCountOfCourts)->default_value(4), "amount of courts to play on")
     (TFG, po::value<double>(&m_dTimeForOneGameMin)->default_value(7), "time for one single game in min")
     (TEAM1, po::value<int>(&m_iPlayerTeam1)->default_value(8), "amount of gamers in team 1")
-    (TEAM2, po::value<int>(&m_iPlayerTeam2)->default_value(8), "amout of gamers in team 2");
+    (TEAM2, po::value<int>(&m_iPlayerTeam2)->default_value(8), "amount of gamers in team 2");
 
   po::store(po::parse_command_line(argc, argv, oOptDesc), m_oVarMap);
   po::notify(m_oVarMap);
@@ -32,7 +32,7 @@ cApplication::cApplication(int argc, char** argv)
   m_iCountOfGamesToPlay = int(m_dTimeToPlayH * 60. * m_iCountOfCourts / m_dTimeForOneGameMin);
 
   //*** calc how often every player wants to play.. ***
-  m_iGamesPerPlayer = double(double(m_iCountOfGamesToPlay)/double(m_iPlayerTeam1+m_iPlayerTeam2))+0.5;
+  m_iGamesPerPlayer = m_iCountOfGamesToPlay; //double(double(m_iCountOfGamesToPlay)/double(m_iPlayerTeam1+m_iPlayerTeam2));
   
   COUTSTRSTR("Group1 has " << this->GetPlayerTeam1() << " player." << endl);
   COUTSTRSTR("Group2 has " << this->GetPlayerTeam2() << " player." << endl);

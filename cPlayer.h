@@ -13,6 +13,8 @@
 #include <iomanip>
 #include <boost/shared_ptr.hpp>
 
+#include "cHelper.h"
+
 typedef int PlayerId;
   
 
@@ -26,6 +28,7 @@ public:
   cPlayer(const cPlayer& orig);
   virtual ~cPlayer();
   
+  static CPLAYERMAP& GetPlayers(){return cPlayer::s_mapPlayerPool;};
   static cPlayerPtr CreatePlayer(int p_iId, int p_iIdGroup);
   static PlayerId MakePlayerId(int p_iId, int p_iIdGroup){return p_iId+p_iIdGroup;};
   static void SetGamesPerPlayer(int p_iGamesPerPlayer){cPlayer::s_iGamesPerPlayer = p_iGamesPerPlayer;}
@@ -57,6 +60,11 @@ public:
     //os << "ID:" << std::setw(5) << p_oPlayer.m_iId << " GamesToPlay:" << std::setw(2) << p_oPlayer.m_iGamesToPlay; 
     os << std::setw(3) << p_poPlayer->GetId();
     return os;
+  }
+  
+  std::string toString()
+  {
+    return STREAMSTRING(std::setw(3) << GetId() << std::setw(2) << "("<<m_iGamesToPlay<<")");
   }
   
 private:
