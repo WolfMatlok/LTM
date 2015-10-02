@@ -66,7 +66,7 @@ public:
   
   std::string toString()
   {
-    return STREAMSTRING(std::setw(3) << GetId() << std::setw(2) << "("<<m_iGamesToPlay<<")");
+    return STREAMSTRING(std::setw(3) << GetId() << std::setw(2) << "("<<m_oRegisteredRoundId.size()<<")");
   }
   
 private:

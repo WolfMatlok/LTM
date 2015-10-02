@@ -90,7 +90,7 @@ cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
     oGameCurr.RegisterPlayer(iRoundId+1);
     m_mapGamesChoosen.insert(std::make_pair(iNumOfGameCurr, oGameCurr));
     COUTSTRSTR("#" << std::setw(2) << iNumOfGameCurr
-      << " " << oGameCurr
+      << " " << oGameCurr.toString()
       << " Round:" << ((iCourtId % m_poApplication->GetCountOfCourts()) == 0 ? ++iRoundId : iRoundId)
       << " CourtId:" << std::setw(0) << (iCourtId++ % m_poApplication->GetCountOfCourts()) << endl);
     iNumOfGameCurr++;

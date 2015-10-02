@@ -29,7 +29,7 @@ public:
 
   std::string toString()
   {
-    COUTSTRSTR(m_poPlayerA << ":" << m_poPlayerB);
+    return STREAMSTRING(m_poPlayerA->toString() << ":" << m_poPlayerB->toString());
   };
 
   bool operator==(const cPair& p_oLefthand)

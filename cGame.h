@@ -20,6 +20,11 @@ public:
   
   bool RegisterPlayerPossible(int p_iRoundId);
   void RegisterPlayer(int p_iRoundId);
+  
+  std::string toString()
+  {
+    return STREAMSTRING("GAMEID:" << std::setw(5) << m_iGameId << " " << m_poPairA->toString() << "vs" << m_poPairB->toString());
+  }
 
   int GetGameId()
   {
