@@ -17,6 +17,14 @@ public:
   cGame(int p_iGameId = -1, cPairPtr p_poPairA = cPairPtr(), cPairPtr p_poPairB = cPairPtr());
   cGame(const cGame& orig);
   virtual ~cGame();
+  
+  bool RegisterPlayerPossible(int p_iRoundId);
+  void RegisterPlayer(int p_iRoundId);
+  
+  std::string toString()
+  {
+    return STREAMSTRING("GAMEID:" << std::setw(5) << m_iGameId << " " << m_poPairA->toString() << "vs" << m_poPairB->toString());
+  }
 
   int GetGameId()
   {
@@ -25,7 +33,7 @@ public:
   
   friend std::ostream& operator<<(std::ostream& os, const cGame& p_oPair)
   {
-    os << "GAMEID:" << std::setw(5) << p_oPair.m_iGameId << " " << *(p_oPair.m_poPairA) << ":" << *(p_oPair.m_poPairB);
+    os << "GAMEID:" << std::setw(5) << p_oPair.m_iGameId << " " << *(p_oPair.m_poPairA) << "vs" << *(p_oPair.m_poPairB);
     return os;
   }
 
