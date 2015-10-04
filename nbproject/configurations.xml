@@ -93,6 +93,10 @@
         </cTool>
         <ccTool>
           <developmentMode>5</developmentMode>
+          <incDir>
+            <pElem>/usr/include/boost</pElem>
+          </incDir>
+          <commandLine>-std=c++0x -lboost_program_options</commandLine>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>

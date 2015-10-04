@@ -48,8 +48,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=
-CXXFLAGS=
+CCFLAGS=-std=c++0x -lboost_program_options
+CXXFLAGS=-std=c++0x -lboost_program_options
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -71,37 +71,37 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ltm: ${OBJECTFILES}
 ${OBJECTDIR}/cApplication.o: cApplication.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cApplication.o cApplication.cpp
+	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cApplication.o cApplication.cpp
 
 ${OBJECTDIR}/cGame.o: cGame.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cGame.o cGame.cpp
+	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cGame.o cGame.cpp
 
 ${OBJECTDIR}/cHelper.o: cHelper.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cHelper.o cHelper.cpp
+	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cHelper.o cHelper.cpp
 
 ${OBJECTDIR}/cPair.o: cPair.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPair.o cPair.cpp
+	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPair.o cPair.cpp
 
 ${OBJECTDIR}/cPlayer.o: cPlayer.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPlayer.o cPlayer.cpp
+	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPlayer.o cPlayer.cpp
 
 ${OBJECTDIR}/cRotationStrategy.o: cRotationStrategy.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cRotationStrategy.o cRotationStrategy.cpp
+	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cRotationStrategy.o cRotationStrategy.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:
