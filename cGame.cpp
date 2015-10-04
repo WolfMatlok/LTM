@@ -33,7 +33,7 @@ bool cGame::RegisterPlayerPossible(int p_iRoundId)
   if(!m_poPairB->RegisterOnGamePossible(p_iRoundId))
     return false;
   
-  return true;  
+  return true;
 }
 
 void cGame::RegisterPlayer(int p_iRoundId)

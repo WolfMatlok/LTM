@@ -73,9 +73,17 @@ cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
   int iCurrgameID = 0;
   int iCourtId = 0;
   int iRoundId = 0;
+  int iGenerationTimeout = 10000;
   cPlayer::SetGamesPerPlayer(m_poApplication->GetGamesPerPlayer());
   while (m_mapGamesChoosen.size() < iNumOfGamesToPlay)
   {
+    if(0==iGenerationTimeout--)
+    {
+      iGenerationTimeout=10000;
+      iRoundId++;
+      iCourtId=0;
+    }
+    
     iCurrgameID = oDistribution(oGenerator); // generates number in the range 0 .. iNumOfGames
     if (m_mapGamesChoosen.end() != m_mapGamesChoosen.find(iCurrgameID))
     {
@@ -83,16 +91,17 @@ cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
     }
 
     cGame oGameCurr = m_mapGamesAll[iCurrgameID];
-    if (!oGameCurr.RegisterPlayerPossible(iRoundId+1)) //try to register all involved player if possible
+    if (!oGameCurr.RegisterPlayerPossible(iRoundId)) //try to register all involved player if possible
       continue; //on of the involved player exceeds the maximum possible amount of games he can play
 
     //was choosen gameid already choosen
-    oGameCurr.RegisterPlayer(iRoundId+1);
-    m_mapGamesChoosen.insert(std::make_pair(iNumOfGameCurr, oGameCurr));
+    oGameCurr.RegisterPlayerPossible(iRoundId);
+    oGameCurr.RegisterPlayer(iRoundId);
+    m_mapGamesChoosen.insert(std::make_pair(iCurrgameID, oGameCurr));
     COUTSTRSTR("#" << std::setw(2) << iNumOfGameCurr
-      << " " << oGameCurr.toString()
-      << " Round:" << ((iCourtId % m_poApplication->GetCountOfCourts()) == 0 ? ++iRoundId : iRoundId)
-      << " CourtId:" << std::setw(0) << (iCourtId++ % m_poApplication->GetCountOfCourts()) << endl);
+      << " " << oGameCurr
+      << " Round:" << iRoundId
+      << " CourtId:" << std::setw(0) << iCourtId << endl);
     iNumOfGameCurr++;
   }
 

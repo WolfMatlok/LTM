@@ -38,7 +38,7 @@ cApplication::cApplication(int argc, char** argv)
   COUTSTRSTR("Group2 has " << this->GetPlayerTeam2() << " player." << endl);
   COUTSTRSTR("Time to play:" << this->GetTimeToPlay() << " hours." << endl);
   COUTSTRSTR("Time for one single game:" << this->GetTimeForOneGame() << " min." << endl);
-  COUTSTRSTR("Sum of possible games to play:" << this->GetCountOfGamesToPlay() << endl);
+  COUTSTRSTR("Games to play in "<< this->GetTimeToPlay() <<"h:" << this->GetCountOfGamesToPlay() << endl);
   COUTSTRSTR("Amount of courts to play on:" << this->GetCountOfCourts() << endl);
   COUTSTRSTR("Games per player:" << this->GetGamesPerPlayer() << endl);
 

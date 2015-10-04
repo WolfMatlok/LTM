@@ -25,19 +25,19 @@ class cPlayer
 public:
   typedef boost::shared_ptr<cPlayer> cPlayerPtr;
   typedef std::map<PlayerId, cPlayerPtr> CPLAYERMAP;
+  
+  static CPLAYERMAP& GetPlayers();
+  static cPlayerPtr CreatePlayer(int p_iId, int p_iIdGroup);
+  static PlayerId MakePlayerId(int p_iId, int p_iIdGroup);
+  static void SetGamesPerPlayer(int p_iGamesPerPlayer);
 
   cPlayer(int p_iId = -1, int p_iIdGroup = -1, int p_iGamesToPlay = 0);
   cPlayer(const cPlayer& orig);
   virtual ~cPlayer();
   
-  static CPLAYERMAP& GetPlayers(){return cPlayer::s_mapPlayerPool;};
-  static cPlayerPtr CreatePlayer(int p_iId, int p_iIdGroup);
-  static PlayerId MakePlayerId(int p_iId, int p_iIdGroup){return p_iId+p_iIdGroup;};
-  static void SetGamesPerPlayer(int p_iGamesPerPlayer){cPlayer::s_iGamesPerPlayer = p_iGamesPerPlayer;}
-  
-  PlayerId GetId() const {return cPlayer::MakePlayerId(m_iId, m_iIdGroup);};
-  bool CanPlayRound(int p_iRoundId){return std::find(m_oRegisteredRoundId.begin(), m_oRegisteredRoundId.end(), p_iRoundId)==m_oRegisteredRoundId.end() && (m_oRegisteredRoundId.size()<s_iGamesPerPlayer);}  
-  int GameRegister(int p_iRoundId){m_oRegisteredRoundId.push_back(p_iRoundId); m_iGamesToPlay=m_oRegisteredRoundId.size(); return m_iGamesToPlay;}
+  PlayerId GetId() const;
+  bool CanPlayRound(int p_iRoundId);
+  int GameRegister(int p_iRoundId);
   //int GameUnregister(){m_iGamesToPlay-=1; if(m_iGamesToPlay<0){m_iGamesToPlay=0;} return m_iGamesToPlay;}
   
   bool operator==(const cPlayer& p_oLeftHand)
@@ -66,7 +66,7 @@ public:
   
   std::string toString()
   {
-    return STREAMSTRING(std::setw(3) << GetId() << std::setw(2) << "("<<m_oRegisteredRoundId.size()<<")");
+    return STREAMSTRING("(" << std::setw(3) << GetId() << ";" << this << ";"<<m_oRegisteredRoundId.size()<<")");
   }
   
 private:
