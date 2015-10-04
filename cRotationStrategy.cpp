@@ -100,8 +100,8 @@ cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
     m_mapGamesChoosen.insert(std::make_pair(iCurrgameID, oGameCurr));
     COUTSTRSTR("#" << std::setw(2) << iNumOfGameCurr
       << " " << oGameCurr
-      << " Round:" << iRoundId
-      << " CourtId:" << std::setw(0) << iCourtId << endl);
+      << " Round:" << std::setw(2) << iRoundId
+      << " CourtId:" << std::setw(0) << iCourtId++ << endl);
     iNumOfGameCurr++;
   }
 
