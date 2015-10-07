@@ -26,6 +26,7 @@ namespace po = boost::program_options;
 class cApplication
 {
 public:
+  cApplication(double p_dTimeToPlayH, int p_iCountOfCourts, double p_dTimeForOneGameMin, int p_iPlayerTeam1, int p_iPlayerTeam2);
   cApplication(int argc, char** argv);
   cApplication(const cApplication& orig);
   virtual ~cApplication();
@@ -92,6 +93,7 @@ private:
    */
   int m_iGamesPerPlayer;
 
+  void Init();
 };
 
 #endif	/* CAPPLICATION_H */

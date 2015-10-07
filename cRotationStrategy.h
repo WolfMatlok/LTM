@@ -20,8 +20,10 @@ public:
   cRotationStrategy(const cRotationStrategy& orig);
   virtual ~cRotationStrategy();
 
+  void CreateGame();
 
 private:
+  int iNumOfGamesToPlay;
   cApplication* m_poApplication;
 
   MAPGAME m_mapGamesAll;
@@ -30,6 +32,11 @@ private:
   /** pool of all possible pairs
    */
   CPAIRMAP m_mapPairs;
+  
+  void CreatePairs();
+  void CreateGames();
+  void SelectGames();
+  void PrintPlayerStats();
 };
 
 #endif	/* CROTATIONSTRATEGY_H */

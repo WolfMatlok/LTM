@@ -7,6 +7,17 @@
 #include "cApplication.h"
 #include "cPlayer.h"
 
+cApplication::cApplication(double p_dTimeToPlayH, int p_iCountOfCourts, double p_dTimeForOneGameMin, int p_iPlayerTeam1, int p_iPlayerTeam2)
+: m_dTimeToPlayH(p_dTimeToPlayH)
+, m_iCountOfCourts(p_iCountOfCourts)
+, m_dTimeForOneGameMin(p_dTimeForOneGameMin)
+, m_iPlayerTeam1(p_iPlayerTeam1)
+, m_iPlayerTeam2(p_iPlayerTeam2)
+{
+  Init();
+}
+
+
 cApplication::cApplication(int argc, char** argv)
 {
   // Declare the supported options.
@@ -27,8 +38,22 @@ cApplication::cApplication(int argc, char** argv)
   {
     std::cout << oOptDesc << "\n";
   }
+  
+  Init();
 
-  //*** calc amount of possible games ***
+}
+
+cApplication::cApplication(const cApplication& orig)
+{
+}
+
+cApplication::~cApplication()
+{
+}
+
+void cApplication::Init()
+{
+    //*** calc amount of possible games ***
   m_iCountOfGamesToPlay = int(m_dTimeToPlayH * 60. * m_iCountOfCourts / m_dTimeForOneGameMin);
 
   //*** calc how often every player wants to play.. ***
@@ -43,12 +68,3 @@ cApplication::cApplication(int argc, char** argv)
   COUTSTRSTR("Games per player:" << this->GetGamesPerPlayer() << endl);
 
 }
-
-cApplication::cApplication(const cApplication& orig)
-{
-}
-
-cApplication::~cApplication()
-{
-}
-

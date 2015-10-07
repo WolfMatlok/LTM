@@ -14,6 +14,7 @@ int main(int argc, char** argv)
 {
   cApplication oApp(argc, argv);
   cRotationStrategy oRotStat(&oApp);
+  oRotStat.CreateGame();
   return 0;
 }
 
