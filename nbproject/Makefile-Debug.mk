@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/cApplication.o \
+	${OBJECTDIR}/cGUICgi.o \
 	${OBJECTDIR}/cGame.o \
 	${OBJECTDIR}/cHelper.o \
 	${OBJECTDIR}/cPair.o \
@@ -48,8 +49,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-std=c++0x -lboost_program_options
-CXXFLAGS=-std=c++0x -lboost_program_options
+CCFLAGS=-std=c++0x -lboost_program_options -lcgicc
+CXXFLAGS=-std=c++0x -lboost_program_options -lcgicc
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -72,6 +73,11 @@ ${OBJECTDIR}/cApplication.o: cApplication.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cApplication.o cApplication.cpp
+
+${OBJECTDIR}/cGUICgi.o: cGUICgi.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cGUICgi.o cGUICgi.cpp
 
 ${OBJECTDIR}/cGame.o: cGame.cpp 
 	${MKDIR} -p ${OBJECTDIR}

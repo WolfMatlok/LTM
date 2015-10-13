@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f1" displayName="GUI_HTML" projectFiles="true">
+      <itemPath>GUI_HTML/index.html</itemPath>
+    </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>cApplication.h</itemPath>
+      <itemPath>cGUICgi.h</itemPath>
       <itemPath>cGame.h</itemPath>
       <itemPath>cHelper.h</itemPath>
       <itemPath>cPair.h</itemPath>
@@ -19,6 +23,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>cApplication.cpp</itemPath>
+      <itemPath>cGUICgi.cpp</itemPath>
       <itemPath>cGame.cpp</itemPath>
       <itemPath>cHelper.cpp</itemPath>
       <itemPath>cPair.cpp</itemPath>
@@ -36,6 +41,7 @@
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
+      <itemPath>install.sh</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -51,12 +57,18 @@
           <incDir>
             <pElem>/usr/include/boost</pElem>
           </incDir>
-          <commandLine>-std=c++0x -lboost_program_options</commandLine>
+          <commandLine>-std=c++0x -lboost_program_options -lcgicc</commandLine>
         </ccTool>
       </compileType>
+      <item path="GUI_HTML/index.html" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cApplication.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cApplication.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cGUICgi.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cGUICgi.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cGame.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -105,9 +117,15 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="GUI_HTML/index.html" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cApplication.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cApplication.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cGUICgi.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cGUICgi.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cGame.cpp" ex="false" tool="1" flavor2="0">
       </item>

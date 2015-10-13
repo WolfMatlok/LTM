@@ -7,11 +7,15 @@
 
 #include <cstdlib>                                                                                                                                                         
 
+#include "cGUICgi.h"
 #include "cApplication.h"                                                                                                                                                  
 #include "cRotationStrategy.h"
 
 int main(int argc, char** argv)
 {
+  cGUICgi::Dispatch();
+  return 0;
+  
   cApplication oApp(argc, argv);
   cRotationStrategy oRotStat(&oApp);
   oRotStat.CreateGame();

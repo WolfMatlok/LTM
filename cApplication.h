@@ -18,7 +18,7 @@ namespace po = boost::program_options;
 
 #define HELP "help"
 #define COURTS "courts" //amount of courts to play on
-#define TTP "ttp" //timt to play
+#define TTP "ttp" //time to play
 #define TFG "tfg" //Time for one single game
 #define TEAM1 "team1" //amount of gamers in team 1
 #define TEAM2 "team2" //amout of gamers in team 2

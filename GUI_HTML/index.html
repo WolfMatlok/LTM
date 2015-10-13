@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+  <head>
+    <title>TGS Light Turnier Manager</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  <body>
+    <form method="post" action="http://harrysteiner.ddns.net/cgi-bin/ltm.cgi">
+      <input id="appstate" name="appstate" type="hidden" value="Start"/>
+      Your Group Size 1: <input id="team1" name="team1" type="number" min="1" max="10" step="1" value="5"/><br />
+      Your Group Size 2: <input id="team2" name="team2" type="number" min="1" max="10" step="1" value="5"/><br />
+      <button type="submit" name="action" value="0">Start</button>
+    </form>
+  </body>
+</html>
