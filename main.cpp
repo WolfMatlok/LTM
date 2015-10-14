@@ -13,12 +13,21 @@
 
 int main(int argc, char** argv)
 {
-  cGUICgi::Dispatch();
-  return 0;
-  
+  try
+  {
+    cGUICgi::Dispatch();
+    return 0;
+  }catch(std::exception& oEx){
+    std::cout << "main() excpetion:" << oEx.what() << std::endl;
+    return 0;
+  }
+ 
+  std::cout << cgicc::div();
   cApplication oApp(argc, argv);
   cRotationStrategy oRotStat(&oApp);
   oRotStat.CreateGame();
+  std::cout << cgicc::div();
+  
   return 0;
 }
 

@@ -19,12 +19,12 @@
 #define APPSTATE "appstate"
 #define APPSTATE_NOTHING "appstate_nothing"
 #define APPSTATE_PRINTCONTENT "appstate_printcontent"
+#define ST_(STRING) " << STRING << " 
 
 class cGUICgi
 {
 public:
   cGUICgi();
-  cGUICgi(const cGUICgi& orig);
   virtual ~cGUICgi();  
   
   static void Dispatch();  
@@ -35,7 +35,16 @@ public:
 private:
   cgicc::Cgicc m_oCGI;
   
+  std::string m_strHomeIP;
+  
   std::string GettingParam(std::string p_strParamName);
+  
+  std::string NextState(std::string p_strNextState);
+  
+  std::string ParamNumber(std::string p_strName);
+  
+  enum FormType {FRM_START, FRM_END};
+  std::string Form(FormType p_eFrmTyp);
 
 };
 

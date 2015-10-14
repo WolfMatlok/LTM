@@ -14,10 +14,7 @@ using namespace cgicc;
 
 cGUICgi::cGUICgi()
 {
-}
-
-cGUICgi::cGUICgi(const cGUICgi& orig)
-{
+  m_strHomeIP = "harrysteiner.ddns.net";
 }
 
 cGUICgi::~cGUICgi()
@@ -57,15 +54,17 @@ void cGUICgi::StartScreen()
   cout << HTTPHTMLHeader() << endl;
 
   // Set up the HTML document
-  cout << html() << head(title("TGS Light Turnier Manager")) << endl;
+  cout << html() << head(title("TGS Light Turnier Manager 0.0.2")) << endl;
   cout << body() << endl;
 
-  cout << "<form method=\"post\" action=\"http://harrysteiner.ddns.net/cgi-bin/ltm.cgi\"> \
-      <input id=\"appstate\" name=\"appstate\" type=\"hidden\" value=\"" << APPSTATE_PRINTCONTENT << "\"/> \
-      Your Group Size 1: <input id=\"team1\" name=\"team1\" type=\"number\" min=\"1\" max=\"10\" step=\"1\" value=\"5\"/><br /> \
-      Your Group Size 2: <input id=\"team2\" name=\"team2\" type=\"number\" min=\"1\" max=\"10\" step=\"1\" value=\"5\"/><br /> \
-      <button type=\"submit\" name=\"action\" value=\"0\">Start</button> \
-    </form>";
+  //cout << "<form method=\"post\" action=\"http://" << m_strHomeIP << "/cgi-bin/ltm.cgi\">
+  cout << Form(FRM_START);
+  cout << NextState(APPSTATE_PRINTCONTENT);
+  cout << ParamNumber(TEAM1) << br();
+  cout << ParamNumber(TEAM2)<< br();
+  cout << ParamNumber(COURTS)<< br();
+  cout << "<button type=\"submit\" name=\"action\" value=\"0\">Start</button>";
+  cout << Form(FRM_END);
 
   // Close the HTML document
   cout << body() << html();
@@ -73,12 +72,21 @@ void cGUICgi::StartScreen()
 
 void cGUICgi::PrintContent()
 {
-  cout << APPSTATE << ":" << GettingParam(APPSTATE) << endl;
-  cout << TTP << ":" << GettingParam(TTP) << endl;
-  cout << TFG << ":" << GettingParam(TFG) << endl;
-  cout << COURTS << ":" << GettingParam(COURTS) << endl;
-  cout << TEAM1 << ":" << GettingParam(TEAM1) << endl;
-  cout << TEAM2 << ":" << GettingParam(TEAM2) << endl;
+  // Send HTTP header
+  cout << HTTPHTMLHeader() << endl;
+
+  // Set up the HTML document
+  cout << html() << head(title("TGS Light Turnier Manager")) << endl;
+  cout << body() << cgicc::div() << endl;
+  
+  cout << APPSTATE << ":" << GettingParam(APPSTATE) << cgicc::br() << endl;
+  cout << TTP << ":" << GettingParam(TTP) << cgicc::br() << endl;
+  cout << TFG << ":" << GettingParam(TFG) << cgicc::br() << endl;
+  cout << COURTS << ":" << GettingParam(COURTS) << cgicc::br() << endl;
+  cout << TEAM1 << ":" << GettingParam(TEAM1) << cgicc::br() << endl;
+  cout << TEAM2 << ":" << GettingParam(TEAM2) << cgicc::br() << endl;
+  
+  cout << cgicc::div() << body() << html() << endl;
 }
 
 std::string cGUICgi::GettingParam(std::string p_strParamName)
@@ -91,4 +99,25 @@ std::string cGUICgi::GettingParam(std::string p_strParamName)
   }
 
   return "";
+}
+
+std::string cGUICgi::NextState(std::string p_strNextState)
+{
+  return STREAMSTRING(input().set("name", APPSTATE).set("type", "hidden").set("value", p_strNextState));
+}
+
+std::string cGUICgi::ParamNumber(std::string p_strName)
+{
+//"Your Group Size 1: <input name=\"team1\" type=\"number\" min=\"1\" max=\"10\" step=\"1\" value=\"5\"/>
+  return STREAMSTRING( p_strName << input().set("name", p_strName).set("type", "number").set("min", "3").set("max", "10").set("value", "5"));
+}
+
+
+std::string cGUICgi::Form(FormType p_eFrmTyp)
+{
+  if(FRM_START==p_eFrmTyp)
+    return STREAMSTRING(form().set("method", "post").set("action", STREAMSTRING("http://" << m_strHomeIP << "/cgi-bin/ltm.cgi")));
+  
+  if(FRM_END==p_eFrmTyp)
+    return STREAMSTRING(form());
 }
