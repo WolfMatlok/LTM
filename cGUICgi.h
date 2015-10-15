@@ -41,7 +41,7 @@ private:
   
   std::string NextState(std::string p_strNextState);
   
-  std::string ParamNumber(std::string p_strName);
+  std::string ParamNumber(std::string p_strName, std::string p_strMin, std::string p_strMax, std::string p_strValue);
   
   enum FormType {FRM_START, FRM_END};
   std::string Form(FormType p_eFrmTyp);
