@@ -8,8 +8,3 @@
 #include "iRenderable.h"
 #include "iRenderer.h"
 
-void iRenderable::accept(iRenderer* p_poRendrer)
-{
-  if(p_poRendrer)
-    p_poRendrer->Render(this);
-}

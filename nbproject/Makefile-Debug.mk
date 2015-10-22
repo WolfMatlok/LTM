@@ -35,13 +35,14 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/cCGIHelper.o \
 	${OBJECTDIR}/cEncounter.o \
 	${OBJECTDIR}/cGUICgi.o \
 	${OBJECTDIR}/cHelper.o \
 	${OBJECTDIR}/cPair.o \
 	${OBJECTDIR}/cPlayer.o \
-	${OBJECTDIR}/cRendererHtml.o \
-	${OBJECTDIR}/cRotationStrategy.o \
+	${OBJECTDIR}/cRendererCGI.o \
+	${OBJECTDIR}/cTournament.o \
 	${OBJECTDIR}/cTournamentParameter.o \
 	${OBJECTDIR}/iRenderable.o \
 	${OBJECTDIR}/iRenderer.o \
@@ -72,6 +73,11 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ltm: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/ltm ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/cCGIHelper.o: cCGIHelper.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cCGIHelper.o cCGIHelper.cpp
+
 ${OBJECTDIR}/cEncounter.o: cEncounter.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -97,15 +103,15 @@ ${OBJECTDIR}/cPlayer.o: cPlayer.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPlayer.o cPlayer.cpp
 
-${OBJECTDIR}/cRendererHtml.o: cRendererHtml.cpp 
+${OBJECTDIR}/cRendererCGI.o: cRendererCGI.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cRendererHtml.o cRendererHtml.cpp
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cRendererCGI.o cRendererCGI.cpp
 
-${OBJECTDIR}/cRotationStrategy.o: cRotationStrategy.cpp 
+${OBJECTDIR}/cTournament.o: cTournament.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cRotationStrategy.o cRotationStrategy.cpp
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cTournament.o cTournament.cpp
 
 ${OBJECTDIR}/cTournamentParameter.o: cTournamentParameter.cpp 
 	${MKDIR} -p ${OBJECTDIR}

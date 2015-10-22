@@ -26,7 +26,7 @@ namespace po = boost::program_options;
 class cTournamentParameter
 {
 public:
-  cTournamentParameter(double p_dTimeToPlayH, int p_iCountOfCourts, double p_dTimeForOneGameMin, int p_iPlayerTeam1, int p_iPlayerTeam2);
+  cTournamentParameter(double p_dTimeToPlayH, double p_dTimeForOneGameMin, int p_iCountOfCourts, int p_iPlayerTeam1, int p_iPlayerTeam2);
   cTournamentParameter(int argc, char** argv);
   cTournamentParameter(const cTournamentParameter& orig);
   virtual ~cTournamentParameter();

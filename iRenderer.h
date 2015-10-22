@@ -10,22 +10,23 @@
 
 class iRenderable;
 class cPlayer;
-class cRotationStrategy;
+class cTournament;
 class cEncounter;
 class cPair;
 class cPlayer;
 class cTournamentParameter;
+class cGUICgi;
 
 
 class iRenderer
 {
 public:
-  virtual void Render(iRenderable* p_oToRender) = 0;
-  virtual void Render(cRotationStrategy* p_oRotStrat) = 0;
-  virtual void Render(cEncounter* p_oGame) = 0;
-  virtual void Render(cPair* p_oPair) = 0;
-  virtual void Render(cPlayer* p_oPlayer) = 0;
-  virtual void Render(cTournamentParameter* p_oApp) = 0;
+  //virtual void Render(iRenderable* p_oToRender) = 0;
+  virtual void Render(cTournament* p_poTournament) = 0;
+//  virtual void Render(cEncounter* p_oGame) = 0;
+//  virtual void Render(cPair* p_oPair) = 0;
+//  virtual void Render(cPlayer* p_oPlayer) = 0;
+//  virtual void Render(cTournamentParameter* p_oApp) = 0;
 private:
 
 };

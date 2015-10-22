@@ -10,10 +10,11 @@
 
 #include "cTournamentParameter.h"
 #include "cEncounter.h"
+#include "iRenderable.h"
 
 /** Rotionstrategy based on matrices 
  */
-class cTournament
+class cTournament : public iRenderable
 {
 public:
   cTournament(cTournamentParameter* p_poApplication);
@@ -21,6 +22,13 @@ public:
   virtual ~cTournament();
 
   void Create();
+
+
+  virtual void accept(iRenderer* p_poRendrer)
+  {
+    if(p_poRendrer)
+      p_poRendrer->Render(this);
+  }
 
 private:
   int iNumOfGamesToPlay;

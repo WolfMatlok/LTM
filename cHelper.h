@@ -12,10 +12,16 @@
 #include <sstream>
 #include <iostream>
 
+#include "boost/uuid/uuid.hpp"            // uuid class
+#include "boost/uuid/uuid_generators.hpp" // generators
+#include "boost/uuid/uuid_io.hpp"         // streaming operators etc.
+
+
 
 #define STREAMSTRING(STRMSG) [&]()->std::string{using namespace std; stringstream oStr023974tcnw0re; oStr023974tcnw0re << STRMSG; return oStr023974tcnw0re.str();}()
 #define COUTSTRSTR(STRMSG) std::cout << STREAMSTRING(STRMSG)
 #define LOGSTRSTR(STRMSG) std::cout << STREAMSTRING(STRMSG)
+#define LOGSTRSTR_ERROR(STRMSG) std::cout << STREAMSTRING(STRMSG)
 
 class cHelper
 {

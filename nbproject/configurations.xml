@@ -6,8 +6,9 @@
       <itemPath>iRenderer.h</itemPath>
     </logicalFolder>
     <logicalFolder name="f1" displayName="GUI_CGI" projectFiles="true">
+      <itemPath>cCGIHelper.h</itemPath>
       <itemPath>cGUICgi.h</itemPath>
-      <itemPath>cRendererHtml.h</itemPath>
+      <itemPath>cRendererCGI.h</itemPath>
       <itemPath>GUI_HTML/index.html</itemPath>
     </logicalFolder>
     <logicalFolder name="f3" displayName="MODEL" projectFiles="true" kind="ROOT">
@@ -15,17 +16,18 @@
       <itemPath>cHelper.h</itemPath>
       <itemPath>cPair.h</itemPath>
       <itemPath>cPlayer.h</itemPath>
-      <itemPath>cRotationStrategy.h</itemPath>
+      <itemPath>cTournament.h</itemPath>
       <itemPath>cTournamentParameter.h</itemPath>
     </logicalFolder>
     <logicalFolder name="f4" displayName="Resource" projectFiles="true" kind="ROOT">
+      <itemPath>cCGIHelper.cpp</itemPath>
       <itemPath>cEncounter.cpp</itemPath>
       <itemPath>cGUICgi.cpp</itemPath>
       <itemPath>cHelper.cpp</itemPath>
       <itemPath>cPair.cpp</itemPath>
       <itemPath>cPlayer.cpp</itemPath>
-      <itemPath>cRendererHtml.cpp</itemPath>
-      <itemPath>cRotationStrategy.cpp</itemPath>
+      <itemPath>cRendererCGI.cpp</itemPath>
+      <itemPath>cTournament.cpp</itemPath>
       <itemPath>cTournamentParameter.cpp</itemPath>
       <itemPath>iRenderable.cpp</itemPath>
       <itemPath>iRenderer.cpp</itemPath>
@@ -48,7 +50,7 @@
   <confs>
     <conf name="Debug" type="1">
       <toolsSet>
-        <compilerSet>default</compilerSet>
+        <compilerSet>GNU|GNU</compilerSet>
         <dependencyChecking>true</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
@@ -61,6 +63,10 @@
         </ccTool>
       </compileType>
       <item path="GUI_HTML/index.html" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cCGIHelper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cCGIHelper.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cEncounter.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -82,13 +88,13 @@
       </item>
       <item path="cPlayer.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="cRendererHtml.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cRendererCGI.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="cRendererHtml.h" ex="false" tool="3" flavor2="0">
+      <item path="cRendererCGI.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="cRotationStrategy.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cTournament.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="cRotationStrategy.h" ex="false" tool="3" flavor2="0">
+      <item path="cTournament.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cTournamentParameter.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -131,6 +137,10 @@
       </compileType>
       <item path="GUI_HTML/index.html" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="cCGIHelper.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cCGIHelper.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cEncounter.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cEncounter.h" ex="false" tool="3" flavor2="0">
@@ -151,13 +161,13 @@
       </item>
       <item path="cPlayer.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="cRendererHtml.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cRendererCGI.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="cRendererHtml.h" ex="false" tool="3" flavor2="0">
+      <item path="cRendererCGI.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="cRotationStrategy.cpp" ex="false" tool="1" flavor2="0">
+      <item path="cTournament.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="cRotationStrategy.h" ex="false" tool="3" flavor2="0">
+      <item path="cTournament.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cTournamentParameter.cpp" ex="false" tool="1" flavor2="0">
       </item>

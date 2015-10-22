@@ -35,6 +35,7 @@ void cTournament::Create()
   SelectEncounters();
 }
 
+
 void cTournament::CreatePairs()
 {
   int iGroupIdA = 100;

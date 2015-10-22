@@ -14,7 +14,7 @@
 class iRenderable
 {
 public:
-  virtual void accept(iRenderer* p_poRendrer);
+  virtual void accept(iRenderer* p_poRendrer) = 0;
 private:
 
 };
