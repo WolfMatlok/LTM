@@ -5,7 +5,7 @@
  * Created on 20. September 2015, 15:13
  */
 
-#include "cRotationStrategy.h"
+#include "cTournament.h"
 #include "cEncounter.h"
 #include "cPlayer.h"
 #include <iomanip>
@@ -13,38 +13,38 @@
 #include <random>
 #include <ctime>
 
-cRotationStrategy::cRotationStrategy(cTournamentParameter* p_poApplication)
-: m_poTournParam(p_poApplication)
+cTournament::cTournament(cTournamentParameter* p_poApplication)
+: m_poParam(p_poApplication)
 {
-  iNumOfGamesToPlay = m_poTournParam->GetCountOfGamesToPlay();
-  cPlayer::SetGamesPerPlayer(m_poTournParam->GetGamesPerPlayer());
+  iNumOfGamesToPlay = m_poParam->GetCountOfGamesToPlay();
+  cPlayer::SetGamesPerPlayer(m_poParam->GetGamesPerPlayer());
 }
 
-cRotationStrategy::cRotationStrategy(const cRotationStrategy & orig)
-{
-}
-
-cRotationStrategy::~cRotationStrategy()
+cTournament::cTournament(const cTournament & orig)
 {
 }
 
-void cRotationStrategy::CreateGame()
+cTournament::~cTournament()
+{
+}
+
+void cTournament::Create()
 {
   CreatePairs();
   CreateEncounters();
   SelectEncounters();
 }
 
-void cRotationStrategy::CreatePairs()
+void cTournament::CreatePairs()
 {
   int iGroupIdA = 100;
   int iGroupIdB = 200;
   int iNumOfPairs = 0;
 
   //*** search for all possible pais ***
-  for (int iT1 = 0; iT1 < m_poTournParam->GetPlayerTeam1(); iT1++)
+  for (int iT1 = 0; iT1 < m_poParam->GetPlayerTeam1(); iT1++)
   {
-    for (int iT2 = 0; iT2 < m_poTournParam->GetPlayerTeam2(); iT2++)
+    for (int iT2 = 0; iT2 < m_poParam->GetPlayerTeam2(); iT2++)
     {
       cPair oPair(cPlayer::CreatePlayer(iT1, iGroupIdA), cPlayer::CreatePlayer(iT2, iGroupIdB));
       m_mapPairs.insert(std::make_pair(iNumOfPairs, oPair));
@@ -58,7 +58,7 @@ void cRotationStrategy::CreatePairs()
   LOGSTRSTR(iNumOfPairs << " pairs found!" << endl);
 }
 
-void cRotationStrategy::CreateEncounters()
+void cTournament::CreateEncounters()
 {
   int iNumOfPairs = m_mapPairs.size();
   int iNumOfGames = 0;
@@ -83,7 +83,7 @@ void cRotationStrategy::CreateEncounters()
   }
 }
 
-void cRotationStrategy::SelectEncounters()
+void cTournament::SelectEncounters()
 {
   int iNumOfGames = m_mapEncountersAll.size();
 
@@ -127,7 +127,7 @@ void cRotationStrategy::SelectEncounters()
   }
 }
 
-void cRotationStrategy::PrintPlayerStats()
+void cTournament::PrintPlayerStats()
 {
   //*** print player stats ***  
   LOGSTRSTR("*** Player stats ***" << endl);

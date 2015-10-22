@@ -9,7 +9,7 @@
 
 #include "cGUICgi.h"
 #include "cTournamentParameter.h"                                                                                                                                                  
-#include "cRotationStrategy.h"
+#include "cTournament.h"
 
 int main(int argc, char** argv)
 {
