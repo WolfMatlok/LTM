@@ -24,18 +24,18 @@ public:
 
 private:
   int iNumOfGamesToPlay;
-  cTournamentParameter* m_poApplication;
+  cTournamentParameter* m_poTournParam;
 
-  MAPGAME m_mapGamesAll;
-  MAPGAME m_mapGamesChoosen;
+  MAPENCOUNTER m_mapEncountersAll;
+  MAPENCOUNTER m_mapEncountersChoosen;
 
   /** pool of all possible pairs
    */
   CPAIRMAP m_mapPairs;
 
   void CreatePairs();
-  void CreateGames();
-  void SelectGames();
+  void CreateEncounters();
+  void SelectEncounters();
   void PrintPlayerStats();
 };
 

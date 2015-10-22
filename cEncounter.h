@@ -45,7 +45,7 @@ private:
   cPairPtr m_poPairB;
 };
 
-typedef std::map<int, cEncounter> MAPGAME;
+typedef std::map<int, cEncounter> MAPENCOUNTER;
 
 #endif	/* CGAME_H */
 
