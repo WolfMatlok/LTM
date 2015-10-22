@@ -6,7 +6,7 @@
  */
 
 #include "cRotationStrategy.h"
-#include "cGame.h"
+#include "cEncounter.h"
 #include "cPlayer.h"
 #include <iomanip>
 #include <map>
@@ -33,7 +33,6 @@ void cRotationStrategy::CreateGame()
   CreatePairs();
   CreateGames();
   SelectGames();
-  PrintPlayerStats();
 }
 
 void cRotationStrategy::CreatePairs()
@@ -71,7 +70,6 @@ void cRotationStrategy::CreateGames()
     LOGSTRSTR("***" << endl);
     for (int iPairIdB = 0; iPairIdB < iPairIdMaxB; iPairIdB++)
     {
-
       //gleiche Paarungen entfernen...
       if (iPairIdA == iPairIdB)
         continue;
@@ -81,7 +79,7 @@ void cRotationStrategy::CreateGames()
         continue;
 
       LOGSTRSTR(" " << oMapPairs[iPairIdA] << " vs " << oMapPairs[iPairIdBCurr]);
-      cGame oNewGame(iNumOfGames, NEWPAIRPTR(m_mapPairs[iPairIdA]), NEWPAIRPTR(m_mapPairs[iPairIdB]));
+      cEncounter oNewGame(iNumOfGames, NEWPAIRPTR(m_mapPairs[iPairIdA]), NEWPAIRPTR(m_mapPairs[iPairIdB]));
       m_mapGamesAll.insert(std::make_pair(oNewGame.GetGameId(), oNewGame));
       iNumOfGames++;
     }
@@ -120,7 +118,7 @@ void cRotationStrategy::SelectGames()
       continue;
     }
 
-    cGame oGameCurr = m_mapGamesAll[iCurrgameID];
+    cEncounter oGameCurr = m_mapGamesAll[iCurrgameID];
     if (!oGameCurr.RegisterPlayerPossible(iRoundId)) //try to register all involved player if possible
       continue; //on of the involved player exceeds the maximum possible amount of games he can play
 

@@ -11,12 +11,12 @@
 #include "cPair.h"
 #include <map>
 
-class cGame
+class cEncounter
 {
 public:
-  cGame(int p_iGameId = -1, cPairPtr p_poPairA = cPairPtr(), cPairPtr p_poPairB = cPairPtr());
-  cGame(const cGame& orig);
-  virtual ~cGame();
+  cEncounter(int p_iGameId = -1, cPairPtr p_poPairA = cPairPtr(), cPairPtr p_poPairB = cPairPtr());
+  cEncounter(const cEncounter& orig);
+  virtual ~cEncounter();
 
   bool RegisterPlayerPossible(int p_iRoundId);
   void RegisterPlayer(int p_iRoundId);
@@ -31,7 +31,7 @@ public:
     return m_iGameId;
   }
 
-  friend std::ostream& operator<<(std::ostream& os, const cGame& p_oPair)
+  friend std::ostream& operator<<(std::ostream& os, const cEncounter& p_oPair)
   {
     os << "GAMEID:" << std::setw(5) << p_oPair.m_iGameId << " " << *(p_oPair.m_poPairA) << "vs" << *(p_oPair.m_poPairB);
     return os;
@@ -43,7 +43,7 @@ private:
   cPairPtr m_poPairB;
 };
 
-typedef std::map<int, cGame> MAPGAME;
+typedef std::map<int, cEncounter> MAPGAME;
 
 #endif	/* CGAME_H */
 

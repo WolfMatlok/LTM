@@ -9,7 +9,7 @@
 #define	CROTATIONSTRATEGY_H
 
 #include "cApplication.h"
-#include "cGame.h"
+#include "cEncounter.h"
 
 /** Rotionstrategy based on matrices 
  */
