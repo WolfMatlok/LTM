@@ -17,7 +17,7 @@ cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
 : m_poApplication(p_poApplication)
 {
   iNumOfGamesToPlay = m_poApplication->GetCountOfGamesToPlay();
-  cPlayer::SetGamesPerPlayer(m_poApplication->GetGamesPerPlayer());  
+  cPlayer::SetGamesPerPlayer(m_poApplication->GetGamesPerPlayer());
 }
 
 cRotationStrategy::cRotationStrategy(const cRotationStrategy & orig)
@@ -41,7 +41,7 @@ void cRotationStrategy::CreatePairs()
   int iGroupIdA = 100;
   int iGroupIdB = 200;
   int iNumOfPairs = 0;
-  
+
   //*** search for all possible pais ***
   for (int iT1 = 0; iT1 < m_poApplication->GetPlayerTeam1(); iT1++)
   {
@@ -63,7 +63,7 @@ void cRotationStrategy::CreateGames()
 {
   int iNumOfPairs = m_mapPairs.size();
   int iNumOfGames = 0;
-  
+
   //*** search for all possible games ***
   //COUTSTRSTR("Pairs to fight against:" << endl);
   for (int iPairIdA = 0, iPairIdMaxB = 0; iPairIdA < iNumOfPairs; iPairIdA++, iPairIdMaxB++)
@@ -95,7 +95,7 @@ void cRotationStrategy::CreateGames()
 void cRotationStrategy::SelectGames()
 {
   int iNumOfGames = m_mapGamesAll.size();
-  
+
   //*** select randomly games that are possible within the given time ***
   COUTSTRSTR("Going to choose " << iNumOfGamesToPlay << " games randomly" << endl);
   std::default_random_engine oGenerator(time(0));
@@ -129,9 +129,9 @@ void cRotationStrategy::SelectGames()
     oGameCurr.RegisterPlayer(iRoundId);
     m_mapGamesChoosen.insert(std::make_pair(iCurrgameID, oGameCurr));
     COUTSTRSTR("#" << std::setw(2) << iNumOfGameCurr
-      << " " << oGameCurr
-      << " Round:" << std::setw(2) << iRoundId
-      << " CourtId:" << std::setw(0) << iCourtId++ << endl);
+            << " " << oGameCurr
+            << " Round:" << std::setw(2) << iRoundId
+            << " CourtId:" << std::setw(0) << iCourtId++ << endl);
     iNumOfGameCurr++;
   }
 }

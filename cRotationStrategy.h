@@ -32,7 +32,7 @@ private:
   /** pool of all possible pairs
    */
   CPAIRMAP m_mapPairs;
-  
+
   void CreatePairs();
   void CreateGames();
   void SelectGames();

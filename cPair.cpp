@@ -11,7 +11,7 @@ cPair::cPair()
 {
 }
 
-cPair::cPair(cPlayer::cPlayerPtr p_poPlayerA, cPlayer::cPlayerPtr p_poPlayerB) 
+cPair::cPair(cPlayer::cPlayerPtr p_poPlayerA, cPlayer::cPlayerPtr p_poPlayerB)
 {
   m_poPlayerA = p_poPlayerA;
   m_poPlayerB = p_poPlayerB;
@@ -29,16 +29,16 @@ cPair::~cPair()
 
 bool cPair::RegisterOnGamePossible(int p_iRoundId)
 {
-  if(!m_poPlayerA->CanPlayRound(p_iRoundId))
+  if (!m_poPlayerA->CanPlayRound(p_iRoundId))
   {
     return false;
   }
-  
-  if(!m_poPlayerB->CanPlayRound(p_iRoundId))
+
+  if (!m_poPlayerB->CanPlayRound(p_iRoundId))
   {
     return false;
   }
-  
+
   return true;
 }
 

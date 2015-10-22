@@ -14,15 +14,15 @@
 int main(int argc, char** argv)
 {
 
-    cGUICgi::Dispatch();
-    return 0;
- 
+  cGUICgi::Dispatch();
+  return 0;
+
   std::cout << cgicc::div();
   cApplication oApp(argc, argv);
   cRotationStrategy oRotStat(&oApp);
   oRotStat.CreateGame();
   std::cout << cgicc::div();
-  
+
   return 0;
 }
 

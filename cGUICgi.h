@@ -31,30 +31,33 @@ class cGUICgi
 {
 public:
   cGUICgi();
-  virtual ~cGUICgi();  
-  
-  static void Dispatch();  
-  
+  virtual ~cGUICgi();
+
+  static void Dispatch();
+
   void PrintContent();
   void StartScreen();
-  
+
 private:
   cgicc::Cgicc m_oCGI;
-  
+
   std::string m_strHomeIP;
   std::string m_strUUID;
   bool m_bWithoutFrames;
-  
+
   std::string HTMLStart();
   std::string HTMLEnd();
-  
+
   std::string GetParam(std::string p_strParamName);
-  
+
   std::string SetParamHidden(std::string p_strParamName, std::string p_strParamValue);
-  
+
   std::string SetParamNumber(std::string p_strName, std::string p_strMin, std::string p_strMax, std::string p_strValue);
-  
-  enum FormType {FRM_START, FRM_END};
+
+  enum FormType
+  {
+    FRM_START, FRM_END
+  };
   std::string Form(FormType p_eFrmTyp);
 
 };

@@ -30,7 +30,7 @@ cPlayer::cPlayerPtr cPlayer::CreatePlayer(int p_iId, int p_iIdGroup)
 
 int cPlayer::MakePlayerId(int p_iId, int p_iIdGroup)
 {
-  return p_iId+p_iIdGroup;
+  return p_iId + p_iIdGroup;
 }
 
 void cPlayer::SetGamesPerPlayer(int p_iGamesPerPlayer)

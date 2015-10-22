@@ -23,7 +23,7 @@ public:
   cPair(cPlayer::cPlayerPtr p_poPlayerA, cPlayer::cPlayerPtr p_poPlayerB);
   cPair(const cPair& orig);
   virtual ~cPair();
-  
+
   bool RegisterOnGamePossible(int p_iRoundId);
   void RegisterOnGame(int p_iRoundId);
 

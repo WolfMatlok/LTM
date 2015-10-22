@@ -88,7 +88,7 @@ private:
   /** Zahl bespielbaren Plätze
    */
   int m_iCountOfCourts;
-  
+
   /** Zahld er Spiele die pro Spieler gemacht werden können
    */
   int m_iGamesPerPlayer;
