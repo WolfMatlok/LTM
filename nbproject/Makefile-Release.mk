@@ -36,8 +36,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/cApplication.o \
+	${OBJECTDIR}/cEncounter.o \
 	${OBJECTDIR}/cGUICgi.o \
-	${OBJECTDIR}/cGame.o \
 	${OBJECTDIR}/cHelper.o \
 	${OBJECTDIR}/cPair.o \
 	${OBJECTDIR}/cPlayer.o \
@@ -76,15 +76,15 @@ ${OBJECTDIR}/cApplication.o: cApplication.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cApplication.o cApplication.cpp
 
+${OBJECTDIR}/cEncounter.o: cEncounter.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cEncounter.o cEncounter.cpp
+
 ${OBJECTDIR}/cGUICgi.o: cGUICgi.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cGUICgi.o cGUICgi.cpp
-
-${OBJECTDIR}/cGame.o: cGame.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cGame.o cGame.cpp
 
 ${OBJECTDIR}/cHelper.o: cHelper.cpp 
 	${MKDIR} -p ${OBJECTDIR}

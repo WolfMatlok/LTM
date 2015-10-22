@@ -11,6 +11,8 @@
 #include "cPair.h"
 #include <map>
 
+/** cEncounter save two pairs which fight against.
+ */
 class cEncounter
 {
 public:

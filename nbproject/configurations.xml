@@ -12,26 +12,22 @@
       <itemPath>cGUICgi.h</itemPath>
       <itemPath>GUI_HTML/index.html</itemPath>
     </logicalFolder>
-    <logicalFolder name="HeaderFiles"
-                   displayName="Header Files"
-                   projectFiles="true">
-      <itemPath>cApplication.h</itemPath>
-      <itemPath>cGame.h</itemPath>
-      <itemPath>cHelper.h</itemPath>
-      <itemPath>cPair.h</itemPath>
-      <itemPath>cPlayer.h</itemPath>
-      <itemPath>cRotationStrategy.h</itemPath>
-    </logicalFolder>
-    <logicalFolder name="SourceFiles"
-                   displayName="Source Files"
-                   projectFiles="true">
+    <logicalFolder name="f3" displayName="MODEL" projectFiles="true" kind="ROOT">
       <itemPath>cApplication.cpp</itemPath>
-      <itemPath>cGame.cpp</itemPath>
+      <itemPath>cApplication.h</itemPath>
+      <itemPath>cEncounter.cpp</itemPath>
+      <itemPath>cEncounter.h</itemPath>
       <itemPath>cHelper.cpp</itemPath>
+      <itemPath>cHelper.h</itemPath>
       <itemPath>cPair.cpp</itemPath>
+      <itemPath>cPair.h</itemPath>
       <itemPath>cPlayer.cpp</itemPath>
+      <itemPath>cPlayer.h</itemPath>
       <itemPath>cRotationStrategy.cpp</itemPath>
+      <itemPath>cRotationStrategy.h</itemPath>
       <itemPath>main.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="f4" displayName="Resource" projectFiles="true" kind="ROOT">
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -68,13 +64,13 @@
       </item>
       <item path="cApplication.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="cEncounter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cEncounter.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cGUICgi.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cGUICgi.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="cGame.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="cGame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cHelper.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -133,13 +129,13 @@
       </item>
       <item path="cApplication.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="cEncounter.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cEncounter.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="cGUICgi.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cGUICgi.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="cGame.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="cGame.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cHelper.cpp" ex="false" tool="1" flavor2="0">
       </item>
