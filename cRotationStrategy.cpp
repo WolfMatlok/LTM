@@ -49,14 +49,14 @@ void cRotationStrategy::CreatePairs()
     {
       cPair oPair(cPlayer::CreatePlayer(iT1, iGroupIdA), cPlayer::CreatePlayer(iT2, iGroupIdB));
       m_mapPairs.insert(std::make_pair(iNumOfPairs, oPair));
-      COUTSTRSTR(" " << m_mapPairs[iNumOfPairs] << std::flush);
+      LOGSTRSTR(" " << m_mapPairs[iNumOfPairs] << std::flush);
       iNumOfPairs++;
     }
 
-    COUTSTRSTR(endl);
+    LOGSTRSTR(endl);
   }
 
-  COUTSTRSTR(iNumOfPairs << " pairs found!" << endl);
+  LOGSTRSTR(iNumOfPairs << " pairs found!" << endl);
 }
 
 void cRotationStrategy::CreateGames()
@@ -65,10 +65,10 @@ void cRotationStrategy::CreateGames()
   int iNumOfGames = 0;
 
   //*** search for all possible games ***
-  //COUTSTRSTR("Pairs to fight against:" << endl);
+  LOGSTRSTR("Pairs to fight against:" << endl);
   for (int iPairIdA = 0, iPairIdMaxB = 0; iPairIdA < iNumOfPairs; iPairIdA++, iPairIdMaxB++)
   {
-    //COUTSTRSTR("***" << endl);
+    LOGSTRSTR("***" << endl);
     for (int iPairIdB = 0; iPairIdB < iPairIdMaxB; iPairIdB++)
     {
 
@@ -80,16 +80,16 @@ void cRotationStrategy::CreateGames()
       if (m_mapPairs[iPairIdA] == m_mapPairs[iPairIdB]) //sollte theoretsich nicht vorkommen...
         continue;
 
-      //COUTSTRSTR(" " << oMapPairs[iPairIdA] << " vs " << oMapPairs[iPairIdBCurr]);
+      LOGSTRSTR(" " << oMapPairs[iPairIdA] << " vs " << oMapPairs[iPairIdBCurr]);
       cGame oNewGame(iNumOfGames, NEWPAIRPTR(m_mapPairs[iPairIdA]), NEWPAIRPTR(m_mapPairs[iPairIdB]));
       m_mapGamesAll.insert(std::make_pair(oNewGame.GetGameId(), oNewGame));
       iNumOfGames++;
     }
 
-    //COUTSTRSTR(endl);
+    LOGSTRSTR(endl);
   }
 
-  COUTSTRSTR("Maximal number of possible games: " << iNumOfGames << endl);
+  LOGSTRSTR("Maximal number of possible games: " << iNumOfGames << endl);
 }
 
 void cRotationStrategy::SelectGames()
@@ -97,7 +97,7 @@ void cRotationStrategy::SelectGames()
   int iNumOfGames = m_mapGamesAll.size();
 
   //*** select randomly games that are possible within the given time ***
-  COUTSTRSTR("Going to choose " << iNumOfGamesToPlay << " games randomly" << endl);
+  LOGSTRSTR("Going to choose " << iNumOfGamesToPlay << " games randomly" << endl);
   std::default_random_engine oGenerator(time(0));
   std::uniform_int_distribution<int> oDistribution(0, iNumOfGames - 1);
   int iNumOfGameCurr = 0;
@@ -128,7 +128,7 @@ void cRotationStrategy::SelectGames()
     oGameCurr.RegisterPlayerPossible(iRoundId);
     oGameCurr.RegisterPlayer(iRoundId);
     m_mapGamesChoosen.insert(std::make_pair(iCurrgameID, oGameCurr));
-    COUTSTRSTR("#" << std::setw(2) << iNumOfGameCurr
+    LOGSTRSTR("#" << std::setw(2) << iNumOfGameCurr
             << " " << oGameCurr
             << " Round:" << std::setw(2) << iRoundId
             << " CourtId:" << std::setw(0) << iCourtId++ << endl);
@@ -139,11 +139,11 @@ void cRotationStrategy::SelectGames()
 void cRotationStrategy::PrintPlayerStats()
 {
   //*** print player stats ***  
-  COUTSTRSTR("*** Player stats ***" << endl);
+  LOGSTRSTR("*** Player stats ***" << endl);
   cPlayer::CPLAYERMAP& oPlayerMap = cPlayer::GetPlayers();
   for (cPlayer::CPLAYERMAP::iterator oItPlayerCurr = oPlayerMap.begin(); oItPlayerCurr != oPlayerMap.end(); oItPlayerCurr++)
   {
     cPlayer::cPlayerPtr poPlayer = oItPlayerCurr->second;
-    COUTSTRSTR(poPlayer->toString() << endl);
+    LOGSTRSTR(poPlayer->toString() << endl);
   }
 }

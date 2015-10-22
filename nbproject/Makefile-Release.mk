@@ -42,6 +42,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/cPair.o \
 	${OBJECTDIR}/cPlayer.o \
 	${OBJECTDIR}/cRotationStrategy.o \
+	${OBJECTDIR}/iRenderable.o \
+	${OBJECTDIR}/iRenderer.o \
 	${OBJECTDIR}/main.o
 
 
@@ -103,6 +105,16 @@ ${OBJECTDIR}/cRotationStrategy.o: cRotationStrategy.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cRotationStrategy.o cRotationStrategy.cpp
+
+${OBJECTDIR}/iRenderable.o: iRenderable.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/iRenderable.o iRenderable.cpp
+
+${OBJECTDIR}/iRenderer.o: iRenderer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/iRenderer.o iRenderer.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
