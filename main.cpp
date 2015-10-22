@@ -8,7 +8,7 @@
 #include <cstdlib>                                                                                                                                                         
 
 #include "cGUICgi.h"
-#include "cApplication.h"                                                                                                                                                  
+#include "cTournamentParameter.h"                                                                                                                                                  
 #include "cRotationStrategy.h"
 
 int main(int argc, char** argv)

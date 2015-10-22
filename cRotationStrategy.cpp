@@ -13,7 +13,7 @@
 #include <random>
 #include <ctime>
 
-cRotationStrategy::cRotationStrategy(cApplication* p_poApplication)
+cRotationStrategy::cRotationStrategy(cTournamentParameter* p_poApplication)
 : m_poApplication(p_poApplication)
 {
   iNumOfGamesToPlay = m_poApplication->GetCountOfGamesToPlay();

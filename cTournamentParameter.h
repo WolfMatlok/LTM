@@ -23,13 +23,13 @@ namespace po = boost::program_options;
 #define TEAM1 "team1" //amount of gamers in team 1
 #define TEAM2 "team2" //amout of gamers in team 2
 
-class cApplication
+class cTournamentParameter
 {
 public:
-  cApplication(double p_dTimeToPlayH, int p_iCountOfCourts, double p_dTimeForOneGameMin, int p_iPlayerTeam1, int p_iPlayerTeam2);
-  cApplication(int argc, char** argv);
-  cApplication(const cApplication& orig);
-  virtual ~cApplication();
+  cTournamentParameter(double p_dTimeToPlayH, int p_iCountOfCourts, double p_dTimeForOneGameMin, int p_iPlayerTeam1, int p_iPlayerTeam2);
+  cTournamentParameter(int argc, char** argv);
+  cTournamentParameter(const cTournamentParameter& orig);
+  virtual ~cTournamentParameter();
 
   int GetPlayerTeam1()
   {

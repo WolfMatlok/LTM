@@ -14,7 +14,7 @@ class cRotationStrategy;
 class cEncounter;
 class cPair;
 class cPlayer;
-class cApplication;
+class cTournamentParameter;
 
 
 class iRenderer
@@ -25,7 +25,7 @@ public:
   virtual void Render(cEncounter* p_oGame) = 0;
   virtual void Render(cPair* p_oPair) = 0;
   virtual void Render(cPlayer* p_oPlayer) = 0;
-  virtual void Render(cApplication* p_oApp) = 0;
+  virtual void Render(cTournamentParameter* p_oApp) = 0;
 private:
 
 };

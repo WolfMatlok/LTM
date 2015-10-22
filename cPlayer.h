@@ -15,7 +15,7 @@
 #include <boost/shared_ptr.hpp>
 
 #include "cHelper.h"
-#include "cApplication.h"
+#include "cTournamentParameter.h"
 
 typedef int PlayerId;
 

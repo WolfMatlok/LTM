@@ -4,10 +4,10 @@
  * 
  * Created on 19. September 2015, 14:30
  */
-#include "cApplication.h"
+#include "cTournamentParameter.h"
 #include "cPlayer.h"
 
-cApplication::cApplication(double p_dTimeToPlayH, int p_iCountOfCourts, double p_dTimeForOneGameMin, int p_iPlayerTeam1, int p_iPlayerTeam2)
+cTournamentParameter::cTournamentParameter(double p_dTimeToPlayH, int p_iCountOfCourts, double p_dTimeForOneGameMin, int p_iPlayerTeam1, int p_iPlayerTeam2)
 : m_dTimeToPlayH(p_dTimeToPlayH)
 , m_iCountOfCourts(p_iCountOfCourts)
 , m_dTimeForOneGameMin(p_dTimeForOneGameMin)
@@ -17,7 +17,7 @@ cApplication::cApplication(double p_dTimeToPlayH, int p_iCountOfCourts, double p
   Init();
 }
 
-cApplication::cApplication(int argc, char** argv)
+cTournamentParameter::cTournamentParameter(int argc, char** argv)
 {
   // Declare the supported options.
   po::options_description oOptDesc("Allgemeiner Parameter");
@@ -42,15 +42,15 @@ cApplication::cApplication(int argc, char** argv)
 
 }
 
-cApplication::cApplication(const cApplication& orig)
+cTournamentParameter::cTournamentParameter(const cTournamentParameter& orig)
 {
 }
 
-cApplication::~cApplication()
+cTournamentParameter::~cTournamentParameter()
 {
 }
 
-void cApplication::Init()
+void cTournamentParameter::Init()
 {
   //*** calc amount of possible games ***
   m_iCountOfGamesToPlay = int(m_dTimeToPlayH * 60. * m_iCountOfCourts / m_dTimeForOneGameMin);
@@ -58,12 +58,12 @@ void cApplication::Init()
   //*** calc how often every player wants to play.. ***
   m_iGamesPerPlayer = double(double(m_iCountOfGamesToPlay) / double(m_iCountOfCourts));
 
-  COUTSTRSTR("Group1 has " << this->GetPlayerTeam1() << " player." << endl);
-  COUTSTRSTR("Group2 has " << this->GetPlayerTeam2() << " player." << endl);
-  COUTSTRSTR("Time to play:" << this->GetTimeToPlay() << " hours." << endl);
-  COUTSTRSTR("Time for one single game:" << this->GetTimeForOneGame() << " min." << endl);
-  COUTSTRSTR("Games to play in " << this->GetTimeToPlay() << "h:" << this->GetCountOfGamesToPlay() << endl);
-  COUTSTRSTR("Amount of courts to play on:" << this->GetCountOfCourts() << endl);
-  COUTSTRSTR("Games per player:" << this->GetGamesPerPlayer() << endl);
+  LOGSTRSTR("Group1 has " << this->GetPlayerTeam1() << " player." << endl);
+  LOGSTRSTR("Group2 has " << this->GetPlayerTeam2() << " player." << endl);
+  LOGSTRSTR("Time to play:" << this->GetTimeToPlay() << " hours." << endl);
+  LOGSTRSTR("Time for one single game:" << this->GetTimeForOneGame() << " min." << endl);
+  LOGSTRSTR("Games to play in " << this->GetTimeToPlay() << "h:" << this->GetCountOfGamesToPlay() << endl);
+  LOGSTRSTR("Amount of courts to play on:" << this->GetCountOfCourts() << endl);
+  LOGSTRSTR("Games per player:" << this->GetGamesPerPlayer() << endl);
 
 }

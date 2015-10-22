@@ -7,7 +7,7 @@
 
 #include "cGUICgi.h"
 #include "cHelper.h"
-#include "cApplication.h"
+#include "cTournamentParameter.h"
 
 using namespace std;
 using namespace cgicc;

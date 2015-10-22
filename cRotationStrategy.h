@@ -8,7 +8,7 @@
 #ifndef CROTATIONSTRATEGY_H
 #define	CROTATIONSTRATEGY_H
 
-#include "cApplication.h"
+#include "cTournamentParameter.h"
 #include "cEncounter.h"
 
 /** Rotionstrategy based on matrices 
@@ -16,7 +16,7 @@
 class cRotationStrategy
 {
 public:
-  cRotationStrategy(cApplication* p_poApplication);
+  cRotationStrategy(cTournamentParameter* p_poApplication);
   cRotationStrategy(const cRotationStrategy& orig);
   virtual ~cRotationStrategy();
 
@@ -24,7 +24,7 @@ public:
 
 private:
   int iNumOfGamesToPlay;
-  cApplication* m_poApplication;
+  cTournamentParameter* m_poApplication;
 
   MAPGAME m_mapGamesAll;
   MAPGAME m_mapGamesChoosen;
