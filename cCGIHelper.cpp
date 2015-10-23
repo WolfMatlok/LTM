@@ -21,7 +21,6 @@ cCGIHelper::cCGIHelper(cgicc::Cgicc* p_poCgiCC)
   m_strHomeIP = "harrysteiner.ddns.net";
 }
 
-
 cCGIHelper::~cCGIHelper()
 {
   delete m_poCGI;
@@ -29,5 +28,13 @@ cCGIHelper::~cCGIHelper()
 
 std::string cCGIHelper::GetParamSTR(std::string p_strParamName)
 {
-  return GetParam<std::string>(p_strParamName);
+  using namespace cgicc;
+  // Print out the submitted element
+  form_iterator name = m_poCGI->getElement(p_strParamName);
+  if (name != m_poCGI->getElements().end())
+  {
+    return STREAMSTRING(**name);
+  }
+
+  return "";
 }
