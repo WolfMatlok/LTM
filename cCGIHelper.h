@@ -37,20 +37,5 @@ protected:
   cgicc::Cgicc* m_poCGI;
   std::string m_strHomeIP;
 };
-
-template<>
-std::string cCGIHelper::GetParam(std::string p_strParamName)
-{
-  using namespace cgicc;
-  // Print out the submitted element
-  form_iterator name = m_poCGI->getElement(p_strParamName);
-  if (name != m_poCGI->getElements().end())
-  {
-    return STREAMSTRING(**name);
-  }
-
-  return "";
-}
-
 #endif	/* CCGIHELPER_H */
 

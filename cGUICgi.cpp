@@ -45,14 +45,13 @@ void cGUICgi::Dispatch()
       , oCgiGui.GetParam<double>(TFG)
       , oCgiGui.GetParam<int>(COURTS)
       , oCgiGui.GetParam<int>(TEAM1)
-      , oCgiGui.GetParam<int>(TEAM2)
-      );
+      , oCgiGui.GetParam<int>(TEAM2)   );
       oRenderer.Render(0);
     }
 
   }  catch (exception& oEx)
   {
-    LOGSTRSTR_ERROR("cGUICgi::Dispatch() cgicc is not working:" << oEx.what()) << endl;
+    LOGSTRSTR_ERROR("cGUICgi::Dispatch() cgicc is not working:" << oEx.what());
   }
 
 }
