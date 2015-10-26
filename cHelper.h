@@ -20,8 +20,8 @@
 
 #define STREAMSTRING(STRMSG) [&]()->std::string{using namespace std; stringstream oStr023974tcnw0re; oStr023974tcnw0re << STRMSG; return oStr023974tcnw0re.str();}()
 #define COUTSTRSTR(STRMSG) std::cout << STREAMSTRING(STRMSG)
-#define LOGSTRSTR(STRMSG) std::cout << STREAMSTRING(STRMSG)
-#define LOGSTRSTR_ERROR(STRMSG) std::cout << STREAMSTRING(STRMSG)
+#define LOGSTRSTR(STRMSG) std::cerr << STREAMSTRING(STRMSG)
+#define LOGSTRSTR_ERROR(STRMSG) std::cerr << STREAMSTRING(STRMSG)
 
 class cHelper
 {

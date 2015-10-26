@@ -27,7 +27,7 @@ public:
   template<class T>
   T GetParam(std::string p_strParamName)
   {
-    return boost::lexical_cast<T>(GetParam<std::string>(p_strParamName));
+    return boost::lexical_cast<T>(GetParamSTR(p_strParamName));
   }
   
   std::string GetParamSTR(std::string p_strParamName);
@@ -35,6 +35,7 @@ public:
 
 protected:
   cgicc::Cgicc* m_poCGI;
+  bool m_bExternalCopyOfCGI;
   std::string m_strHomeIP;
 };
 #endif	/* CCGIHELPER_H */

@@ -22,14 +22,13 @@ public:
   virtual ~cTournament();
 
   void Create();
+  
+  MAPENCOUNTER& GetEncountersChoosen();
 
+  virtual void accept(iRenderer* p_poRendrer);
 
-  virtual void accept(iRenderer* p_poRendrer)
-  {
-    if(p_poRendrer)
-      p_poRendrer->Render(this);
-  }
-
+  
+  
 private:
   int iNumOfGamesToPlay;
   cTournamentParameter* m_poParam;

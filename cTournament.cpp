@@ -35,6 +35,19 @@ void cTournament::Create()
   SelectEncounters();
 }
 
+MAPENCOUNTER& cTournament::GetEncountersChoosen()
+{
+  return m_mapEncountersChoosen;
+}
+
+
+void cTournament::accept(iRenderer* p_poRendrer)
+{
+  if (p_poRendrer)
+    p_poRendrer->Render(this);
+}
+
+
 
 void cTournament::CreatePairs()
 {

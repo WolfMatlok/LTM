@@ -22,16 +22,15 @@ public:
 
   bool RegisterPlayerPossible(int p_iRoundId);
   void RegisterPlayer(int p_iRoundId);
+  
+  int GetGameId(){return m_iGameId;}  
+  cPairPtr GetPairA(){return m_poPairA;}
+  cPairPtr GetPairB(){return m_poPairB;}
 
   std::string toString()
   {
     return STREAMSTRING("GAMEID:" << std::setw(5) << m_iGameId << " " << m_poPairA->toString() << "vs" << m_poPairB->toString());
-  }
-
-  int GetGameId()
-  {
-    return m_iGameId;
-  }
+  }  
 
   friend std::ostream& operator<<(std::ostream& os, const cEncounter& p_oPair)
   {

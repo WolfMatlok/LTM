@@ -27,7 +27,7 @@ void cGUICgi::Dispatch()
   try
   {
     cGUICgi oCgiGui;
-    std::string strState = oCgiGui.GetParamSTR(APPSTATE);
+    std::string strState = oCgiGui.GetParamSTR(APPSTATE); //pre analysing the cgi parameter passed from client
 
     //*** return start display ***
     if (strState == "")
@@ -39,17 +39,29 @@ void cGUICgi::Dispatch()
     //*** return gettingparam ***
     if (APPSTATE_PRINTCONTENT == strState)
     {
-      cRendererCGI oRenderer(oCgiGui.m_poCGI);
+      //*** parse parameter ***
+      LOGSTRSTR("*** parsing parameter ***");
       cTournamentParameter oTournamentParameter( 
         oCgiGui.GetParam<double>(TTP)
       , oCgiGui.GetParam<double>(TFG)
       , oCgiGui.GetParam<int>(COURTS)
       , oCgiGui.GetParam<int>(TEAM1)
-      , oCgiGui.GetParam<int>(TEAM2)   );
-      oRenderer.Render(0);
+      , oCgiGui.GetParam<int>(TEAM2) );
+      
+      //*** calc tournament ***
+      LOGSTRSTR("*** calculate tournament ***");
+      cTournament oTournament(&oTournamentParameter);
+      oTournament.Create();
+      
+      //*** render results to cgi ***
+      LOGSTRSTR("*** render results ***");
+      cRendererCGI oRenderer(oCgiGui.m_poCGI);
+      oRenderer.Render(&oTournament);
+      
     }
 
-  }  catch (exception& oEx)
+  }
+  catch (exception& oEx)
   {
     LOGSTRSTR_ERROR("cGUICgi::Dispatch() cgicc is not working:" << oEx.what());
   }

@@ -11,19 +11,22 @@
 
 cCGIHelper::cCGIHelper()
 : m_poCGI(new cgicc::Cgicc())
+, m_bExternalCopyOfCGI(false)
 {
   m_strHomeIP = "harrysteiner.ddns.net";
 }
 
 cCGIHelper::cCGIHelper(cgicc::Cgicc* p_poCgiCC)
 : m_poCGI(p_poCgiCC)
+, m_bExternalCopyOfCGI(true)
 {
   m_strHomeIP = "harrysteiner.ddns.net";
 }
 
 cCGIHelper::~cCGIHelper()
 {
-  delete m_poCGI;
+  if(!m_bExternalCopyOfCGI)
+    delete m_poCGI;
 }
 
 std::string cCGIHelper::GetParamSTR(std::string p_strParamName)

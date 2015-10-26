@@ -7,6 +7,7 @@
 
 #include "cRendererCGI.h"
 #include "cTournamentParameter.h"
+#include "cTournament.h"
 using namespace std;
 using namespace cgicc;
 
@@ -20,33 +21,41 @@ cRendererCGI::~cRendererCGI()
 
 }
 
-
 void cRendererCGI::Render(cTournament* p_poTournament)
 {
-
-}
-
-
-void cRendererCGI::RenderStartScreen()
-{
   this->HTMLStart();
-  
-  //cout << "<form method=\"post\" action=\"http://" << m_strHomeIP << "/cgi-bin/ltm.cgi\">
-  cout << this->Form(FRM_START);
-  cout << SetParamHidden(APPSTATE, APPSTATE_PRINTCONTENT);
-  cout << SetParamHidden(APPUUID, STREAMSTRING(boost::uuids::random_generator()()));
-  //cout << SetParamHidden(APPFRAMESUSED, STREAMSTRING(m_bWithoutFrames));
-  cout << SetParamNumber(TEAM1, "3", "10", "5") << br();
-  cout << SetParamNumber(TEAM2, "3", "10", "5") << br();
-  cout << SetParamNumber(COURTS, "1", "4", "4") << br();
-  cout << SetParamNumber(TTP, "1", "4", "2") << br();
-  cout << SetParamNumber(TFG, "7", "60", "10") << br();
-  cout << "<button type=\"submit\" name=\"action\" value=\"0\">Start</button>";
-  cout << this->Form(FRM_END);
+
+  MAPENCOUNTER& oEncounters = p_poTournament->GetEncountersChoosen();
+
+  //COUTSTRSTR("<div>encounters size " << oEncounters.size() << "</div>");
+
+  for (auto oItEncounter = oEncounters.begin(); oItEncounter != oEncounters.end(); ++oItEncounter)
+  {
+    COUTSTRSTR("<div>GID:" << oItEncounter->second.GetGameId() << "</div>");
+  }
   
   this->HTMLEnd();
 }
 
+void cRendererCGI::RenderStartScreen()
+{
+  this->HTMLStart();
+
+  cout << "<form method=\"post\" action=\"http://" << m_strHomeIP << "/cgi-bin/ltm.cgi\">";
+  //cout << this->Form(FRM_START);
+  SetParamHidden(APPSTATE, APPSTATE_PRINTCONTENT);
+  SetParamHidden(APPUUID, STREAMSTRING(boost::uuids::random_generator()()));
+  SetParamNumber(TEAM1, "3", "10", "5");
+  SetParamNumber(TEAM2, "3", "10", "5");
+  SetParamNumber(COURTS, "1", "4", "4");
+  SetParamNumber(TTP, "1", "4", "2");
+  SetParamNumber(TFG, "7", "60", "10");
+  cout << "<button type=\"submit\" name=\"action\" value=\"0\">Start</button>";
+  //cout << this->Form(FRM_END);
+  cout << "</form>";
+
+  this->HTMLEnd();
+}
 
 void cRendererCGI::PrintCGIParams()
 {
@@ -68,7 +77,7 @@ void cRendererCGI::PrintCGIParams()
 std::string cRendererCGI::HTMLStart()
 {
   cout << HTTPHTMLHeader() << endl;
-  cout << html() << head(title("TGS Light Turnier Manager")) << endl;
+  cout << html() << head(title(STREAMSTRING("TGS Light Turnier Manager (" << __DATE__ << " " << __TIME__ << ")"))) << endl;
   cout << body() << endl;
 }
 
@@ -79,22 +88,34 @@ std::string cRendererCGI::HTMLEnd()
 
 std::string cRendererCGI::SetParamHidden(std::string p_strParamName, std::string p_strParamValue)
 {
-  return STREAMSTRING(input().set("name", p_strParamName).set("type", "hidden").set("value", p_strParamValue));
+  COUTSTRSTR(input().set("name", p_strParamName).set("type", "hidden").set("value", p_strParamValue));
+  COUTSTRSTR(br());
+  return "";
 }
 
 std::string cRendererCGI::SetParamNumber(std::string p_strName, std::string p_strMin, std::string p_strMax, std::string p_strValue)
 {
   //"Your Group Size 1: <input name=\"team1\" type=\"number\" min=\"1\" max=\"10\" step=\"1\" value=\"5\"/>
-  return STREAMSTRING(p_strName << input().set("name", p_strName).set("type", "number").set("min", p_strMin).set("max", p_strMax).set("value", p_strValue));
+  COUTSTRSTR(p_strName << input().set("name", p_strName).set("type", "number").set("min", p_strMin).set("max", p_strMax).set("value", p_strValue));
+  COUTSTRSTR(br());
+  return "";
 }
 
 std::string cRendererCGI::Form(FormType p_eFrmTyp)
 {
   if (FRM_START == p_eFrmTyp)
-    return STREAMSTRING(form().set("method", "post").set("action", STREAMSTRING("http://" << m_strHomeIP << "/cgi-bin/ltm.cgi")));
+  {
+    COUTSTRSTR(form().set("method", "post").set("action", STREAMSTRING("http://" << m_strHomeIP << "/cgi-bin/ltm.cgi")));
+    COUTSTRSTR(br());
+  }
 
   if (FRM_END == p_eFrmTyp)
-    return STREAMSTRING(form());
+  {
+    COUTSTRSTR(form());
+    COUTSTRSTR(br());
+  }
+
+  return "";
 }
 
 
