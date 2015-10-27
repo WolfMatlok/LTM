@@ -30,13 +30,17 @@ public:
     return boost::lexical_cast<T>(GetParamSTR(p_strParamName));
   }
   
-  std::string GetParamSTR(std::string p_strParamName);
+  std::string GetParamSTR(std::string p_strParamName, std::string p_strDefault = "");
+  
+  
+  void SaveInput(std::string p_strCurrentState);
 
 
 protected:
   cgicc::Cgicc* m_poCGI;
   bool m_bExternalCopyOfCGI;
   std::string m_strHomeIP;
+  std::string m_strRootDirectory;
 };
 #endif	/* CCGIHELPER_H */
 

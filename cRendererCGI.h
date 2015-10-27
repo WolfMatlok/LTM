@@ -13,6 +13,7 @@
 
 #define APPSTATE "appstate"
 #define APPSTATE_NOTHING "appstate_nothing"
+#define APPSTATE_START "appstate_start"
 #define APPSTATE_PRINTCONTENT "appstate_printcontent"
 
 #define APPUUID "appuuid"
@@ -31,6 +32,9 @@ public:
 
 private:
   void PrintCGIParams();
+  
+  void TableStart(int p_iCols);
+  void TableEnd();
   
   std::string HTMLStart();
   std::string HTMLEnd();

@@ -21,6 +21,7 @@ cCGIHelper::cCGIHelper(cgicc::Cgicc* p_poCgiCC)
 , m_bExternalCopyOfCGI(true)
 {
   m_strHomeIP = "harrysteiner.ddns.net";
+  m_strRootDirectory = "/var/log/apache2/";
 }
 
 cCGIHelper::~cCGIHelper()
@@ -29,7 +30,7 @@ cCGIHelper::~cCGIHelper()
     delete m_poCGI;
 }
 
-std::string cCGIHelper::GetParamSTR(std::string p_strParamName)
+std::string cCGIHelper::GetParamSTR(std::string p_strParamName, std::string p_strDefault /*= ""*/)
 {
   using namespace cgicc;
   // Print out the submitted element
@@ -39,5 +40,21 @@ std::string cCGIHelper::GetParamSTR(std::string p_strParamName)
     return STREAMSTRING(**name);
   }
 
-  return "";
+  return p_strDefault;
+}
+
+void cCGIHelper::SaveInput(std::string p_strCurrentState)
+{
+//  std::string strFileName = STREAMSTRING(m_strRootDirectory << "ltm_input_"<<p_strCurrentState<<".cgicc.input");
+//  m_poCGI->save(strFileName);
+  if(m_poCGI)
+  {
+    LOGSTRSTR("Try to get env: ");
+    const cgicc::CgiEnvironment& oEnv = m_poCGI->getEnvironment();
+    LOGSTRSTR("State:"<<p_strCurrentState<<" with QueryString {" << oEnv.getQueryString() << "}" << endl);
+  }
+  else
+  {
+    LOGSTRSTR("Can't get env on appstate:\""<<p_strCurrentState <<"\""<< endl);
+  }
 }

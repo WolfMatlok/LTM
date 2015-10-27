@@ -27,10 +27,11 @@ void cGUICgi::Dispatch()
   try
   {
     cGUICgi oCgiGui;
-    std::string strState = oCgiGui.GetParamSTR(APPSTATE); //pre analysing the cgi parameter passed from client
+    std::string strState = oCgiGui.GetParamSTR(APPSTATE, APPSTATE_START); //pre analysing the cgi parameter passed from client
+    oCgiGui.SaveInput(strState);
 
     //*** return start display ***
-    if (strState == "")
+    if (APPSTATE_START == strState)
     {
       cRendererCGI oRenderer(oCgiGui.m_poCGI);
       oRenderer.RenderStartScreen();
@@ -40,7 +41,7 @@ void cGUICgi::Dispatch()
     if (APPSTATE_PRINTCONTENT == strState)
     {
       //*** parse parameter ***
-      LOGSTRSTR("*** parsing parameter ***");
+      LOGSTRSTR("*** parsing parameter ***" << endl);
       cTournamentParameter oTournamentParameter( 
         oCgiGui.GetParam<double>(TTP)
       , oCgiGui.GetParam<double>(TFG)
@@ -49,12 +50,12 @@ void cGUICgi::Dispatch()
       , oCgiGui.GetParam<int>(TEAM2) );
       
       //*** calc tournament ***
-      LOGSTRSTR("*** calculate tournament ***");
+      LOGSTRSTR("*** calculate tournament ***"<< endl);
       cTournament oTournament(&oTournamentParameter);
       oTournament.Create();
       
       //*** render results to cgi ***
-      LOGSTRSTR("*** render results ***");
+      LOGSTRSTR("*** render results ***"<< endl);
       cRendererCGI oRenderer(oCgiGui.m_poCGI);
       oRenderer.Render(&oTournament);
       
@@ -63,9 +64,7 @@ void cGUICgi::Dispatch()
   }
   catch (exception& oEx)
   {
-    LOGSTRSTR_ERROR("cGUICgi::Dispatch() cgicc is not working:" << oEx.what());
+    LOGSTRSTR_ERROR("cGUICgi::Dispatch() cgicc is not working:" << oEx.what() << endl);
   }
 
 }
-
-

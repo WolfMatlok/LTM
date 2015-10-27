@@ -27,12 +27,17 @@ void cRendererCGI::Render(cTournament* p_poTournament)
 
   MAPENCOUNTER& oEncounters = p_poTournament->GetEncountersChoosen();
 
-  //COUTSTRSTR("<div>encounters size " << oEncounters.size() << "</div>");
-
+  cout << table();
+  
   for (auto oItEncounter = oEncounters.begin(); oItEncounter != oEncounters.end(); ++oItEncounter)
   {
-    COUTSTRSTR("<div>GID:" << oItEncounter->second.GetGameId() << "</div>");
+    //COUTSTRSTR("<div>GID:" << oItEncounter->second.GetGameId() << "</div>");
+    cout << tr() << td();
+    cout << oItEncounter->second.GetGameId();
+    cout << td() << tr();
   }
+  
+  cout << table();
   
   this->HTMLEnd();
 }
@@ -73,6 +78,29 @@ void cRendererCGI::PrintCGIParams()
   cout << table();
 
 }
+
+void cRendererCGI::TableStart(int p_iCols)
+{
+  cout << table();
+  
+  if(p_iCols)
+    cout << tr();
+  
+  for(int iCol = 0; iCol<p_iCols;++iCol)
+  {
+    cout  << td() << "" << td() ;// todo add possible headline here
+  }
+  
+  if(p_iCols)
+    cout << tr();
+}
+
+void cRendererCGI::TableEnd()
+{
+  cout << table();
+}
+
+
 
 std::string cRendererCGI::HTMLStart()
 {
