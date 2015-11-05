@@ -22,13 +22,13 @@ cGUICgi::~cGUICgi()
 {
 }
 
-void cGUICgi::Dispatch()
+void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
 {
   try
   {
     cGUICgi oCgiGui;
+    oCgiGui.RestoreEnvFromQueryString(p_iAgrc, p_p2Argv);
     std::string strState = oCgiGui.GetParamSTR(APPSTATE, APPSTATE_START); //pre analysing the cgi parameter passed from client
-    oCgiGui.SaveInput(strState);
 
     //*** return start display ***
     if (APPSTATE_START == strState)

@@ -9,12 +9,6 @@
 #define	CAPPLICATION_H
 
 #include "cHelper.h"
-#include "boost/program_options/variables_map.hpp"
-#include "boost/program_options/options_description.hpp"
-#include "boost/program_options/parsers.hpp"
-#include "boost/program_options/cmdline.hpp"
-
-namespace po = boost::program_options;
 
 #define HELP "help"
 #define COURTS "courts" //amount of courts to play on
@@ -67,7 +61,6 @@ public:
   }
 
 private:
-  po::variables_map m_oVarMap;
 
   /** Zahl der Spieler*/
   int m_iPlayerTeam1;

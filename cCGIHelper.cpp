@@ -7,26 +7,31 @@
 
 #include <boost/lexical_cast.hpp>
 
+#include <exception>
 #include "cCGIHelper.h"
 
 cCGIHelper::cCGIHelper()
 : m_poCGI(new cgicc::Cgicc())
 , m_bExternalCopyOfCGI(false)
+, m_strDebugCgiBinFile("/home/pi/sandbox/ltm.cgi.lastcall")
+, m_bDebugCgiBinFile(false)
 {
   m_strHomeIP = "harrysteiner.ddns.net";
 }
 
 cCGIHelper::cCGIHelper(cgicc::Cgicc* p_poCgiCC)
-: m_poCGI(p_poCgiCC)
+: m_poCGI(0)
 , m_bExternalCopyOfCGI(true)
+, m_strDebugCgiBinFile("/home/pi/sandbox/ltm.cgi.lastcall")
+, m_bDebugCgiBinFile(false)
 {
+  m_poCGI = p_poCgiCC;
   m_strHomeIP = "harrysteiner.ddns.net";
-  m_strRootDirectory = "/var/log/apache2/";
 }
 
 cCGIHelper::~cCGIHelper()
 {
-  if(!m_bExternalCopyOfCGI)
+  if (!m_bExternalCopyOfCGI)
     delete m_poCGI;
 }
 
@@ -43,18 +48,43 @@ std::string cCGIHelper::GetParamSTR(std::string p_strParamName, std::string p_st
   return p_strDefault;
 }
 
-void cCGIHelper::SaveInput(std::string p_strCurrentState)
+void cCGIHelper::StoreEnv(std::string p_strCurrentState)
 {
-//  std::string strFileName = STREAMSTRING(m_strRootDirectory << "ltm_input_"<<p_strCurrentState<<".cgicc.input");
-//  m_poCGI->save(strFileName);
-  if(m_poCGI)
+  //  std::string strFileName = STREAMSTRING(m_strRootDirectory << "ltm_input_"<<p_strCurrentState<<".cgicc.input");
+  //  m_poCGI->save(strFileName);
+  if (m_poCGI)
   {
-    LOGSTRSTR("Try to get env: ");
     const cgicc::CgiEnvironment& oEnv = m_poCGI->getEnvironment();
-    LOGSTRSTR("State:"<<p_strCurrentState<<" with QueryString {" << oEnv.getQueryString() << "}" << endl);
-  }
-  else
+    LOGSTRSTR("State:" << p_strCurrentState << " with QueryString {" << oEnv.getPostData() << "}" << endl);
+    m_poCGI->save(m_strDebugCgiBinFile);
+    LOGSTRSTR("Saved to " << m_strDebugCgiBinFile << endl);
+
+  } else
   {
-    LOGSTRSTR("Can't get env on appstate:\""<<p_strCurrentState <<"\""<< endl);
+    LOGSTRSTR("Can't get env on appstate:\"" << p_strCurrentState << "\"" << endl);
   }
+}
+
+void cCGIHelper::RestoreEnvFromQueryString(int p_iArgc, char** p_p2Argv)
+{
+  
+  if (m_poCGI && true==DoLoadCgiFromDbgFile(p_iArgc, p_p2Argv))
+  {
+    m_poCGI->restore(m_strDebugCgiBinFile);
+  }
+}
+
+bool cCGIHelper::DoLoadCgiFromDbgFile(int p_iArgc, char** p_p2Argv)
+{
+  // Declare the supported options.
+  po::options_description oOptDesc("Debugging Parameter");
+
+  oOptDesc.add_options()
+          ("DBG", po::value<bool>(&m_bDebugCgiBinFile)->default_value(false), "debugging last call");
+
+  po::variables_map oVarMap;
+  po::store(po::parse_command_line(p_iArgc, p_p2Argv, oOptDesc), oVarMap);
+  po::notify(oVarMap);
+  
+  return m_bDebugCgiBinFile;
 }

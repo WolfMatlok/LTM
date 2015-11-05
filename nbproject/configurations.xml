@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="95">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
-    <logicalFolder name="f2" displayName="GUI_BASE" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f2" displayName="GUI_BASE" projectFiles="true">
       <itemPath>iRenderable.h</itemPath>
       <itemPath>iRenderer.h</itemPath>
     </logicalFolder>
@@ -11,7 +11,7 @@
       <itemPath>cRendererCGI.h</itemPath>
       <itemPath>GUI_HTML/index.html</itemPath>
     </logicalFolder>
-    <logicalFolder name="f3" displayName="MODEL" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f3" displayName="MODEL" projectFiles="true">
       <itemPath>cEncounter.h</itemPath>
       <itemPath>cHelper.h</itemPath>
       <itemPath>cPair.h</itemPath>
@@ -19,7 +19,7 @@
       <itemPath>cTournament.h</itemPath>
       <itemPath>cTournamentParameter.h</itemPath>
     </logicalFolder>
-    <logicalFolder name="f4" displayName="Resource" projectFiles="true" kind="ROOT">
+    <logicalFolder name="f4" displayName="Resource" projectFiles="true">
       <itemPath>cCGIHelper.cpp</itemPath>
       <itemPath>cEncounter.cpp</itemPath>
       <itemPath>cGUICgi.cpp</itemPath>

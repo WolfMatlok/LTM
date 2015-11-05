@@ -33,14 +33,18 @@ public:
   std::string GetParamSTR(std::string p_strParamName, std::string p_strDefault = "");
   
   
-  void SaveInput(std::string p_strCurrentState);
+  void StoreEnv(std::string p_strCurrentState);
+  void RestoreEnvFromQueryString(int p_iArgc, char** p_p2Argv);
 
 
 protected:
   cgicc::Cgicc* m_poCGI;
   bool m_bExternalCopyOfCGI;
   std::string m_strHomeIP;
-  std::string m_strRootDirectory;
+  
+  bool DoLoadCgiFromDbgFile(int p_iArgc, char** p_p2Argv);
+  bool m_bDebugCgiBinFile;
+  const std::string m_strDebugCgiBinFile;
 };
 #endif	/* CCGIHELPER_H */
 

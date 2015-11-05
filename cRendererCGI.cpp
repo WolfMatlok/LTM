@@ -102,14 +102,14 @@ void cRendererCGI::TableEnd()
 
 
 
-std::string cRendererCGI::HTMLStart()
+void cRendererCGI::HTMLStart()
 {
   cout << HTTPHTMLHeader() << endl;
   cout << html() << head(title(STREAMSTRING("TGS Light Turnier Manager (" << __DATE__ << " " << __TIME__ << ")"))) << endl;
   cout << body() << endl;
 }
 
-std::string cRendererCGI::HTMLEnd()
+void cRendererCGI::HTMLEnd()
 {
   cout << body() << html() << endl;
 }

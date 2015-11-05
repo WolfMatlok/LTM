@@ -22,7 +22,7 @@ public:
 
   /* Dispatches calls from sourrounding cgi framewrk.
    */
-  static void Dispatch();
+  static void Dispatch(int p_iAgrc, char** p_p2Argv);
   
 private:
 };

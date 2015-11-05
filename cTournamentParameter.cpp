@@ -30,10 +30,11 @@ cTournamentParameter::cTournamentParameter(int argc, char** argv)
           (TEAM1, po::value<int>(&m_iPlayerTeam1)->default_value(8), "amount of gamers in team 1")
           (TEAM2, po::value<int>(&m_iPlayerTeam2)->default_value(8), "amount of gamers in team 2");
 
-  po::store(po::parse_command_line(argc, argv, oOptDesc), m_oVarMap);
-  po::notify(m_oVarMap);
+  po::variables_map oVarMap;
+  po::store(po::parse_command_line(argc, argv, oOptDesc), oVarMap);
+  po::notify(oVarMap);
 
-  if (m_oVarMap.count(HELP))
+  if (oVarMap.count(HELP))
   {
     std::cout << oOptDesc << "\n";
   }

@@ -36,8 +36,8 @@ private:
   void TableStart(int p_iCols);
   void TableEnd();
   
-  std::string HTMLStart();
-  std::string HTMLEnd();
+  void HTMLStart();
+  void HTMLEnd();
   
   
   std::string SetParamHidden(std::string p_strParamName, std::string p_strParamValue);

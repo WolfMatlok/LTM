@@ -12,6 +12,13 @@
 #include <sstream>
 #include <iostream>
 
+#include "boost/program_options/variables_map.hpp"
+#include "boost/program_options/options_description.hpp"
+#include "boost/program_options/parsers.hpp"
+#include "boost/program_options/cmdline.hpp"
+
+namespace po = boost::program_options;
+
 #include "boost/uuid/uuid.hpp"            // uuid class
 #include "boost/uuid/uuid_generators.hpp" // generators
 #include "boost/uuid/uuid_io.hpp"         // streaming operators etc.
@@ -30,7 +37,6 @@ public:
   cHelper(const cHelper& orig);
   virtual ~cHelper();
 private:
-
 };
 
 #endif	/* CHELPER_H */

@@ -13,7 +13,7 @@
 
 int main(int argc, char** argv)
 {
-  cGUICgi::Dispatch();
+  cGUICgi::Dispatch(argc, argv);
   return 0;
 }
 
