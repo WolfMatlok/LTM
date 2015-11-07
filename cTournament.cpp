@@ -75,7 +75,7 @@ void cTournament::CreatePairs()
 void cTournament::CreateEncounters()
 {
   int iNumOfPairs = m_mapPairs.size();
-  int iNumOfGames = 0;
+  int iIdEncounter = 0;
 
   //*** search for all possible games ***
   for (int iPairIdA = 0, iPairIdMaxB = 0; iPairIdA < iNumOfPairs; iPairIdA++, iPairIdMaxB++)
@@ -90,23 +90,23 @@ void cTournament::CreateEncounters()
       if (m_mapPairs[iPairIdA] == m_mapPairs[iPairIdB]) //sollte theoretsich nicht vorkommen...
         continue;
 
-      cEncounter oNewGame(iNumOfGames, NEWPAIRPTR(m_mapPairs[iPairIdA]), NEWPAIRPTR(m_mapPairs[iPairIdB]));
-      m_mapEncountersAll.insert(std::make_pair(oNewGame.GetGameId(), oNewGame));
-      iNumOfGames++;
+      cEncounter oNewEncounter(iIdEncounter, NEWPAIRPTR(m_mapPairs[iPairIdA]), NEWPAIRPTR(m_mapPairs[iPairIdB]));
+      m_mapEncountersAll.insert(std::make_pair(oNewEncounter.GetId(), oNewEncounter));
+      iIdEncounter++;
     }
   }
 }
 
 void cTournament::SelectEncounters()
 {
-  int iNumOfGames = m_mapEncountersAll.size();
+  int iNumOfEncounters = m_mapEncountersAll.size();
 
   //*** select randomly games that are possible within the given time ***
   LOGSTRSTR("Going to choose " << iNumOfGamesToPlay << " games randomly" << endl);
   std::default_random_engine oGenerator(time(0));
-  std::uniform_int_distribution<int> oDistribution(0, iNumOfGames - 1);
-  int iNumOfGameCurr = 0;
-  int iCurrgameID = 0;
+  std::uniform_int_distribution<int> oDistribution(0, iNumOfEncounters - 1);
+  int iNumOfEncounterChoosen = 0;
+  int iCurrEncounterID = 0;
   int iCourtId = 0;
   int iRoundId = 0;
   int iGenerationTimeout = 10000;
@@ -119,25 +119,27 @@ void cTournament::SelectEncounters()
       iCourtId = 0;
     }
 
-    iCurrgameID = oDistribution(oGenerator); // generates number in the range 0 .. iNumOfGames
-    if (m_mapEncountersChoosen.end() != m_mapEncountersChoosen.find(iCurrgameID))
+    iCurrEncounterID = oDistribution(oGenerator); // generates number in the range 0 .. iNumOfGames
+    if (m_mapEncountersChoosen.end() != m_mapEncountersChoosen.find(iCurrEncounterID))
     {
       continue;
     }
 
-    cEncounter oGameCurr = m_mapEncountersAll[iCurrgameID];
-    if (!oGameCurr.RegisterPlayerPossible(iRoundId)) //try to register all involved player if possible
+    cEncounter oEncounterCurr = m_mapEncountersAll[iCurrEncounterID];
+    if (!oEncounterCurr.RegisterPlayerPossible(iRoundId)) //try to register all involved player if possible
       continue; //on of the involved player exceeds the maximum possible amount of games he can play
 
     //was choosen gameid already choosen
-    oGameCurr.RegisterPlayerPossible(iRoundId);
-    oGameCurr.RegisterPlayer(iRoundId);
-    m_mapEncountersChoosen.insert(std::make_pair(iCurrgameID, oGameCurr));
-    LOGSTRSTR("#" << std::setw(2) << iNumOfGameCurr
-            << " " << oGameCurr
+    oEncounterCurr.RegisterPlayerPossible(iRoundId);
+    oEncounterCurr.RegisterPlayer(iRoundId);
+    oEncounterCurr.SetIdRound(iRoundId);
+    oEncounterCurr.SetIdCourt(iCourtId++);
+    m_mapEncountersChoosen.insert(std::make_pair(iNumOfEncounterChoosen, oEncounterCurr));
+    LOGSTRSTR("#" << std::setw(2) << iNumOfEncounterChoosen
+            << " " << oEncounterCurr
             << " Round:" << std::setw(2) << iRoundId
-            << " CourtId:" << std::setw(0) << iCourtId++ << endl);
-    iNumOfGameCurr++;
+            << " CourtId:" << std::setw(0) << iCourtId << endl);
+    iNumOfEncounterChoosen++;
   }
 }
 

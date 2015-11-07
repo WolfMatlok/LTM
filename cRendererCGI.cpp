@@ -33,10 +33,13 @@ void cRendererCGI::Render(cTournament* p_poTournament)
   {
     //COUTSTRSTR("<div>GID:" << oItEncounter->second.GetGameId() << "</div>");
     cout << tr() ;
-    cout << td() << oItEncounter->second.GetGameId() << td();
+    cout << td() << oItEncounter->second.GetId() << td();
+    cout << td() << oItEncounter->second.GetIdRound() << td();    
     cout << td() << *(oItEncounter->second.GetPairA()) << td();
     cout << td() << "vs" << td();
     cout << td() << *(oItEncounter->second.GetPairB()) << td();
+    cout << td() << "on" << td();
+    cout << td() << oItEncounter->second.GetIdCourt() << td();
     cout  << tr();
   }
   

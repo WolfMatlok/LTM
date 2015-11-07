@@ -34,7 +34,7 @@ public:
   
   
   void StoreEnv(std::string p_strCurrentState);
-  void RestoreEnvFromQueryString(int p_iArgc, char** p_p2Argv);
+  bool RestoreEnvFromQueryString(int p_iArgc, char** p_p2Argv);
 
 
 protected:

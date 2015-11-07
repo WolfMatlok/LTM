@@ -16,30 +16,37 @@
 class cEncounter
 {
 public:
-  cEncounter(int p_iGameId = -1, cPairPtr p_poPairA = cPairPtr(), cPairPtr p_poPairB = cPairPtr());
+  cEncounter(int p_iId = -1, cPairPtr p_poPairA = cPairPtr(), cPairPtr p_poPairB = cPairPtr());
   cEncounter(const cEncounter& orig);
   virtual ~cEncounter();
 
   bool RegisterPlayerPossible(int p_iRoundId);
   void RegisterPlayer(int p_iRoundId);
   
-  int GetGameId(){return m_iGameId;}  
+  int GetId(){return m_iId;}  
   cPairPtr GetPairA(){return m_poPairA;}
   cPairPtr GetPairB(){return m_poPairB;}
 
   std::string toString()
   {
-    return STREAMSTRING("GAMEID:" << std::setw(5) << m_iGameId << " " << m_poPairA->toString() << "vs" << m_poPairB->toString());
-  }  
+    return STREAMSTRING("GAMEID:" << std::setw(5) << m_iId << " " << m_poPairA->toString() << "vs" << m_poPairB->toString());
+  }
+  
+  void SetIdRound(int p_iIdRound);
+  int GetIdRound() const;
+  void SetIdCourt(int p_iIdCourt);
+  int GetIdCourt() const;  
 
   friend std::ostream& operator<<(std::ostream& os, const cEncounter& p_oPair)
   {
-    os << "GAMEID:" << std::setw(5) << p_oPair.m_iGameId << " " << *(p_oPair.m_poPairA) << "vs" << *(p_oPair.m_poPairB);
+    os << "GAMEID:" << std::setw(5) << p_oPair.m_iId << " " << *(p_oPair.m_poPairA) << "vs" << *(p_oPair.m_poPairB);
     return os;
   }
 
 private:
-  int m_iGameId;
+  int m_iId;
+  int m_iIdCourt;
+  int m_iIdRound;
   cPairPtr m_poPairA;
   cPairPtr m_poPairB;
 };

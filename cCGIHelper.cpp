@@ -65,13 +65,16 @@ void cCGIHelper::StoreEnv(std::string p_strCurrentState)
   }
 }
 
-void cCGIHelper::RestoreEnvFromQueryString(int p_iArgc, char** p_p2Argv)
+bool cCGIHelper::RestoreEnvFromQueryString(int p_iArgc, char** p_p2Argv)
 {
   
   if (m_poCGI && true==DoLoadCgiFromDbgFile(p_iArgc, p_p2Argv))
   {
     m_poCGI->restore(m_strDebugCgiBinFile);
+    return true;
   }
+  
+  return false;
 }
 
 bool cCGIHelper::DoLoadCgiFromDbgFile(int p_iArgc, char** p_p2Argv)
