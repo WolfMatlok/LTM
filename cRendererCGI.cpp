@@ -28,12 +28,20 @@ void cRendererCGI::Render(cTournament* p_poTournament)
   MAPENCOUNTER& oEncounters = p_poTournament->GetEncountersChoosen();
 
   cout << table();
+
+	cout << tr() ;
+	cout << th() << "Round"   << th();    
+	cout << th() << "Pair A"  << th();
+	cout << th() << ""        << th();
+	cout << th() << "Pair B"  << th();
+	cout << th() << ""        << th();
+	cout << th() << "Court"   << th();
+	cout  << tr();
   
   for (auto oItEncounter = oEncounters.begin(); oItEncounter != oEncounters.end(); ++oItEncounter)
   {
     //COUTSTRSTR("<div>GID:" << oItEncounter->second.GetGameId() << "</div>");
     cout << tr() ;
-    cout << td() << oItEncounter->second.GetId() << td();
     cout << td() << oItEncounter->second.GetIdRound() << td();    
     cout << td() << *(oItEncounter->second.GetPairA()) << td();
     cout << td() << "vs" << td();
@@ -112,6 +120,7 @@ void cRendererCGI::HTMLStart()
 {
   cout << HTTPHTMLHeader() << endl;
   cout << html() << head(title(STREAMSTRING("TGS Light Turnier Manager (" << __DATE__ << " " << __TIME__ << ")"))) << endl;
+  cout << "<style> table { caption-side: bottom; } table, th, td { border: 1px solid; border-collapse: collapse; } </style>";
   cout << body() << endl;
 }
 
