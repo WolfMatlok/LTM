@@ -7,6 +7,7 @@
     </logicalFolder>
     <logicalFolder name="f1" displayName="GUI_CGI" projectFiles="true">
       <itemPath>cCGIHelper.h</itemPath>
+      <itemPath>cCSS.h</itemPath>
       <itemPath>cGUICgi.h</itemPath>
       <itemPath>cRendererCGI.h</itemPath>
       <itemPath>GUI_HTML/index.html</itemPath>
@@ -21,6 +22,7 @@
     </logicalFolder>
     <logicalFolder name="f4" displayName="Resource" projectFiles="true">
       <itemPath>cCGIHelper.cpp</itemPath>
+      <itemPath>cCSS.cpp</itemPath>
       <itemPath>cEncounter.cpp</itemPath>
       <itemPath>cGUICgi.cpp</itemPath>
       <itemPath>cHelper.cpp</itemPath>
@@ -67,6 +69,10 @@
       <item path="cCGIHelper.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cCGIHelper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cCSS.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cCSS.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cEncounter.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -140,6 +146,10 @@
       <item path="cCGIHelper.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cCGIHelper.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cCSS.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cCSS.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="cEncounter.cpp" ex="false" tool="1" flavor2="0">
       </item>
