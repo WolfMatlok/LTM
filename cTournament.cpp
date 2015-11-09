@@ -107,16 +107,18 @@ void cTournament::SelectEncounters()
   std::uniform_int_distribution<int> oDistribution(0, iNumOfEncounters - 1);
   int iNumOfEncounterChoosen = 0;
   int iCurrEncounterID = 0;
-  int iCourtId = 0;
+  int iCourtId = 1;
   int iRoundId = 0;
   int iGenerationTimeout = 10000;
   while (m_mapEncountersChoosen.size() < iNumOfGamesToPlay)
   {
-    if (0 == iGenerationTimeout--)
+    if (    0 == iGenerationTimeout-- /*no more encounters choosable*/
+         || (iCourtId)>m_poParam->GetCountOfCourts() /*no more courts available*/
+       )
     {
       iGenerationTimeout = 10000;
       iRoundId++;
-      iCourtId = 0;
+      iCourtId = 1;
     }
 
     iCurrEncounterID = oDistribution(oGenerator); // generates number in the range 0 .. iNumOfGames
