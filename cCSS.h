@@ -21,8 +21,6 @@ public:
   cCSS(const cCSS& orig);
   virtual ~cCSS();
   
-  static cCssPtr CreateCssDefinition();
-  
   std::string GetSimpleCssStyles();
   
 private:

@@ -8,6 +8,7 @@
 #include "cRendererCGI.h"
 #include "cTournamentParameter.h"
 #include "cTournament.h"
+#include "cCSS.h"
 using namespace std;
 using namespace cgicc;
 
@@ -30,12 +31,12 @@ void cRendererCGI::Render(cTournament* p_poTournament)
   cout << table();
 
 	cout << tr() ;
-	cout << th() << "Round"   << th();    
-	cout << th() << "Pair A"  << th();
+	cout << th() << "<h2>Round</h2>"   << th();    
+	cout << th() << "<h2>Pair A</h2>"  << th();
 	cout << th() << ""        << th();
-	cout << th() << "Pair B"  << th();
+	cout << th() << "<h2>Pair B</h2>"  << th();
 	cout << th() << ""        << th();
-	cout << th() << "Court"   << th();
+	cout << th() << "<h2>Court</h2>"   << th();
 	cout  << tr();
   
   for (auto oItEncounter = oEncounters.begin(); oItEncounter != oEncounters.end(); ++oItEncounter)
@@ -118,9 +119,11 @@ void cRendererCGI::TableEnd()
 
 void cRendererCGI::HTMLStart()
 {
+  cCSS oCSSHelper;
   cout << HTTPHTMLHeader() << endl;
-  cout << html() << head(title(STREAMSTRING("TGS Light Turnier Manager (" << __DATE__ << " " << __TIME__ << ")"))) << endl;
-  cout << "<style> table { caption-side: bottom; } table, th, td { border: 1px solid; border-collapse: collapse; } </style>";
+  cout << html() << head() << title(STREAMSTRING("TGS Light Turnier Manager (" << __DATE__ << " " << __TIME__ << ")")) << endl;
+  cout << oCSSHelper.GetSimpleCssStyles();
+  cout << head() << endl;
   cout << body() << endl;
 }
 
