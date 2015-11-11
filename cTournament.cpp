@@ -16,7 +16,7 @@
 cTournament::cTournament(cTournamentParameter* p_poApplication)
 : m_poParam(p_poApplication)
 {
-  iNumOfGamesToPlay = m_poParam->GetCountOfGamesToPlay();
+  m_iNumOfGamesToPlay = m_poParam->GetCountOfGamesToPlay();
   cPlayer::SetGamesPerPlayer(m_poParam->GetGamesPerPlayer());
 }
 
@@ -102,7 +102,7 @@ void cTournament::SelectEncounters()
   int iNumOfEncounters = m_mapEncountersAll.size();
 
   //*** select randomly games that are possible within the given time ***
-  LOGSTRSTR("Going to choose " << iNumOfGamesToPlay << " games randomly" << endl);
+  LOGSTRSTR("Going to choose " << m_iNumOfGamesToPlay << " games randomly" << endl);
   std::default_random_engine oGenerator(time(0));
   std::uniform_int_distribution<int> oDistribution(0, iNumOfEncounters - 1);
   int iNumOfEncounterChoosen = 0;
@@ -110,7 +110,7 @@ void cTournament::SelectEncounters()
   int iCourtId = 1;
   int iRoundId = 0;
   int iGenerationTimeout = 10000;
-  while (m_mapEncountersChoosen.size() < iNumOfGamesToPlay)
+  while (m_mapEncountersChoosen.size() < m_iNumOfGamesToPlay)
   {
     if (    0 == iGenerationTimeout-- /*no more encounters choosable*/
          || (iCourtId)>m_poParam->GetCountOfCourts() /*no more courts available*/
@@ -129,10 +129,9 @@ void cTournament::SelectEncounters()
 
     cEncounter oEncounterCurr = m_mapEncountersAll[iCurrEncounterID];
     if (!oEncounterCurr.RegisterPlayerPossible(iRoundId)) //try to register all involved player if possible
-      continue; //on of the involved player exceeds the maximum possible amount of games he can play
+      continue; //player is already invovled in current round
 
     //was choosen gameid already choosen
-    oEncounterCurr.RegisterPlayerPossible(iRoundId);
     oEncounterCurr.RegisterPlayer(iRoundId);
     oEncounterCurr.SetIdRound(iRoundId);
     oEncounterCurr.SetIdCourt(iCourtId++);

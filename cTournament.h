@@ -30,7 +30,7 @@ public:
   
   
 private:
-  int iNumOfGamesToPlay;
+  int m_iNumOfGamesToPlay;
   cTournamentParameter* m_poParam;
 
   MAPENCOUNTER m_mapEncountersAll;
