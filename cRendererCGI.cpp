@@ -39,17 +39,23 @@ void cRendererCGI::Render(cTournament* p_poTournament)
 	cout << th() << "<h2>Court</h2>"   << th();
 	cout  << tr();
   
+  int iLastRoundId = 0;
   for (auto oItEncounter = oEncounters.begin(); oItEncounter != oEncounters.end(); ++oItEncounter)
   {
-    //COUTSTRSTR("<div>GID:" << oItEncounter->second.GetGameId() << "</div>");
-    cout << tr() ;
-    cout << td() << oItEncounter->second.GetIdRound() << td();    
+    if(iLastRoundId!=oItEncounter->second.GetIdRound())//print line if new round starts
+      cout << tr() << "<td colspan=\"6\"><hr></td>" << tr();
+      
+      
+    cout << tr();
+    cout << td() << oItEncounter->second.GetIdRound() << td();
     cout << td() << *(oItEncounter->second.GetPairA()) << td();
     cout << td() << "vs" << td();
     cout << td() << *(oItEncounter->second.GetPairB()) << td();
     cout << td() << "on" << td();
     cout << td() << oItEncounter->second.GetIdCourt() << td();
-    cout  << tr();
+    cout << tr();
+    
+    iLastRoundId = oItEncounter->second.GetIdRound();
   }
   
   cout << table();
