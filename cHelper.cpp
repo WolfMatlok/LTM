@@ -8,14 +8,21 @@
 #include "cHelper.h"
 
 cHelper::cHelper()
+: m_strDirSandbox("/home/pi/sandbox/")
 {
 }
 
 cHelper::cHelper(const cHelper& orig)
+: m_strDirSandbox(orig.m_strDirSandbox)
 {
 }
 
 cHelper::~cHelper()
 {
+}
+
+const std::string cHelper::GetStrDirSandbox() const
+{
+  return m_strDirSandbox;
 }
 

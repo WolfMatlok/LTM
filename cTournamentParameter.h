@@ -61,6 +61,19 @@ public:
   }
 
 private:
+  friend class boost::serialization::access;
+
+  template<class Archive>
+  void serialize(Archive & p_oArchive, const unsigned int p_uiVersion)
+  {
+    p_oArchive & m_iPlayerTeam1;
+    p_oArchive & m_iPlayerTeam2;
+    p_oArchive & m_dTimeToPlayH;
+    p_oArchive & m_dTimeForOneGameMin;
+    p_oArchive & m_iCountOfGamesToPlay;
+    p_oArchive & m_iCountOfCourts;
+    p_oArchive & m_iGamesPerPlayer;
+  }
 
   /** Zahl der Spieler*/
   int m_iPlayerTeam1;

@@ -8,9 +8,15 @@
 #ifndef CHELPER_H
 #define	CHELPER_H
 
+#include <typeinfo>
+
 #include <functional>
 #include <sstream>
 #include <iostream>
+
+// include headers that implement a archive in simple text format
+#include "boost/archive/text_oarchive.hpp"
+#include "boost/archive/text_iarchive.hpp"
 
 #include "boost/program_options/variables_map.hpp"
 #include "boost/program_options/options_description.hpp"
@@ -36,8 +42,34 @@ public:
   cHelper();
   cHelper(const cHelper& orig);
   virtual ~cHelper();
+
+  const std::string GetStrDirSandbox() const;
+
 private:
+  const std::string m_strDirSandbox;
 };
+
+template<class T>
+void SERIALIZE_TO_FILE(T& p_oObject)
+{
+  // create and open a character archive for output
+  std::string strFileNameDest = STREAMSTRING( cHelper().GetStrDirSandbox() << "serialized/" << typeid(T).name() );
+  std::ofstream ofs(strFileNameDest);
+  boost::archive::text_oarchive oa(ofs);
+  oa << p_oObject;
+}
+
+template<class T>
+void DESERIALIZE_FROM_FILE(T& p_oObject)
+{
+  std::string strFileNameSrc = STREAMSTRING( cHelper().GetStrDirSandbox() << "serialized/" << typeid(T).name() );
+  // create and open an archive for input
+  std::ifstream ifs(strFileNameSrc);
+  boost::archive::text_iarchive ia(ifs);
+  // read class state from archive
+  ia >> p_oObject;
+  // archive and stream closed when destructors are called
+}
 
 #endif	/* CHELPER_H */
 

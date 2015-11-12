@@ -30,7 +30,7 @@ void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
     bool bRestoredEnv = oCgiGui.RestoreEnvFromQueryString(p_iAgrc, p_p2Argv);
     std::string strState = oCgiGui.GetParamSTR(APPSTATE, APPSTATE_START); //pre analysing the cgi parameter passed from client
     
-    if(!bRestoredEnv) 
+    if(!bRestoredEnv)
       oCgiGui.StoreEnv(strState);
 
     //*** return start display ***
@@ -51,6 +51,11 @@ void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
       , oCgiGui.GetParam<int>(COURTS)
       , oCgiGui.GetParam<int>(TEAM1)
       , oCgiGui.GetParam<int>(TEAM2) );
+      
+      //*** test serialisation ***
+      SERIALIZE_TO_FILE<cTournamentParameter>(oTournamentParameter);
+      cTournamentParameter oTournamentParameter2(0,0,0,0,0);
+      DESERIALIZE_FROM_FILE<cTournamentParameter>(oTournamentParameter2);
       
       //*** calc tournament ***
       LOGSTRSTR("*** calculate tournament ***"<< endl);

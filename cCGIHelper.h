@@ -45,6 +45,7 @@ protected:
   bool DoLoadCgiFromDbgFile(int p_iArgc, char** p_p2Argv);
   bool m_bDebugCgiBinFile;
   const std::string m_strDebugCgiBinFile;
+  
 };
 #endif	/* CCGIHELPER_H */
 
