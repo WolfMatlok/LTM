@@ -47,12 +47,12 @@ void cRendererCGI::Render(cTournament* p_poTournament)
       
       
     cout << tr();
-    cout << td() << oItEncounter->second.GetIdRound() << td();
+    cout << td() <<   oItEncounter->second.GetIdRound() << td();
     cout << td() << *(oItEncounter->second.GetPairA()) << td();
-    cout << td() << "vs" << td();
+    cout << td() <<   "vs" << td();
     cout << td() << *(oItEncounter->second.GetPairB()) << td();
-    cout << td() << "on" << td();
-    cout << td() << oItEncounter->second.GetIdCourt() << td();
+    cout << td() <<   "on" << td();
+    cout << td() <<   oItEncounter->second.GetIdCourt() << td();
     cout << tr();
     
     iLastRoundId = oItEncounter->second.GetIdRound();
@@ -68,16 +68,17 @@ void cRendererCGI::RenderStartScreen()
   this->HTMLStart();
 
   cout << "<form method=\"post\" action=\"http://" << m_strHomeIP << "/cgi-bin/ltm.cgi\">";
-  //cout << this->Form(FRM_START);
+  
   SetParamHidden(APPSTATE, APPSTATE_PRINTCONTENT);
   SetParamHidden(APPUUID, STREAMSTRING(boost::uuids::random_generator()()));
-  SetParamNumber(TEAM1, "3", "10", "5");
-  SetParamNumber(TEAM2, "3", "10", "5");
-  SetParamNumber(COURTS, "1", "4", "4");
-  SetParamNumber(TTP, "1", "4", "2");
-  SetParamNumber(TFG, "7", "60", "10");
+  cout << table();
+  cout << tr() << td() << TEAM1   << td() << td() << SetParamNumber(TEAM1, "3", "10", "5")  << td() << tr();
+  cout << tr() << td() << TEAM2   << td() << td() << SetParamNumber(TEAM2, "3", "10", "5")  << td() << tr();
+  cout << tr() << td() << COURTS  << td() << td() << SetParamNumber(COURTS, "1", "4", "4")  << td() << tr();
+  cout << tr() << td() << TTP     << td() << td() << SetParamNumber(TTP, "1", "4", "2")     << td() << tr();
+  cout << tr() << td() << TFG     << td() << td() << SetParamNumber(TFG, "7", "60", "10")   << td() << tr();
+  cout << table();
   cout << "<button type=\"submit\" name=\"action\" value=\"0\">Start</button>";
-  //cout << this->Form(FRM_END);
   cout << "</form>";
 
   this->HTMLEnd();
@@ -141,15 +142,13 @@ void cRendererCGI::HTMLEnd()
 std::string cRendererCGI::SetParamHidden(std::string p_strParamName, std::string p_strParamValue)
 {
   COUTSTRSTR(input().set("name", p_strParamName).set("type", "hidden").set("value", p_strParamValue));
-  COUTSTRSTR(br());
   return "";
 }
 
 std::string cRendererCGI::SetParamNumber(std::string p_strName, std::string p_strMin, std::string p_strMax, std::string p_strValue)
 {
   //"Your Group Size 1: <input name=\"team1\" type=\"number\" min=\"1\" max=\"10\" step=\"1\" value=\"5\"/>
-  COUTSTRSTR(p_strName << input().set("name", p_strName).set("type", "number").set("min", p_strMin).set("max", p_strMax).set("value", p_strValue));
-  COUTSTRSTR(br());
+  COUTSTRSTR(input().set("name", p_strName).set("type", "number").set("min", p_strMin).set("max", p_strMax).set("value", p_strValue));
   return "";
 }
 
