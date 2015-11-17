@@ -11,6 +11,7 @@
 #include "cTournamentParameter.h"
 #include "cEncounter.h"
 #include "iRenderable.h"
+#include "cPlayerPool.h"
 
 /** Rotionstrategy based on matrices 
  */
@@ -36,6 +37,8 @@ private:
   MAPENCOUNTER m_mapEncountersAll;
   MAPENCOUNTER m_mapEncountersChoosen;
 
+  cPlayerPool m_oPlayerPool;
+  
   /** pool of all possible pairs
    */
   CPAIRMAP m_mapPairs;
@@ -43,7 +46,6 @@ private:
   void CreatePairs();
   void CreateEncounters();
   void SelectEncounters();
-  void PrintPlayerStats();
 };
 
 #endif	/* CROTATIONSTRATEGY_H */

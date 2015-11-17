@@ -8,6 +8,7 @@
 #include "cTournament.h"
 #include "cEncounter.h"
 #include "cPlayer.h"
+#include "cPlayerPool.h"
 #include <iomanip>
 #include <map>
 #include <random>
@@ -17,7 +18,6 @@ cTournament::cTournament(cTournamentParameter* p_poApplication)
 : m_poParam(p_poApplication)
 {
   m_iNumOfGamesToPlay = m_poParam->GetCountOfGamesToPlay();
-  cPlayer::SetGamesPerPlayer(m_poParam->GetGamesPerPlayer());
 }
 
 cTournament::cTournament(const cTournament & orig)
@@ -60,7 +60,7 @@ void cTournament::CreatePairs()
   {
     for (int iT2 = 0; iT2 < m_poParam->GetPlayerTeam2(); iT2++)
     {
-      cPair oPair(cPlayer::CreatePlayer(iT1, iGroupIdA), cPlayer::CreatePlayer(iT2, iGroupIdB));
+      cPair oPair(m_oPlayerPool.CreatePlayer(iT1, iGroupIdA), m_oPlayerPool.CreatePlayer(iT2, iGroupIdB));
       m_mapPairs.insert(std::make_pair(iNumOfPairs, oPair));
       LOGSTRSTR(" " << m_mapPairs[iNumOfPairs] << std::flush);
       iNumOfPairs++;
@@ -132,7 +132,7 @@ void cTournament::SelectEncounters()
       continue; //player is already invovled in current round
 
     //was choosen gameid already choosen
-    oEncounterCurr.RegisterPlayer(iRoundId);
+    oEncounterCurr.RegisterRoundForPairs(iRoundId);
     oEncounterCurr.SetIdRound(iRoundId);
     oEncounterCurr.SetIdCourt(iCourtId++);
     m_mapEncountersChoosen.insert(std::make_pair(iNumOfEncounterChoosen, oEncounterCurr));
@@ -141,17 +141,5 @@ void cTournament::SelectEncounters()
             << " Round:" << std::setw(2) << iRoundId
             << " CourtId:" << std::setw(0) << iCourtId << endl);
     iNumOfEncounterChoosen++;
-  }
-}
-
-void cTournament::PrintPlayerStats()
-{
-  //*** print player stats ***  
-  LOGSTRSTR("*** Player stats ***" << endl);
-  cPlayer::CPLAYERMAP& oPlayerMap = cPlayer::GetPlayers();
-  for (cPlayer::CPLAYERMAP::iterator oItPlayerCurr = oPlayerMap.begin(); oItPlayerCurr != oPlayerMap.end(); oItPlayerCurr++)
-  {
-    cPlayer::cPlayerPtr poPlayer = oItPlayerCurr->second;
-    LOGSTRSTR(poPlayer->toString() << endl);
   }
 }

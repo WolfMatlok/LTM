@@ -17,6 +17,7 @@
 // include headers that implement a archive in simple text format
 #include "boost/archive/text_oarchive.hpp"
 #include "boost/archive/text_iarchive.hpp"
+#include "boost/serialization/vector.hpp"
 
 #include "boost/program_options/variables_map.hpp"
 #include "boost/program_options/options_description.hpp"

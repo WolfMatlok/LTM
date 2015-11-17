@@ -42,8 +42,8 @@ bool cPair::RegisterOnGamePossible(int p_iRoundId)
   return true;
 }
 
-void cPair::RegisterOnGame(int p_iRoundId)
+void cPair::RegisterRound(int p_iRoundId)
 {
-  m_poPlayerA->GameRegister(p_iRoundId);
-  m_poPlayerB->GameRegister(p_iRoundId);
+  m_poPlayerA->RegisterRound(p_iRoundId);
+  m_poPlayerB->RegisterRound(p_iRoundId);
 }

@@ -6,37 +6,7 @@
  */
 
 #include "cPlayer.h"
-
-int cPlayer::s_iGamesPerPlayer = 0;
-cPlayer::CPLAYERMAP cPlayer::s_mapPlayerPool;
-
-cPlayer::CPLAYERMAP& cPlayer::GetPlayers()
-{
-  return cPlayer::s_mapPlayerPool;
-}
-
-cPlayer::cPlayerPtr cPlayer::CreatePlayer(int p_iId, int p_iIdGroup)
-{
-  int iCurrPlayerId = MakePlayerId(p_iId, p_iIdGroup);
-  if (s_mapPlayerPool.end() == s_mapPlayerPool.find(iCurrPlayerId))
-  {
-    cPlayerPtr poPlayer = cPlayerPtr(new cPlayer(p_iId, p_iIdGroup, 0));
-    s_mapPlayerPool.insert(std::make_pair(poPlayer->GetId(), poPlayer));
-    return poPlayer;
-  }
-
-  return s_mapPlayerPool[iCurrPlayerId];
-}
-
-int cPlayer::MakePlayerId(int p_iId, int p_iIdGroup)
-{
-  return p_iId + p_iIdGroup;
-}
-
-void cPlayer::SetGamesPerPlayer(int p_iGamesPerPlayer)
-{
-  cPlayer::s_iGamesPerPlayer = p_iGamesPerPlayer;
-}
+#include "cPlayerPool.h"
 
 cPlayer::cPlayer(int p_iId, int p_iIdGroup, int p_iGamesToPlay)
 : m_iId(p_iId)
@@ -57,18 +27,27 @@ cPlayer::~cPlayer()
 
 bool cPlayer::CanPlayRound(int p_iRoundId)
 {
-  bool bCanPlay = std::find(m_oRegisteredRoundId.begin(), m_oRegisteredRoundId.end(), p_iRoundId) == m_oRegisteredRoundId.end(); /*&& (m_oRegisteredRoundId.size() < s_iGamesPerPlayer);*/
-  return bCanPlay;
+  return m_oRegisteredRoundId.find(p_iRoundId)==m_oRegisteredRoundId.end();
 }
 
-int cPlayer::GameRegister(int p_iRoundId)
+int cPlayer::RegisterRound(int p_iRoundId)
 {
-  m_oRegisteredRoundId.push_back(p_iRoundId);
+  m_oRegisteredRoundId.insert(std::make_pair(p_iRoundId, -1));
   m_iGamesToPlay = m_oRegisteredRoundId.size();
   return m_iGamesToPlay;
 }
 
 PlayerId cPlayer::GetId() const
 {
-  return cPlayer::MakePlayerId(m_iId, m_iIdGroup);
+  return cPlayerPool::MakePlayerId(m_iId, m_iIdGroup);
+}
+
+bool cPlayer::operator==(const cPlayer& p_oLeftHand)
+{
+  return this->GetId() == p_oLeftHand.GetId();
+}
+
+bool cPlayer::operator==(const cPlayerPtr& p_poLeftHand)
+{
+  return this->GetId() == p_poLeftHand->GetId();
 }

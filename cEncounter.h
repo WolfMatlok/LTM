@@ -21,17 +21,12 @@ public:
   virtual ~cEncounter();
 
   bool RegisterPlayerPossible(int p_iRoundId);
-  void RegisterPlayer(int p_iRoundId);
+  void RegisterRoundForPairs(int p_iRoundId);
   
   int GetId(){return m_iId;}  
   cPairPtr GetPairA(){return m_poPairA;}
   cPairPtr GetPairB(){return m_poPairB;}
 
-  std::string toString()
-  {
-    return STREAMSTRING("GAMEID:" << std::setw(5) << m_iId << " " << m_poPairA->toString() << "vs" << m_poPairB->toString());
-  }
-  
   void SetIdRound(int p_iIdRound);
   int GetIdRound() const;
   void SetIdCourt(int p_iIdCourt);

@@ -16,6 +16,8 @@
 #include "cHelper.h"
 #include "cPlayer.h"
 
+enum PAIR_TYP{A,B};
+
 class cPair
 {
 public:
@@ -25,12 +27,8 @@ public:
   virtual ~cPair();
 
   bool RegisterOnGamePossible(int p_iRoundId);
-  void RegisterOnGame(int p_iRoundId);
-
-  std::string toString()
-  {
-    return STREAMSTRING(m_poPlayerA->toString() << ":" << m_poPlayerB->toString());
-  };
+  
+  void RegisterRound(int p_iRoundId);
 
   bool operator==(const cPair& p_oLefthand)
   {
@@ -50,6 +48,14 @@ public:
   }
 
 private:
+  friend class boost::serialization::access;
+
+  template<class Archive>
+  void serialize(Archive & p_oArchive, const unsigned int p_uiVersion)
+  {
+    p_oArchive & m_poPlayerA;
+    p_oArchive & m_poPlayerB;
+  }
 
   cPlayer::cPlayerPtr m_poPlayerA;
   cPlayer::cPlayerPtr m_poPlayerB;

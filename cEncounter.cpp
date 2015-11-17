@@ -58,8 +58,8 @@ bool cEncounter::RegisterPlayerPossible(int p_iRoundId)
   return true;
 }
 
-void cEncounter::RegisterPlayer(int p_iRoundId)
+void cEncounter::RegisterRoundForPairs(int p_iRoundId)
 {
-  m_poPairA->RegisterOnGame(p_iRoundId);
-  m_poPairB->RegisterOnGame(p_iRoundId);
+  m_poPairA->RegisterRound(p_iRoundId);
+  m_poPairB->RegisterRound(p_iRoundId);
 }
