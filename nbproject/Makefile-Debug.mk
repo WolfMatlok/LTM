@@ -36,11 +36,14 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/cCGIHelper.o \
+	${OBJECTDIR}/cCSS.o \
 	${OBJECTDIR}/cEncounter.o \
 	${OBJECTDIR}/cGUICgi.o \
 	${OBJECTDIR}/cHelper.o \
+	${OBJECTDIR}/cHelperSerializer.o \
 	${OBJECTDIR}/cPair.o \
 	${OBJECTDIR}/cPlayer.o \
+	${OBJECTDIR}/cPlayerPool.o \
 	${OBJECTDIR}/cRendererCGI.o \
 	${OBJECTDIR}/cTournament.o \
 	${OBJECTDIR}/cTournamentParameter.o \
@@ -53,8 +56,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-std=c++0x -lboost_program_options -lcgicc
-CXXFLAGS=-std=c++0x -lboost_program_options -lcgicc
+CCFLAGS=-std=c++0x -lboost_program_options -lboost_serialization -lcgicc
+CXXFLAGS=-std=c++0x -lboost_program_options -lboost_serialization -lcgicc
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -78,6 +81,11 @@ ${OBJECTDIR}/cCGIHelper.o: cCGIHelper.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cCGIHelper.o cCGIHelper.cpp
 
+${OBJECTDIR}/cCSS.o: cCSS.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cCSS.o cCSS.cpp
+
 ${OBJECTDIR}/cEncounter.o: cEncounter.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -93,6 +101,11 @@ ${OBJECTDIR}/cHelper.o: cHelper.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cHelper.o cHelper.cpp
 
+${OBJECTDIR}/cHelperSerializer.o: cHelperSerializer.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cHelperSerializer.o cHelperSerializer.cpp
+
 ${OBJECTDIR}/cPair.o: cPair.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -102,6 +115,11 @@ ${OBJECTDIR}/cPlayer.o: cPlayer.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPlayer.o cPlayer.cpp
+
+${OBJECTDIR}/cPlayerPool.o: cPlayerPool.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -I/usr/include/boost -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cPlayerPool.o cPlayerPool.cpp
 
 ${OBJECTDIR}/cRendererCGI.o: cRendererCGI.cpp 
 	${MKDIR} -p ${OBJECTDIR}

@@ -14,8 +14,8 @@
 #include <random>
 #include <ctime>
 
-cTournament::cTournament(cTournamentParameter* p_poApplication)
-: m_poParam(p_poApplication)
+cTournament::cTournament(cTournamentParameter* p_poTournamentParams)
+: m_poParam(p_poTournamentParams)
 {
   m_iNumOfGamesToPlay = m_poParam->GetCountOfGamesToPlay();
 }

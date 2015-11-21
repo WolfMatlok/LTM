@@ -25,9 +25,9 @@ cPlayer::~cPlayer()
 {
 }
 
-bool cPlayer::CanPlayRound(int p_iRoundId)
+bool cPlayer::IsRegisteredOnRound(int p_iRoundId)
 {
-  return m_oRegisteredRoundId.find(p_iRoundId)==m_oRegisteredRoundId.end();
+  return m_oRegisteredRoundId.find(p_iRoundId)!=m_oRegisteredRoundId.end();
 }
 
 int cPlayer::RegisterRound(int p_iRoundId)
@@ -36,6 +36,13 @@ int cPlayer::RegisterRound(int p_iRoundId)
   m_iGamesToPlay = m_oRegisteredRoundId.size();
   return m_iGamesToPlay;
 }
+
+void cPlayer::AddPoints(int p_iRoundId, int p_iPoints)
+{
+  if(IsRegisteredOnRound(p_iRoundId))
+    m_oRegisteredRoundId[p_iRoundId]+=p_iPoints;
+}
+
 
 PlayerId cPlayer::GetId() const
 {

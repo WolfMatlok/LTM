@@ -10,9 +10,10 @@
 #include "cGUICgi.h"
 #include "cTournamentParameter.h"                                                                                                                                                  
 #include "cTournament.h"
+#include "cHelperSerializer.h"
 
 int main(int argc, char** argv)
-{
+{  
   cGUICgi::Dispatch(argc, argv);
   return 0;
 }

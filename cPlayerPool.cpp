@@ -24,12 +24,12 @@ CPLAYERMAP& cPlayerPool::GetPlayers()
   return cPlayerPool::m_mapPlayerPool;
 }
 
-CPLAYERPTR cPlayerPool::CreatePlayer(int p_iId, int p_iIdGroup)
+cPlayerPtr cPlayerPool::CreatePlayer(int p_iId, int p_iIdGroup)
 {
   int iCurrPlayerId = cPlayerPool::MakePlayerId(p_iId, p_iIdGroup);
   if (m_mapPlayerPool.end() == m_mapPlayerPool.find(iCurrPlayerId))
   {
-    CPLAYERPTR poPlayer = CPLAYERPTR(new cPlayer(p_iId, p_iIdGroup, 0));
+    cPlayerPtr poPlayer = cPlayerPtr(new cPlayer(p_iId, p_iIdGroup, 0));
     m_mapPlayerPool.insert(std::make_pair(poPlayer->GetId(), poPlayer));
     return poPlayer;
   }
@@ -49,7 +49,7 @@ void cPlayerPool::PrintPlayerStats()
   
   for (CPLAYERMAP::iterator oItPlayerCurr = m_mapPlayerPool.begin(); oItPlayerCurr != m_mapPlayerPool.end(); oItPlayerCurr++)
   {
-    CPLAYERPTR poPlayer = oItPlayerCurr->second;
+    cPlayerPtr poPlayer = oItPlayerCurr->second;
     LOGSTRSTR(poPlayer << endl);
   }
 }

@@ -15,13 +15,13 @@ CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
 CND_PACKAGE_NAME_Debug=ltm.tar
 CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/ltm.tar
 # Release configuration
-CND_PLATFORM_Release=GNU-Linux-x86
-CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux-x86
+CND_PLATFORM_Release=GNU_4.9-Linux-x86
+CND_ARTIFACT_DIR_Release=dist/Release/GNU_4.9-Linux-x86
 CND_ARTIFACT_NAME_Release=ltm
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux-x86/ltm
-CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux-x86/package
+CND_ARTIFACT_PATH_Release=dist/Release/GNU_4.9-Linux-x86/ltm
+CND_PACKAGE_DIR_Release=dist/Release/GNU_4.9-Linux-x86/package
 CND_PACKAGE_NAME_Release=ltm.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux-x86/package/ltm.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU_4.9-Linux-x86/package/ltm.tar
 #
 # include compiler specific variables
 #

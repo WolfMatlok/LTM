@@ -20,7 +20,7 @@
 class cTournamentParameter
 {
 public:
-  cTournamentParameter(double p_dTimeToPlayH, double p_dTimeForOneGameMin, int p_iCountOfCourts, int p_iPlayerTeam1, int p_iPlayerTeam2);
+  cTournamentParameter(double p_dTimeToPlayH = 2, double p_dTimeForOneGameMin = 10, int p_iCountOfCourts = 4, int p_iPlayerTeam1 = 8, int p_iPlayerTeam2 = 8);
   cTournamentParameter(int argc, char** argv);
   cTournamentParameter(const cTournamentParameter& orig);
   virtual ~cTournamentParameter();

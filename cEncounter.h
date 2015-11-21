@@ -39,6 +39,18 @@ public:
   }
 
 private:
+  friend class boost::serialization::access;
+
+  template<class Archive>
+  void serialize(Archive & p_oArchive, const unsigned int p_uiVersion)
+  {
+    p_oArchive & m_iId;
+    p_oArchive & m_iIdCourt;
+    p_oArchive & m_iIdRound;
+    p_oArchive & m_poPairA;
+    p_oArchive & m_poPairB;
+  }
+  
   int m_iId;
   int m_iIdCourt;
   int m_iIdRound;

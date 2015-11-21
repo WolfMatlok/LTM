@@ -13,11 +13,16 @@
 #include <functional>
 #include <sstream>
 #include <iostream>
+#include <fstream>
 
 // include headers that implement a archive in simple text format
 #include "boost/archive/text_oarchive.hpp"
 #include "boost/archive/text_iarchive.hpp"
+#include <boost/archive/tmpdir.hpp>
+
+#include <boost/serialization/shared_ptr.hpp>
 #include "boost/serialization/vector.hpp"
+#include "boost/serialization/map.hpp"
 
 #include "boost/program_options/variables_map.hpp"
 #include "boost/program_options/options_description.hpp"
@@ -46,24 +51,24 @@ public:
 
   const std::string GetStrDirSandbox() const;
 
-private:
+protected:
   const std::string m_strDirSandbox;
 };
 
 template<class T>
-void SERIALIZE_TO_FILE(T& p_oObject)
+void SERIALIZE_TO_FILE(T& p_oObject, std::string p_strFileName = "")
 {
   // create and open a character archive for output
-  std::string strFileNameDest = STREAMSTRING( cHelper().GetStrDirSandbox() << "serialized/" << typeid(T).name() );
+  std::string strFileNameDest = STREAMSTRING(cHelper().GetStrDirSandbox() << "serialized/" << (p_strFileName == "") ? typeid (T).name() : p_strFileName);
   std::ofstream ofs(strFileNameDest);
   boost::archive::text_oarchive oa(ofs);
   oa << p_oObject;
 }
 
 template<class T>
-void DESERIALIZE_FROM_FILE(T& p_oObject)
+void DESERIALIZE_FROM_FILE(T& p_oObject, std::string p_strFileName = "")
 {
-  std::string strFileNameSrc = STREAMSTRING( cHelper().GetStrDirSandbox() << "serialized/" << typeid(T).name() );
+  std::string strFileNameSrc = STREAMSTRING(cHelper().GetStrDirSandbox() << "serialized/" << (p_strFileName == "") ? typeid (T).name() : p_strFileName);
   // create and open an archive for input
   std::ifstream ifs(strFileNameSrc);
   boost::archive::text_iarchive ia(ifs);

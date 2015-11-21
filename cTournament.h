@@ -18,7 +18,7 @@
 class cTournament : public iRenderable
 {
 public:
-  cTournament(cTournamentParameter* p_poApplication);
+  cTournament(cTournamentParameter* p_poTournamentParams = 0);
   cTournament(const cTournament& orig);
   virtual ~cTournament();
 
@@ -31,9 +31,26 @@ public:
   
   
 private:
+  void CreatePairs();
+  void CreateEncounters();
+  void SelectEncounters();
+  
+  friend class boost::serialization::access;
+
+  template<class Archive>
+  void serialize(Archive & p_oArchive, const unsigned int p_uiVersion)
+  {
+    p_oArchive & m_iNumOfGamesToPlay;
+    p_oArchive & m_poParam;
+    p_oArchive & m_mapEncountersAll;
+    p_oArchive & m_mapEncountersChoosen;
+    p_oArchive & m_oPlayerPool;
+    p_oArchive & m_mapPairs;
+    
+  }
+  
   int m_iNumOfGamesToPlay;
   cTournamentParameter* m_poParam;
-
   MAPENCOUNTER m_mapEncountersAll;
   MAPENCOUNTER m_mapEncountersChoosen;
 
@@ -42,10 +59,6 @@ private:
   /** pool of all possible pairs
    */
   CPAIRMAP m_mapPairs;
-
-  void CreatePairs();
-  void CreateEncounters();
-  void SelectEncounters();
 };
 
 #endif	/* CROTATIONSTRATEGY_H */

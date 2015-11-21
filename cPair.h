@@ -22,7 +22,7 @@ class cPair
 {
 public:
   cPair();
-  cPair(cPlayer::cPlayerPtr p_poPlayerA, cPlayer::cPlayerPtr p_poPlayerB);
+  cPair(cPlayerPtr p_poPlayerA, cPlayerPtr p_poPlayerB);
   cPair(const cPair& orig);
   virtual ~cPair();
 
@@ -41,11 +41,7 @@ public:
     return false;
   };
 
-  friend std::ostream& operator<<(std::ostream& os, const cPair& p_oPair)
-  {
-    os << p_oPair.m_poPlayerA << ":" << p_oPair.m_poPlayerB;
-    return os;
-  }
+  friend std::ostream& operator<<(std::ostream& os, const cPair& p_oPair);
 
 private:
   friend class boost::serialization::access;
@@ -57,13 +53,15 @@ private:
     p_oArchive & m_poPlayerB;
   }
 
-  cPlayer::cPlayerPtr m_poPlayerA;
-  cPlayer::cPlayerPtr m_poPlayerB;
+  cPlayerPtr m_poPlayerA;
+  cPlayerPtr m_poPlayerB;
 };
 
 typedef boost::shared_ptr<cPair> cPairPtr;
 #define NEWPAIRPTR(CPAIRREFERENCE) [&](const cPair& p_oPair)->cPairPtr{return cPairPtr(new cPair(p_oPair));}(CPAIRREFERENCE)
 typedef std::map<int, cPair> CPAIRMAP;
+
+BOOST_SERIALIZATION_SHARED_PTR(cPair)
 
 #endif	/* CPAIR_H */
 
