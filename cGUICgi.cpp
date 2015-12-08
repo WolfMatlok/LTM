@@ -41,8 +41,8 @@ void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
       oRenderer.RenderStartScreen();
     }
 
-    //*** return gettingparam ***
-    if (APPSTATE_PRINTCONTENT == strState)
+    //*** create tournament ***
+    if (APPSTATE_CREATE_TOURNAMENT == strState)
     {
       //*** parse parameter ***
       LOGSTRSTR("*** parsing parameter ***" << endl);
@@ -51,19 +51,35 @@ void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
               , oCgiGui.GetParam<double>(TFG)
               , oCgiGui.GetParam<int>(COURTS)
               , oCgiGui.GetParam<int>(TEAM1)
-              , oCgiGui.GetParam<int>(TEAM2));
+              , oCgiGui.GetParam<int>(TEAM2)
+              , oCgiGui.GetParamSTR(APPUUID) );
 
       //*** calc tournament ***
       LOGSTRSTR("*** calculate tournament ***" << endl);
       cTournament oTournament(&oTournamentParameter);
       oTournament.Create();
-
+      
+      //*** write it temporarily for later use if wanted ***
+      cSerializer oSerializer(STREAMSTRING(oTournamentParameter.GetUUID()));
+      oSerializer.Write<cTournament>(oTournament);
 
       //*** render results to cgi ***
       LOGSTRSTR("*** render results ***" << endl);
       cRendererCGI oRenderer(oCgiGui.m_poCGI);
       oRenderer.Render(&oTournament);
-
+    }
+    
+    if(APPSTATE_LOAD_TOURNAMENT_FROM_ARCHIVE == strState)
+    {
+      std::string strUUID = oCgiGui.GetParamSTR(APPUUID);
+      
+      cDeserializer oDeserializer(STREAMSTRING(strUUID << ".ltm"));
+      cTournament oTournament;
+      oDeserializer.Read<cTournament>(oTournament);
+      
+      //*** render results to cgi ***
+      cRendererCGI oRenderer(oCgiGui.m_poCGI);
+      oRenderer.Render(&oTournament);
     }
 
   }  catch (exception& oEx)

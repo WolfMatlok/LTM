@@ -9,6 +9,7 @@
 #include "cTournamentParameter.h"
 #include "cTournament.h"
 #include "cCSS.h"
+#include "cHelperSerializer.h"
 using namespace std;
 using namespace cgicc;
 
@@ -66,19 +67,50 @@ void cRendererCGI::Render(cTournament* p_poTournament)
 void cRendererCGI::RenderStartScreen()
 {
   this->HTMLStart();
+  
+  //*** show existing tournament ***
+  cHelperSandboxSerialize oSandBox;
+  std::vector<std::string> oLastSerialisations;
+  oLastSerialisations = oSandBox.GetFilesOfSandbox(".ltm");
+  
+  if(!oLastSerialisations.empty())
+  {
+    cout << "<form method=\"post\" action=\"http://" << m_strHomeIP << "/cgi-bin/ltm.cgi\">";
+    SetParamHidden(APPSTATE, APPSTATE_LOAD_TOURNAMENT_FROM_ARCHIVE);
+    cout << table();
+    cout << tr() << "<th colspan=\"2\">Load Tournament</th>" << tr();
 
+    cout << tr() << td() << "Last Tournament:" << td();
+    cout << td() << "<select name=\"" << APPTOURNAMENTTOLOAD << "\">";
+    for(auto oItCurrFile = oLastSerialisations.begin(); oItCurrFile!=oLastSerialisations.end(); ++oItCurrFile)
+    {
+      std::string strCurrFile = *oItCurrFile;
+      cout << "<option>"<< strCurrFile <<"</option>";
+    }
+    cout << "<select>" << td();
+    cout << tr();
+    
+    cout << tr() << "<td colspan=\"2\">" << "<button type=\"submit\" name=\"action\" value=\"0\">Load</button>" << "</td>" << tr();
+    cout << table();
+    
+    cout << "</form>";
+    
+  }
+  
+  //*** show params for new tournament ***
   cout << "<form method=\"post\" action=\"http://" << m_strHomeIP << "/cgi-bin/ltm.cgi\">";
   
-  SetParamHidden(APPSTATE, APPSTATE_PRINTCONTENT);
+  SetParamHidden(APPSTATE, APPSTATE_CREATE_TOURNAMENT);
   SetParamHidden(APPUUID, STREAMSTRING(boost::uuids::random_generator()()));
   cout << table();
+  cout << tr() << "<th colspan=\"2\">New Tournament</th>" << tr();
   cout << tr() << td() << TEAM1   << td() << td() << SetParamNumber(TEAM1, "3", "10", "5")  << td() << tr();
   cout << tr() << td() << TEAM2   << td() << td() << SetParamNumber(TEAM2, "3", "10", "5")  << td() << tr();
   cout << tr() << td() << COURTS  << td() << td() << SetParamNumber(COURTS, "1", "4", "4")  << td() << tr();
   cout << tr() << td() << TTP     << td() << td() << SetParamNumber(TTP, "1", "4", "2")     << td() << tr();
   cout << tr() << td() << TFG     << td() << td() << SetParamNumber(TFG, "7", "60", "10")   << td() << tr();
+  cout << tr() << "<td colspan=\"2\">" << "<button type=\"submit\" name=\"action\" value=\"0\">Start</button>" << "</td>" << tr();  
   cout << table();
-  cout << "<button type=\"submit\" name=\"action\" value=\"0\">Start</button>";
   cout << "</form>";
 
   this->HTMLEnd();

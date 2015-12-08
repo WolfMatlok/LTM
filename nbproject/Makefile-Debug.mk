@@ -56,8 +56,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-std=c++0x -lboost_program_options -lboost_serialization -lcgicc
-CXXFLAGS=-std=c++0x -lboost_program_options -lboost_serialization -lcgicc
+CCFLAGS=-std=c++0x -lboost_program_options -lboost_serialization -lboost_filesystem -lboost_system -lcgicc
+CXXFLAGS=-std=c++0x -lboost_program_options -lboost_serialization -lboost_filesystem -lboost_system -lcgicc
 
 # Fortran Compiler Flags
 FFLAGS=

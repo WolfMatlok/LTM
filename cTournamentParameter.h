@@ -20,7 +20,7 @@
 class cTournamentParameter
 {
 public:
-  cTournamentParameter(double p_dTimeToPlayH = 2, double p_dTimeForOneGameMin = 10, int p_iCountOfCourts = 4, int p_iPlayerTeam1 = 8, int p_iPlayerTeam2 = 8);
+  cTournamentParameter(double p_dTimeToPlayH = 2, double p_dTimeForOneGameMin = 10, int p_iCountOfCourts = 4, int p_iPlayerTeam1 = 8, int p_iPlayerTeam2 = 8, std::string p_strUUID = "nouuidfortournamenset");
   cTournamentParameter(int argc, char** argv);
   cTournamentParameter(const cTournamentParameter& orig);
   virtual ~cTournamentParameter();
@@ -59,6 +59,11 @@ public:
   {
     return m_iGamesPerPlayer;
   }
+  
+  std::string GetUUID() const 
+  {
+    return m_strUUID;
+  }
 
 private:
   friend class boost::serialization::access;
@@ -73,6 +78,7 @@ private:
     p_oArchive & m_iCountOfGamesToPlay;
     p_oArchive & m_iCountOfCourts;
     p_oArchive & m_iGamesPerPlayer;
+    p_oArchive & m_strUUID;
   }
 
   /** Zahl der Spieler*/
@@ -95,9 +101,13 @@ private:
    */
   int m_iCountOfCourts;
 
-  /** Zahld er Spiele die pro Spieler gemacht werden können
+  /** Zahl der Spiele die pro Spieler gemacht werden können
    */
   int m_iGamesPerPlayer;
+  
+  /** UUID des turniers
+   */
+  std::string m_strUUID;
 
   void Init();
 };

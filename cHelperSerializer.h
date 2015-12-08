@@ -10,13 +10,27 @@
 
 #include "cHelper.h"
 
+class cHelperSandboxSerialize : public cHelperSandBox
+{
+public:
+  cHelperSandboxSerialize()
+  {
+    m_strDirSandbox = STREAMSTRING(m_strDirSandbox << "serialized/");
+  };
+  
+  virtual ~cHelperSandboxSerialize(){}
+  
+protected:
+  
+};
+
 template<typename TYPE_STREAM, typename TYPE_SERIALIZER>
-class cHelperSerializer : public cHelper
+class cHelperSerializer : public cHelperSandboxSerialize
 {
 public:
 
   cHelperSerializer(std::string p_strFileName)
-  : m_oStream(STREAMSTRING(m_strDirSandbox << "serialized/" << p_strFileName))
+  : m_oStream(STREAMSTRING(m_strDirSandbox << p_strFileName << ".ltm"))
   , m_oArchive(m_oStream)
   {
   }
@@ -39,10 +53,10 @@ public:
   cSerializer(std::string p_strFileName):_cHelperSerializer(p_strFileName){}
   
   template<typename TYPE_TO_SERIALIZE>
-  void Do(TYPE_TO_SERIALIZE& p_iNumber)
+  void Write(TYPE_TO_SERIALIZE& p_oObject)
   {
     // create and open a character archive for output
-    m_oArchive << p_iNumber;
+    m_oArchive << p_oObject;
   }
 };
 
@@ -52,10 +66,10 @@ public:
   cDeserializer(std::string p_strFileName):_cHelperDeserializer(p_strFileName){}
   
   template<typename TYPE_TO_SERIALIZE>
-  void Do(TYPE_TO_SERIALIZE& p_iNumber)
+  void Read(TYPE_TO_SERIALIZE& p_iObject)
   {
     // create and open a character archive for output
-    m_oArchive >> p_iNumber;
+    m_oArchive >> p_iObject;
   }
 };
 

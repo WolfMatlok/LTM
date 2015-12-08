@@ -7,12 +7,13 @@
 #include "cTournamentParameter.h"
 #include "cPlayer.h"
 
-cTournamentParameter::cTournamentParameter(double p_dTimeToPlayH, double p_dTimeForOneGameMin, int p_iCountOfCourts, int p_iPlayerTeam1, int p_iPlayerTeam2)
+cTournamentParameter::cTournamentParameter(double p_dTimeToPlayH, double p_dTimeForOneGameMin, int p_iCountOfCourts, int p_iPlayerTeam1, int p_iPlayerTeam2, std::string p_strUUID)
 : m_dTimeToPlayH(p_dTimeToPlayH)
 , m_iCountOfCourts(p_iCountOfCourts)
 , m_dTimeForOneGameMin(p_dTimeForOneGameMin)
 , m_iPlayerTeam1(p_iPlayerTeam1)
 , m_iPlayerTeam2(p_iPlayerTeam2)
+, m_strUUID(p_strUUID)
 {
   Init();
 }

@@ -65,7 +65,7 @@
           <incDir>
             <pElem>/usr/include/boost</pElem>
           </incDir>
-          <commandLine>-std=c++0x -lboost_program_options -lboost_serialization -lcgicc</commandLine>
+          <commandLine>-std=c++0x -lboost_program_options -lboost_serialization -lboost_filesystem -lboost_system -lcgicc</commandLine>
         </ccTool>
       </compileType>
       <item path="GUI_HTML/index.html" ex="false" tool="3" flavor2="0">
@@ -145,7 +145,7 @@
           <incDir>
             <pElem>/usr/include/boost</pElem>
           </incDir>
-          <commandLine>-std=c++14 -lboost_program_options -lboost_serialization -lcgicc</commandLine>
+          <commandLine>-std=c++14 -lboost_program_options -lboost_system -lboost_filesystem -lboost_serialization -lcgicc</commandLine>
         </ccTool>
         <fortranCompilerTool>
           <developmentMode>5</developmentMode>

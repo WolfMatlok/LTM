@@ -35,6 +35,9 @@ namespace po = boost::program_options;
 #include "boost/uuid/uuid_generators.hpp" // generators
 #include "boost/uuid/uuid_io.hpp"         // streaming operators etc.
 
+#include "boost/filesystem.hpp"
+
+
 
 
 #define STREAMSTRING(STRMSG) [&]()->std::string{using namespace std; stringstream oStr023974tcnw0re; oStr023974tcnw0re << STRMSG; return oStr023974tcnw0re.str();}()
@@ -42,24 +45,26 @@ namespace po = boost::program_options;
 #define LOGSTRSTR(STRMSG) std::cerr << STREAMSTRING(STRMSG)
 #define LOGSTRSTR_ERROR(STRMSG) std::cerr << STREAMSTRING(STRMSG)
 
-class cHelper
+class cHelperSandBox
 {
 public:
-  cHelper();
-  cHelper(const cHelper& orig);
-  virtual ~cHelper();
+  cHelperSandBox();
+  cHelperSandBox(const cHelperSandBox& orig);
+  virtual ~cHelperSandBox();
 
   const std::string GetStrDirSandbox() const;
+  
+  std::vector<std::string> GetFilesOfSandbox(const std::string p_strFileExtension);
 
 protected:
-  const std::string m_strDirSandbox;
+  std::string m_strDirSandbox;
 };
 
 template<class T>
 void SERIALIZE_TO_FILE(T& p_oObject, std::string p_strFileName = "")
 {
   // create and open a character archive for output
-  std::string strFileNameDest = STREAMSTRING(cHelper().GetStrDirSandbox() << "serialized/" << (p_strFileName == "") ? typeid (T).name() : p_strFileName);
+  std::string strFileNameDest = STREAMSTRING(cHelperSandBox().GetStrDirSandbox() << "serialized/" << (p_strFileName == "") ? typeid (T).name() : p_strFileName);
   std::ofstream ofs(strFileNameDest);
   boost::archive::text_oarchive oa(ofs);
   oa << p_oObject;
@@ -68,7 +73,7 @@ void SERIALIZE_TO_FILE(T& p_oObject, std::string p_strFileName = "")
 template<class T>
 void DESERIALIZE_FROM_FILE(T& p_oObject, std::string p_strFileName = "")
 {
-  std::string strFileNameSrc = STREAMSTRING(cHelper().GetStrDirSandbox() << "serialized/" << (p_strFileName == "") ? typeid (T).name() : p_strFileName);
+  std::string strFileNameSrc = STREAMSTRING(cHelperSandBox().GetStrDirSandbox() << "serialized/" << (p_strFileName == "") ? typeid (T).name() : p_strFileName);
   // create and open an archive for input
   std::ifstream ifs(strFileNameSrc);
   boost::archive::text_iarchive ia(ifs);

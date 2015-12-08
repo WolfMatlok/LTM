@@ -14,10 +14,13 @@
 #define APPSTATE "appstate"
 #define APPSTATE_NOTHING "appstate_nothing"
 #define APPSTATE_START "appstate_start"
-#define APPSTATE_PRINTCONTENT "appstate_printcontent"
+#define APPSTATE_CREATE_TOURNAMENT "appstate_create_tournament"
+#define APPSTATE_SAVE_TOURNAMENT "appstate_save_tournament"
+#define APPSTATE_LOAD_TOURNAMENT_FROM_ARCHIVE "appstate_load_tournament_from_archive"
 
 #define APPUUID "appuuid"
 #define APPFRAMESUSED "appframesused"
+#define APPTOURNAMENTTOLOAD "apptournamenttoload"
 
 
 class cRendererCGI : public iRenderer, public cCGIHelper

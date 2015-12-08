@@ -13,7 +13,7 @@
 cCGIHelper::cCGIHelper()
 : m_poCGI(new cgicc::Cgicc())
 , m_bExternalCopyOfCGI(false)
-, m_strDebugCgiBinFile(STREAMSTRING(cHelper().GetStrDirSandbox() << "ltm.cgi.lastcall") )
+, m_strDebugCgiBinFile(STREAMSTRING(cHelperSandBox().GetStrDirSandbox() << "ltm.cgi.lastcall") )
 , m_bDebugCgiBinFile(false)
 {
   m_strHomeIP = "harrysteiner.ddns.net";
@@ -22,7 +22,7 @@ cCGIHelper::cCGIHelper()
 cCGIHelper::cCGIHelper(cgicc::Cgicc* p_poCgiCC)
 : m_poCGI(0)
 , m_bExternalCopyOfCGI(true)
-, m_strDebugCgiBinFile(STREAMSTRING(cHelper().GetStrDirSandbox() << "ltm.cgi.lastcall") )
+, m_strDebugCgiBinFile(STREAMSTRING(cHelperSandBox().GetStrDirSandbox() << "ltm.cgi.lastcall") )
 , m_bDebugCgiBinFile(false)
 {
   m_poCGI = p_poCgiCC;
