@@ -17,7 +17,10 @@
 cTournament::cTournament(cTournamentParameter* p_poTournamentParams)
 : m_poParam(p_poTournamentParams)
 {
-  m_iNumOfGamesToPlay = m_poParam->GetCountOfGamesToPlay();
+  if(m_poParam)
+  {
+    m_iNumOfGamesToPlay = m_poParam->GetCountOfGamesToPlay();
+  }
 }
 
 cTournament::cTournament(const cTournament & orig)

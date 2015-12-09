@@ -60,7 +60,7 @@ void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
       oTournament.Create();
       
       //*** write it temporarily for later use if wanted ***
-      cSerializer oSerializer(STREAMSTRING(oTournamentParameter.GetUUID()));
+      cSerializer oSerializer(STREAMSTRING(oTournamentParameter.GetUUID() << ".ltm"));
       oSerializer.Write<cTournament>(oTournament);
 
       //*** render results to cgi ***
@@ -71,9 +71,9 @@ void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
     
     if(APPSTATE_LOAD_TOURNAMENT_FROM_ARCHIVE == strState)
     {
-      std::string strUUID = oCgiGui.GetParamSTR(APPUUID);
+      std::string strFilename = oCgiGui.GetParamSTR(APPTOURNAMENTTOLOAD);
       
-      cDeserializer oDeserializer(STREAMSTRING(strUUID << ".ltm"));
+      cDeserializer oDeserializer(strFilename);
       cTournament oTournament;
       oDeserializer.Read<cTournament>(oTournament);
       

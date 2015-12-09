@@ -30,7 +30,7 @@ class cHelperSerializer : public cHelperSandboxSerialize
 public:
 
   cHelperSerializer(std::string p_strFileName)
-  : m_oStream(STREAMSTRING(m_strDirSandbox << p_strFileName << ".ltm"))
+  : m_oStream(STREAMSTRING(m_strDirSandbox << p_strFileName))
   , m_oArchive(m_oStream)
   {
   }
