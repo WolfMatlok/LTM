@@ -14,11 +14,13 @@ cTournamentParameter::cTournamentParameter(double p_dTimeToPlayH, double p_dTime
 , m_iPlayerTeam1(p_iPlayerTeam1)
 , m_iPlayerTeam2(p_iPlayerTeam2)
 , m_strUUID(p_strUUID)
+, m_strTimeOfCreation( STREAMSTRING(boost::posix_time::second_clock::local_time()) )
 {
   Init();
 }
 
 cTournamentParameter::cTournamentParameter(int argc, char** argv)
+: m_strTimeOfCreation(STREAMSTRING(boost::posix_time::second_clock::local_time()))
 {
   // Declare the supported options.
   po::options_description oOptDesc("Allgemeiner Parameter");
@@ -44,9 +46,9 @@ cTournamentParameter::cTournamentParameter(int argc, char** argv)
 
 }
 
-cTournamentParameter::cTournamentParameter(const cTournamentParameter& orig)
-{
-}
+//cTournamentParameter::cTournamentParameter(const cTournamentParameter& orig)
+//{
+//}
 
 cTournamentParameter::~cTournamentParameter()
 {
@@ -60,6 +62,7 @@ void cTournamentParameter::Init()
   //*** calc how often every player wants to play.. ***
   m_iGamesPerPlayer = double(double(m_iCountOfGamesToPlay) / double(m_iCountOfCourts));
 
+  LOGSTRSTR("Creation Date " << this->m_strTimeOfCreation << endl);
   LOGSTRSTR("Group1 has " << this->GetPlayerTeam1() << " player." << endl);
   LOGSTRSTR("Group2 has " << this->GetPlayerTeam2() << " player." << endl);
   LOGSTRSTR("Time to play:" << this->GetTimeToPlay() << " hours." << endl);

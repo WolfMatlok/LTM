@@ -11,16 +11,17 @@
 #include "iRenderer.h"
 #include "cCGIHelper.h"
 
-#define APPSTATE "appstate"
-#define APPSTATE_NOTHING "appstate_nothing"
-#define APPSTATE_START "appstate_start"
-#define APPSTATE_CREATE_TOURNAMENT "appstate_create_tournament"
-#define APPSTATE_SAVE_TOURNAMENT "appstate_save_tournament"
-#define APPSTATE_LOAD_TOURNAMENT_FROM_ARCHIVE "appstate_load_tournament_from_archive"
+#define APPCMD "appcmd"
+#define APPCMD_NOTHING "appcmd_nothing"
+#define APPCMD_START "appcmd_start"
+#define APPCMD_CREATE_TOURNAMENT "appcmd_create_tournament"
+#define APPCMD_SAVE_TOURNAMENT "appcmd_save_tournament"
+#define APPCMD_LOAD_TOURNAMENT_FROM_ARCHIVE "appcmd_load_tournament_from_archive"
 
-#define APPUUID "appuuid"
+#define APP_PARAM_UUID "appuuid"
 #define APPFRAMESUSED "appframesused"
-#define APPTOURNAMENTTOLOAD "apptournamenttoload"
+#define APP_PARAM_TOURNAMENTTOLOAD "apptournamenttoload"
+#define APP_PARAM_TOURNAMENTTOSAVE "apptournamenttosave"
 
 
 class cRendererCGI : public iRenderer, public cCGIHelper
@@ -45,6 +46,8 @@ private:
   
   std::string SetParamHidden(std::string p_strParamName, std::string p_strParamValue);
   std::string SetParamNumber(std::string p_strName, std::string p_strMin, std::string p_strMax, std::string p_strValue);
+  
+  std::string SetButton(std::string p_strText);
   
   enum FormType
   {

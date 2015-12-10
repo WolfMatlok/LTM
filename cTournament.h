@@ -22,9 +22,14 @@ public:
   cTournament(const cTournament& orig);
   virtual ~cTournament();
 
+  /**
+   * @todo: in factory auslagern...
+   */
   void Create();
   
   MAPENCOUNTER& GetEncountersChoosen();
+  
+  cTournamentParameter* GetParameter(){return m_poParam;};
 
   virtual void accept(iRenderer* p_poRendrer);
 

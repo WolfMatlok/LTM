@@ -30,7 +30,25 @@ void cRendererCGI::Render(cTournament* p_poTournament)
   MAPENCOUNTER& oEncounters = p_poTournament->GetEncountersChoosen();
 
   cout << table();
-
+  cout << tr() ;
+	cout << "<td colspan=\"6\">"
+          << p_poTournament->GetParameter()->GetTimeOfCreation();
+  if(!p_poTournament->GetParameter()->GetSaved())
+  {
+    cout << Form(FRM_START)
+       << SetParamHidden(APPCMD, APPCMD_SAVE_TOURNAMENT)
+       << SetParamHidden(APP_PARAM_UUID, STREAMSTRING(p_poTournament->GetParameter()->GetUUID() << ".tmp") )
+       << SetParamHidden(APP_PARAM_TOURNAMENTTOSAVE, STREAMSTRING(p_poTournament->GetParameter()->GetTimeOfCreation() << ".ltm"))
+       << SetButton("Save")
+       << Form(FRM_END);
+  }
+  else
+  {
+    cout << " (saved)";
+  }
+  cout <<"</td>";
+	cout  << tr();
+  
 	cout << tr() ;
 	cout << th() << "<h2>Round</h2>"   << th();    
 	cout << th() << "<h2>Pair A</h2>"  << th();
@@ -70,8 +88,8 @@ void cRendererCGI::RenderStartScreen()
   
   //*** show params for new tournament ***
   cout << "<form method=\"post\" action=\"http://" << m_strHomeIP << "/cgi-bin/ltm.cgi\">";  
-  SetParamHidden(APPSTATE, APPSTATE_CREATE_TOURNAMENT);
-  SetParamHidden(APPUUID, STREAMSTRING(boost::uuids::random_generator()()));
+  SetParamHidden(APPCMD, APPCMD_CREATE_TOURNAMENT);
+  SetParamHidden(APP_PARAM_UUID, STREAMSTRING(boost::uuids::random_generator()()));
   cout << table();
   cout << tr() << "<th colspan=\"2\">New Tournament</th>" << tr();
   cout << tr() << td() << TEAM1   << td() << td() << SetParamNumber(TEAM1, "3", "10", "5")  << td() << tr();
@@ -91,12 +109,12 @@ void cRendererCGI::RenderStartScreen()
   if(!oLastSerialisations.empty())
   {
     cout << "<form method=\"post\" action=\"http://" << m_strHomeIP << "/cgi-bin/ltm.cgi\">";
-    SetParamHidden(APPSTATE, APPSTATE_LOAD_TOURNAMENT_FROM_ARCHIVE);
+    SetParamHidden(APPCMD, APPCMD_LOAD_TOURNAMENT_FROM_ARCHIVE);
     cout << table();
     cout << tr() << "<th colspan=\"2\">Load Tournament</th>" << tr();
 
     cout << tr() << td() << "Last Tournament:" << td();
-    cout << td() << "<select name=\"" << APPTOURNAMENTTOLOAD << "\">";
+    cout << td() << "<select name=\"" << APP_PARAM_TOURNAMENTTOLOAD << "\">";
     for(auto oItCurrFile = oLastSerialisations.begin(); oItCurrFile!=oLastSerialisations.end(); ++oItCurrFile)
     {
       std::string strCurrFile = *oItCurrFile;
@@ -105,7 +123,7 @@ void cRendererCGI::RenderStartScreen()
     cout << "<select>" << td();
     cout << tr();
     
-    cout << tr() << "<td colspan=\"2\">" << "<button type=\"submit\" name=\"action\" value=\"0\">Load</button>" << "</td>" << tr();
+    cout << tr() << "<td colspan=\"2\">" << this->SetButton("Load") << "</td>" << tr();
     cout << table();
     
     cout << "</form>";
@@ -119,8 +137,8 @@ void cRendererCGI::PrintCGIParams()
 {
   cout << table();
 
-  cout << tr() << td() << APPSTATE << ":" << td() << td() << GetParamSTR(APPSTATE) << td() << tr();
-  cout << tr() << td() << APPUUID << ":" << td() << td() << GetParamSTR(APPUUID) << td() << tr();
+  cout << tr() << td() << APPCMD << ":" << td() << td() << GetParamSTR(APPCMD) << td() << tr();
+  cout << tr() << td() << APP_PARAM_UUID << ":" << td() << td() << GetParamSTR(APP_PARAM_UUID) << td() << tr();
   cout << tr() << td() << APPFRAMESUSED << ":" << td() << td() << GetParamSTR(APPFRAMESUSED) << td() << tr();
   cout << tr() << td() << TTP << ":" << td() << td() << GetParamSTR(TTP) << td() << tr();
   cout << tr() << td() << TFG << ":" << td() << td() << GetParamSTR(TFG) << td() << tr();
@@ -200,4 +218,8 @@ std::string cRendererCGI::Form(FormType p_eFrmTyp)
   return "";
 }
 
+std::string cRendererCGI::SetButton(std::string p_strText)
+{
+  return STREAMSTRING("<button type=\"submit\" name=\"action\" value=\"0\">" << p_strText << "</button>");
+}
 

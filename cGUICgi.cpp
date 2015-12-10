@@ -29,20 +29,20 @@ void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
   {
     cGUICgi oCgiGui;
     bool bRestoredEnv = oCgiGui.RestoreEnvFromQueryString(p_iAgrc, p_p2Argv);
-    std::string strState = oCgiGui.GetParamSTR(APPSTATE, APPSTATE_START); //pre analysing the cgi parameter passed from client
+    std::string strState = oCgiGui.GetParamSTR(APPCMD, APPCMD_START); //pre analysing the cgi parameter passed from client
 
     if (!bRestoredEnv)
       oCgiGui.StoreEnv(strState);
 
     //*** return start display ***
-    if (APPSTATE_START == strState)
+    if (APPCMD_START == strState)
     {
       cRendererCGI oRenderer(oCgiGui.m_poCGI);
       oRenderer.RenderStartScreen();
     }
 
     //*** create tournament ***
-    if (APPSTATE_CREATE_TOURNAMENT == strState)
+    if (APPCMD_CREATE_TOURNAMENT == strState)
     {
       //*** parse parameter ***
       LOGSTRSTR("*** parsing parameter ***" << endl);
@@ -52,7 +52,7 @@ void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
               , oCgiGui.GetParam<int>(COURTS)
               , oCgiGui.GetParam<int>(TEAM1)
               , oCgiGui.GetParam<int>(TEAM2)
-              , oCgiGui.GetParamSTR(APPUUID) );
+              , oCgiGui.GetParamSTR(APP_PARAM_UUID) );
 
       //*** calc tournament ***
       LOGSTRSTR("*** calculate tournament ***" << endl);
@@ -60,7 +60,7 @@ void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
       oTournament.Create();
       
       //*** write it temporarily for later use if wanted ***
-      cSerializer oSerializer(STREAMSTRING(oTournamentParameter.GetUUID() << ".ltm"));
+      cSerializer oSerializer(STREAMSTRING(oTournamentParameter.GetUUID() << ".tmp"));
       oSerializer.Write<cTournament>(oTournament);
 
       //*** render results to cgi ***
@@ -69,9 +69,31 @@ void cGUICgi::Dispatch(int p_iAgrc, char** p_p2Argv)
       oRenderer.Render(&oTournament);
     }
     
-    if(APPSTATE_LOAD_TOURNAMENT_FROM_ARCHIVE == strState)
+    if(APPCMD_SAVE_TOURNAMENT == strState)
     {
-      std::string strFilename = oCgiGui.GetParamSTR(APPTOURNAMENTTOLOAD);
+      std::string strFilenameTmp = oCgiGui.GetParamSTR(APP_PARAM_UUID);
+      std::string strFilename = oCgiGui.GetParamSTR(APP_PARAM_TOURNAMENTTOSAVE);
+      
+      //*** read temporary tournament ***
+      cDeserializer oDeserializer(strFilenameTmp);
+      cTournament oTournament;
+      oDeserializer.Read<cTournament>(oTournament);
+      
+      oTournament.GetParameter()->SetSaved(true);
+      
+      //*** copy it to make it available the next time ***
+      cSerializer oSerializer(strFilename);
+      oSerializer.Write<cTournament>(oTournament);
+      
+      //*** render results to cgi ***
+      cRendererCGI oRenderer(oCgiGui.m_poCGI);
+      oRenderer.Render(&oTournament);
+      
+    }
+    
+    if(APPCMD_LOAD_TOURNAMENT_FROM_ARCHIVE == strState)
+    {
+      std::string strFilename = oCgiGui.GetParamSTR(APP_PARAM_TOURNAMENTTOLOAD);
       
       cDeserializer oDeserializer(strFilename);
       cTournament oTournament;
