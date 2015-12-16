@@ -43,6 +43,20 @@ MAPENCOUNTER& cTournament::GetEncountersChoosen()
   return m_mapEncountersChoosen;
 }
 
+void cTournament::SetPoints(int p_iEncounterId, std::string p_strPairCode, int p_iPoints)
+{
+  cEncounter* poEncounter = FindEncounterChoosen(p_iEncounterId);
+  
+  if(poEncounter)
+  {
+    if(p_strPairCode.find("A") != std::string::npos)
+      poEncounter->GetPairA()->SetPoints(poEncounter->GetIdRound(), p_iPoints);
+    
+    if(p_strPairCode.find("B") != std::string::npos)
+      poEncounter->GetPairB()->SetPoints(poEncounter->GetIdRound(), p_iPoints);      
+  }
+}
+
 
 void cTournament::accept(iRenderer* p_poRendrer)
 {
@@ -145,4 +159,12 @@ void cTournament::SelectEncounters()
             << " CourtId:" << std::setw(0) << iCourtId << endl);
     iNumOfEncounterChoosen++;
   }
+}
+
+cEncounter* cTournament::FindEncounterChoosen(int p_iEncounterId)
+{
+  if(m_mapEncountersChoosen.end()==m_mapEncountersChoosen.find(p_iEncounterId))  
+    return &(m_mapEncountersChoosen[p_iEncounterId]);
+  
+  return 0;
 }

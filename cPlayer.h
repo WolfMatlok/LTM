@@ -36,6 +36,12 @@ public:
   int RegisterRound(int p_iRoundId);
   
   void AddPoints(int p_iRoundId, int p_iPoints);
+  
+  /**
+   * @param p_iRoundId pass -1 to get the sum of all registered rounds of the player...
+   */
+  int GetPoints(int p_iRoundId);
+  
 
   bool operator==(const cPlayer& p_oLeftHand);
 

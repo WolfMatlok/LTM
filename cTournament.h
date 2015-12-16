@@ -29,6 +29,8 @@ public:
   
   MAPENCOUNTER& GetEncountersChoosen();
   
+  void SetPoints(int p_iEncounterId, std::string p_strPairCode, int p_iPoints);
+  
   cTournamentParameter* GetParameter(){return m_poParam;};
 
   virtual void accept(iRenderer* p_poRendrer);
@@ -39,6 +41,7 @@ private:
   void CreatePairs();
   void CreateEncounters();
   void SelectEncounters();
+  cEncounter* FindEncounterChoosen(int p_iEncounterId);
   
   friend class boost::serialization::access;
 

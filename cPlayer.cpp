@@ -43,6 +43,20 @@ void cPlayer::AddPoints(int p_iRoundId, int p_iPoints)
     m_oRegisteredRoundId[p_iRoundId]+=p_iPoints;
 }
 
+int cPlayer::GetPoints(int p_iRoundId)
+{
+  int iPoints = 0;
+  if(-1 == p_iRoundId)
+  {
+    for(auto oIt = m_oRegisteredRoundId.begin(); oIt!=m_oRegisteredRoundId.end(); ++oIt)
+      iPoints+=oIt->second;
+  }
+  
+  if(IsRegisteredOnRound(p_iRoundId))
+    iPoints = m_oRegisteredRoundId[p_iRoundId];
+  
+  return iPoints;
+}
 
 PlayerId cPlayer::GetId() const
 {

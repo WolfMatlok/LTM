@@ -29,6 +29,10 @@ public:
   bool RegisterOnGamePossible(int p_iRoundId);
   
   void RegisterRound(int p_iRoundId);
+  
+  void SetPoints(int p_iRoundId, int p_iPoints);
+  
+  std::string GetResultsAsString(int p_iRoundId);
 
   bool operator==(const cPair& p_oLefthand)
   {
